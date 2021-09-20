@@ -46,7 +46,7 @@ One critical thing to understand that the syntax is **almost always case sensiti
 
 So let's get started! I'll write the melody of the example above again for funsies, though I'll transpose it to make it easier. If you wanna follow along in mgsdrv in your browser, start from [this template!](https://f.msxplay.com?id=e04930ad)! I recommend doing so and pressing play after each example to hear the results!
 
-#### 1 - Notes
+### 1 - Notes
 
 Starting with the notes, we just type their names in lowercase! So they're `a b c d e f g`, no surprise!
 ```
@@ -60,13 +60,12 @@ Since the melody is in D major, we gotta change those Fs into F-sharps. To do th
 ```
 adrdbadragf+f+gadef+
 ```
-Maybe you've noticed that all the notes are playing in the same octave, when one of them is not supposed to! One way we could change it is by using the **o** command followed by the octave number, but we can just increase or decrease from the current octave, using `>` and `<` respectively!
+Maybe you've noticed that all the notes are playing in the same octave, when one of them is not supposed to! One way we could change it is by using the `o` command followed by the octave number, but we can just increase or decrease from the current octave, using `>` and `<` respectively!
 ```
 adr>d<badragf+f+gadef+
 ```
-*(you can reverse it on the header in most cases if you prefer the opposite)*
 
-#### 2 - Note lengths
+### 2 - Note lengths
 
 You've noticed that all the notes are playing with the same duration, so let's change that! But first, a nice thing about mml is that you're free to space things up as you want in most formats! I like using space to make it easier to read, by separating the notes in each measure.
 ```
@@ -90,7 +89,7 @@ A side note: same as in sheet music, you can dot the notes using `.`! This will 
 l4 ad.>d<b8 ad.ag8 f+8f+8g8a8de f+1
 ```
 
-#### 3 - Loops
+### 3 - Loops
 
 One last important thing to the sequencing itself are loops. By using loops you save having to type notes repeatedly! To do that we encase the sequence within `[ ]` and after the last bracket we add how many times we want it to play. We want it to play it twice, so let's add a 2!
 
@@ -102,3 +101,78 @@ The original repeats the notes, but it changes the last note. To do that we use 
 l4 [adr8>d<b8 adr8ag8 f+8f+8g8a8de |f+1]2 d1
 ```
 And.. that's what we needed for this melody! Pretty much the only thing that will change in this sequence if you want to write it in another driver is the aforementioned look break!
+
+## The Common Commands
+
+Here's a less tutorial-ish explanation on things if that bored you! 
+It's a list of commands that are common to most drivers and are essential to sequencing. There will be differences between how each is implemented in each driver, but it's good to keep an eye out for them! (I'll also use this list when I document each driver separately!)
+
+### Notes
+Syntax: `a b c d e f or g (+ or -)`
+This plays the note!
+Adding a + or - will make it sharp or flat, respectively!
+
+<details><summary>Example:</summary>
+
+```
+l4 cdefgab>c
+```
+(audio)
+</details>
+	
+### Rests
+Syntax: `r`
+Adds a rest! It operates the same way as a note command.
+
+<details><summary>Example:</summary>
+
+```
+l8 crcrgrgrararg
+```
+(audio)
+</details>
+  
+### Note Length
+Syntax: `note (note length value)`
+This sets the current note's duration! The value is divided from a whole note. Omitting it will use the default note length instead.
+
+Not all numbers will work, as it depends on the tick count of the whole note, if the divided value isn't an integer, it won't be valid.
+
+By default, the accepted values are: `1, 2, 3, 4, 6, 8, 12, 16, 24, 32, 48` . The multiples of 3 are triplets!
+
+Adding a `.` at the end increases the length by half!
+
+<details><summary>Example:</summary>
+
+```
+a4d4.>d4<b8 ad.ag8
+```
+(audio)
+</details>
+  
+### Set Octave
+Sintax: `o(octave value)`
+This changes the current octave to the specified value.
+I recommend using when changing instruments or when you want to have a firm grasp of the current octave, as one can get lost after many relative octave changes.
+  
+<details><summary>Example:</summary>
+
+```
+l8 o3 cde o6 cde o2 cde
+```
+(audio)
+</details>
+  
+### Relative Octave Change
+Sintax: `<` and `>`
+Respectively decreases and increases the current octave by 1.
+You can use header configs to reverse it.
+<details><summary>Example:</summary>
+
+```
+l16 dd>d<d f8ab >crcr<b4r4
+```
+(audio)
+</details>
+  
+### Tie
