@@ -48,7 +48,7 @@ So let's get started! I'll write the melody of the example above again for funsi
 
 ### 1 - Notes
 
-Starting with the notes, we just type their names in lowercase! So they're `a b c d e f g`, no surprise!
+Starting with the notes, we just type their names in lowercase! So they're `a b c d e f g`, no surprise! I advise humming as you type each note, as it will help your perception!
 ```
 addbadagffgadef
 ```
@@ -105,7 +105,21 @@ And.. that's what we needed for this melody! Pretty much the only thing that wil
 ## The Common Commands
 
 Here's a less tutorial-ish explanation on things if that bored you! 
-It's a list of commands that are common to most drivers and are essential to sequencing. There will be differences between how each is implemented in each driver, but it's good to keep an eye out for them! (I'll also use this list when I document each driver separately!)
+It's a list of commands that are common to most drivers and are essential to sequencing. There will be differences between how each is implemented in each driver, and there'll be exception for the commands.
+
+This is just to give an idea of the main things you'll want for the sequencing
+
+### Set Instrument
+Syntax: `@(value)`
+Select the instrument definitions to be used. Use the same value as one instrument you have set previously.
+
+<details><summary>Example:</summary>
+ 
+```
+@1 cdefg @2 cdefg
+```
+(audio)
+</details>
 
 ### Notes
 Syntax: `a b c d e f or g (+ or -)`
@@ -113,27 +127,27 @@ This plays the note!
 Adding a + or - will make it sharp or flat, respectively!
 
 <details><summary>Example:</summary>
-
+ 
 ```
 l4 cdefgab>c
 ```
 (audio)
 </details>
-	
+
 ### Rests
 Syntax: `r`
 Adds a rest! It operates the same way as a note command.
 
 <details><summary>Example:</summary>
-
+ 
 ```
 l8 crcrgrgrararg
 ```
 (audio)
 </details>
-  
+
 ### Note Length
-Syntax: `note (note length value)`
+Syntax: `note(note length value)`
 This sets the current note's duration! The value is divided from a whole note. Omitting it will use the default note length instead.
 
 Not all numbers will work, as it depends on the tick count of the whole note, if the divided value isn't an integer, it won't be valid.
@@ -143,36 +157,143 @@ By default, the accepted values are: `1, 2, 3, 4, 6, 8, 12, 16, 24, 32, 48` . Th
 Adding a `.` at the end increases the length by half!
 
 <details><summary>Example:</summary>
-
+ 
 ```
 a4d4.>d4<b8 ad.ag8
 ```
 (audio)
 </details>
-  
+
+### Relative Octave Change
+Sintax: `<` and `>`
+Respectively decreases and increases the current octave by 1.
+You can use header configs to reverse it.
+<details><summary>Example:</summary>
+ 
+```
+l16 dd>d<d f8ab >crcr<b4r4
+```
+(audio)
+</details>
+
 ### Set Octave
 Sintax: `o(octave value)`
 This changes the current octave to the specified value.
 I recommend using when changing instruments or when you want to have a firm grasp of the current octave, as one can get lost after many relative octave changes.
   
 <details><summary>Example:</summary>
-
+ 
 ```
 l8 o3 cde o6 cde o2 cde
 ```
 (audio)
 </details>
-  
-### Relative Octave Change
-Sintax: `<` and `>`
-Respectively decreases and increases the current octave by 1.
-You can use header configs to reverse it.
-<details><summary>Example:</summary>
 
+### Ties
+Syntax: `^(length value)`
+Extends the length of the note by the specified value. You can stack as many as desired.
+Some drivers unite this with the Slur command, but it's better to understand them separately, since it can cause errors when using a different driver.
+<details><summary>Example:</summary>
+ 
 ```
-l16 dd>d<d f8ab >crcr<b4r4
+l16 b-4f4^8b-8 b->cde-f2^4^8
 ```
 (audio)
 </details>
-  
-### Tie
+
+### Slur
+Syntax: `&(note)`
+Also known as legato. Plays the next note without restarting the instrument's envelope.
+This can also be used to achieve a tie, but it's not advised, since it'll have a bigger filesize compared to Ties.
+<details><summary>Example:</summary>
+ 
+```
+l16 d&efg ar>d8&cr<arb4
+```
+(audio)
+</details>
+
+### Loop
+Syntax: `[ (mml string) (break) ](number of repetitions)`
+A loop plays the MML string between the brackets for the amount of times specified after.
+If a break is inserted, the part after it will be skipped in the last time playing.
+	The break symbol highly varies, so check for the driver you're using.
+<details><summary>Example:</summary>
+ 
+```
+l4 [adr8>d<b8 adr8ag8 f+8f+8g8a8de |f+1]2 d1
+```
+(audio)
+</details>
+
+### Channel Loop Position
+Syntax: `L`
+This will loop the selected channel from the current point onwards after it reaches its end.
+You don't need to put in the same point for all channels. Just make sure you know what you're doing or the channels will desync after the loop ([unless that's your intention](https://youtu.be/EjLWJIFM1ho))
+<details><summary>Example:</summary>
+ 
+```
+l8 defg a4>d4 fecd <a4>c<a L gfga d4cd f4g4d2
+```
+(audio)
+</details>
+
+### Volume
+Syntax: `v(value)`
+Changes the volume. The value reach will depend on the driver and soundchip you're using.
+Depending on the driver there'll be other ways to change the volume as well, so look into that!
+<details><summary>Example:</summary>
+	
+```
+l8 v10 defg v8e4 v3 c v15 d^1
+```
+(audio)
+</details>	
+
+### Panning
+Syntax: `p(value)`
+Usually the values are 1 = Right, 2 = Left and 3 = Center. But when the soundchip doesn't have hardpanning it might be negative values for left and positive values for right!
+<details><summary>Example:</summary>
+	
+```
+l8 v10 defg v8e4 v3 c v15 d^1
+```
+(audio)
+</details>	
+
+### Precise Note Length
+Syntax: `%(value)`
+Lets you use a precise number of ticks for your note length.
+Unless you change it, in most cases a quarter note = 24 ticks, so use that as a basis for calculation.
+This helps making fast arpeggios and the like, but it can result in channel desyncing if you don't calculate it correctly.
+<details><summary>Example:</summary>
+	
+```
+l%1 [eb->e-garr bg+fc+<g+rr]8
+```
+(audio)
+</details>	
+
+### Gate Note setting
+Syntax: `q(x)`
+This makes the note rest x number of ticks before its end.
+This is useful when you want to reset envelope in FM instruments, or want a release before the note ends.
+<details><summary>Example:</summary>
+	
+```
+l16 q0 cdefg q1 cdefg
+```
+(audio)
+</details>	
+	
+
+Sometimes there's also a `Q(1-8)` option, which rests the note after x/8ths of its length.
+This allows for a "stacatto-like" effect.
+<details><summary>Example:</summary>
+	
+```
+l16 crdrerfrg8r8>c8r8 l8 Q4 <cdefg4>c4
+```
+(audio)
+</details>	
+
