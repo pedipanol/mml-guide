@@ -1,4 +1,4 @@
-Z# PMD's MML Structure
+# PMD's MML Structure
 
 PMD is a pretty versatile driver when it comes to its structure. The function of every line is defined in its beginning so you can order things in any way you want. This helps a lot in mantaining the script readable.
 

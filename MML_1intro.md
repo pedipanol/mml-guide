@@ -28,9 +28,12 @@ Like many I also started learning MML because there was no other option: I was r
 
 If I were to explain why it's because, _for me_, using MML is a natural consequence of the 2 things that I love about chiptune:
 
-1 - The marvel of making music for the old videogames I loved to play:
-	In MML I'm using the same or a much more similar toolset that a lot of composers I really like used back then than trackers.
-2 - Limitations are fun:
-	Modern trackers allow for full control and milimetric precision of the soundchip. While MML allows you to do that (see Tappy's witchery with the YM2151), its workflow is more about telling the **driver** what to do instead of the **soundchip**, so it restricts you just enough to make it a different experience but not as much to ruin it.
+1. The marvel of making music for the old videogames I loved to play:
+
+In MML I'm using the same or a much more similar toolset that a lot of composers I really like used back then than trackers.
+
+2. Limitations are fun:
+
+Modern trackers allow for full control and milimetric precision of the soundchip. While MML allows you to do that (see Tappy's witchery with the YM2151), its workflow is more about telling the **driver** what to do instead of the **soundchip**, so it restricts you just enough to make it a different experience but not as much to ruin it.
 
 I write this guide in hopes that more people will like it too and find their own reasons to have fun with it. and so that the lack of information or lack of a simpler guide won't be a barrier for you to get into it.
