@@ -6,25 +6,14 @@ This part of the guide is focused on general concepts that you'll have to famili
 
 There are 4 distinct elements in a MML structure (not necessarily in the following order):
 
-<<<<<<< HEAD
-###### Header:
+### Header:
 This will contain **metadata** about the song, as well as compilation instructions. In here, you may define a song's title, insert a comment that will be displayed in the compiled file, set musical details such as the main tempo, etc.
 
-##### Instrument Definition/Instrument Macros:
-This will create the instruments and tables to be called with their respective commands. Oftentimes, there'll only be one type of definition, but particularly for a PSG soundchip, it's common to have different macro types for different aspects.
-
-##### Sequence Macros:
-These are sequences you can call with their respective commands. It's useful for saving time and typing, and there are many ways of doing it.
-=======
-### Header:
-This will contain **metadata** about the song as well as compilation instructions. In here you may define a song's title, insert a comment that will be displayed on the compiled file, set things such as the main tempo, etc.
-
 ### Instrument Definition/Instrument Macros:
-This will create the instruments and tables that to be called with their respective commands. Often times there'll only be one type of definition, but particularly in PSG soundchip it's common to have different macro types for different aspects. 
+This will create the instruments and tables to be called with their respective commands. Oftentimes, there'll only be one type of definition, but particularly for a soundchip with PSG, it's common to have different macro types for different aspects.
 
 ### Sequence Macros:
-These are sequences you can call with their respective commands. It's useful to save time and typing and there are many ways of doing it. These
->>>>>>> main
+These are sequences you can call with their respective commands. It's useful for saving time and typing, and there are many ways of doing it.
 
 ### Channels and Sequence
 Assigning channels and which sequences they're tied to
@@ -134,21 +123,11 @@ l4 [[adr8db8 adr8ag8 f+8f+8g8a8de : f+1]2 d1 ]2
 >```
 >[cdefgb MP-80]2
 >```
-<<<<<<< HEAD
 ...the `MP` effect (a rising/falling pitch) will be active the second time it plays.
-=======
->The effect will be active the second time it plays.
->>>>>>> main
 
 Just to get finished with the basic sequences, there are 2 things that won't be needed for this song specifically, but are still common in basic sequences:
 
-<<<<<<< HEAD
-##### Tie/Slur
 Ties or slurs are used both to change notes without completely starting a new note, and to extend the current note's length. In PMD, they're done with an `&`, but it's not uncommon for drivers to use `^` too.
-=======
-### Tie/Slur
-Ties or Slurs are used both to change notes without retriggering the instrument/envelope and to extend a current note length. In PMD they're done with a `&` but it's not uncommon for drivers to use `^`  too.
->>>>>>> main
 
 Example 1:
 >```
@@ -164,13 +143,7 @@ Example 2:
 
 When the goal is just to extend the note length, some drivers allow you to just add a length value instead of the note after the tie. The previous example can be rewritten in this way as `c8 & 8`. Others might have a different command specific for that (usually for saving space in compilation), but the ties will always allow for that.
 
-<<<<<<< HEAD
-##### Dotted Notes
 By adding a `.` after the note or note length, it'll multiply its length by 1.5x, as a dotten note does in sheet music. Some drivers even allow you to stack them up, but it's not very common.
-=======
-### Dotted Notes
-By adding a dot `.` after the note or note length, it'll multiply its length by 1.5x, as it does in sheet music. Some drivers even allow you to stack them up, but it's not very common.
->>>>>>> main
 
 Example:
 >```
@@ -186,13 +159,8 @@ Title format for each section is `Command Name (Common Representation if applica
 
 These commands will affect everything that comes after it, requiring a reset to the previous value if one wishes to return to how it was previously.
 
-<<<<<<< HEAD
-##### Tempo ( T[value]  t[value] )
-This sets the tempo of the song from that point forward. Most often, the value is the desired BPM itself, but sometimes it can be the internal timer.
-=======
 ### Tempo ( T[value]  t[value] )
-This sets the tempo of the song from that point forward. Most often the BPM itself but it can be the internal timer.
->>>>>>> main
+This sets the tempo of the song from that point forward. Most often, the value is the desired BPM itself, but sometimes it can be the internal timer.
 
 Using + or - before the value turns it into a relative change.
 
@@ -215,13 +183,8 @@ Example:
 >l8 v13 cdefg v10 cdefg v+3 cdefg ((( cdefg
 >```
 
-<<<<<<< HEAD
-##### Transposition/Modulation
+### Transposition/Modulation
 Note: While "transposition" is the common term, "modulation" is used in some reference materials. They usually mean the same thing.
-=======
-### Transposition
-There are 2 main types of transposition commands: Normal Transposition and Channel Transposition.
->>>>>>> main
 
 There are 2 main types of transposition commands: normal transposition and channel transposition.
 
@@ -249,13 +212,7 @@ Example:
 
 These commands are big time and typing savers, useful for playing the same line in other keys, or writing something in a key with less sharps or flats, thus having to type `+` or `-` less often.
 
-<<<<<<< HEAD
-##### Detune ( D±[value])
 This will detune the current channel by a certain amount from that point forward.
-=======
-### Detune ( D±[value])
-This will detune the current channel by + or - steps from that point forward.
->>>>>>> main
 
 Most often, this will change the value according to the soundchip's pitch range instead of by a more intuitive unit (such as cents), so how much true detune it amounts to will change depending on which point in the range you are. Usually, the higher the note is, the stronger the detune will be for the same amount.
 
@@ -264,13 +221,8 @@ Most often, this will change the value according to the soundchip's pitch range 
 >```
 >Result: the second one is at higher range, so the detune change is much more noticeable.
 
-<<<<<<< HEAD
-##### Quantization ( Q[value] q[value] )
-Quantization in MML is used to automatically cut off notes within their original lengths. There are 2 possible ways of doing it (usually both are supported): corase and fine.
-=======
 ### Quantization ( Q[value] q[value] )
-Quantization in MML is used to automatically cut notes within their original lengths. There are 2 possible ways of doing it (usually both are supported): corase and fine.
->>>>>>> main
+Quantization in MML is used to automatically cut off notes within their original lengths. There are 2 possible ways of doing it (usually both are supported): corase and fine.
 
 With the coarse setting, (in PMD, an upper case `Q`) it takes the note and only plays for the given number of eighths of its length. This works like a stacatto in musical notation, except you can specify how much of the note you want played.
 
