@@ -1,6 +1,6 @@
 ## Part 3: This Guide
 
-This part of the guide is focused on general concepts that you'll have to familiarize yourself with to write music in MML. The explanations here will be more broad, but it's important as a basis once you start learning a specific driver, and so you know what to look foor.
+This part of the guide is focused on general concepts that you'll have to familiarize yourself with to write music in MML. The explanations here will be more broad, but it's important as a basis once you start learning a specific driver, and so you know what to look for.
 
 ## Part 4: The Structure
 
@@ -107,7 +107,7 @@ For all MML formats, you set the start and end of a loop with `[ ]`. The basic s
 ```
 [ (sequence) (break) (sequence)](number of repetitions)
 ```
-The break symbol varies depending on the format. In PMD's case, it's `:`.
+The break symbol varies depending on the format. In PMD's case, it's `:`. The part after a break will play for **every loop except the last**.
 
 Let's apply it to the song:
 ```
@@ -292,6 +292,6 @@ Example:
 
 Among many other uses.
 
-Most times, the sequence in a macro is added to the main sequence as is during compilation, so they'll operate like any normal sequence. Remember to keep track of what commands you're using in one in case it results in any unintended change.
+Most times, the sequence in a macro is added to the main sequence as is during compilation, so they'll operate like any normal sequence. Remember to keep track of what commands you're using in one, in case it results in any unintended change.
 
 Very few drivers will have absolute macros, which are referenced, instead of added, within the sequence. This helps save space in the compiled file, but also limits the freedom you have with macros a bit, mainly when it comes to relative changes. Definitely use them for drums if your driver supports it, since the example setup above increases the file size drastically.
