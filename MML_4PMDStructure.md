@@ -5,12 +5,16 @@ PMD is a pretty versatile driver when it comes to its structure. The function of
 He only thing you need for compilation to be successful is a sequence, though the abscence of the parts will result in silence or a error if you address something that hasn't been defined.
 
 Commentaries can be done written on the MML with  `;` at any point, everything after it or until another `;` will be ignored.
+
+---
+
 ## Header
+
 Hader lines sets things like metadata and song-wide definitions that affect all channels. They  begin with a `#` and after specifying the instruction, a space or tab is needed before the string or value.
 
 Here I'll explain the most important ones. I'll save some for the specific section they're relevant, and the others can be checked in the manual.
 
-##### Metadata:
+### Metadata:
 
 To include credits/information about the song in the file, we use the following headers:
 ```
@@ -23,46 +27,36 @@ To include credits/information about the song in the file, we use the following 
 
 `#Memo` can contain anything you want the person playing the file to read. You can make multiple `#Memo` lines if desired, but in most players only the last one willl be displayed.
 
->Note: If you're using the DOS setup to compile and you use japanese/chinese characters in those headers, it's important to set the encoding of your MML file to Shift-JIS as UTF-8 will output wrong characters after the compilation. In Notepad++ this can be changed in Encoding -> Character Sets -> Japanese -> Shift-JIS.
+>Note: If you're using the DOS setup to compile and you use japanese/chinese characters in those headers, it's important to set the encoding of your MML file to Shift-JIS, because UTF-8 will output wrong characters after the compilation. In Notepad++ this can be changed in Encoding -> Character Sets -> Japanese -> Shift-JIS.
 
 Example:
-```
-#Title		PMD Test
-#Composer	pedipanol
-#Arranger	pedipanol
-#Memo		I like trains :D
-```
+>```
+>#Title		PMD Test
+>#Composer	pedipanol
+>#Arranger	pedipanol
+>#Memo		I like trains :D
+>```
 
-##### Global Commands
+---
+
+### Global Commands
 
 These commands will set things that affect the whole song. Most of these expand to their equivalent commands in compilation.
 ```
-#Zenlen		<value>
 #Tempo		<value>
-#Timer		<value>
 #Volumedown	<string>
 #Transpose	<value>
 ```
 
-**\#Zenlen \<value>** determines the tick length of a whole note. By default it's 96 ticks, meaning a halfnote will be 48 ticks, a quarter, 24 ticks and so on. It's important to know it exists, but it's dangerous to change from the default.
+**\#Tempo \<value>** determines the songs BPM... kinda. Due to how the driver was developed, it uses a half-note as a basis instead of a quarter note, so one needs to divide the desired BPM by 2.
 
-PMD will divide this value by each note's length, so if you set it to a value that can't be divided by a length you used, it'll result in a compilation error.
+```
+#Tempo      90  ;The output BPM will be double, 180
+```
 
-This will also affect how the Tempo and Timer commands affect the speed of the song.
+There's a lot on how PMD's tempo works and alternate methods of defining it, read the Advanced page for more info.
 
->Trivia: Zenlen is an abbreviation of "全音符(zen onbu) Length", meaning whole note length.
-
-**\#Tempo \<value>** will change TimerB to match how many times a 48 tick cycle will repeat in a minute approximately. By default this makes it so the value has to be half the actual tempo. 
-
-If you set \#Zenlen to 192, this will make the tempo value be closer to the actual tempo, but will also increase the imprecision. Sticking to the default is recommended.
-
-**\#Timer \<value>** will change the speed value of TimerB directly.
-
->Since  \#Tempo is tied to this 48 tick cycle, if your \#Zenlen is not a multiple of 48 cycles, it's better to use \#Timer instead. And use the following formula
->
->`TimerB = 256 - 10800000 / (bpm * 13 * Zenlen)`
-
-**\#Volumedown \<string>** controls the soundboard's mixer between each group of channels. As it he name implies it only lowers the volume. The format of the string is: \<part>\<value>.
+**\#Volumedown \<string>** controls the soundboard's mixer between each group of channels. As it the name implies it only lowers the volume. The format of the string is: \<part>\<value>.
 
 In \<part>, F represents the FM channels, S = SSG channels, P = PCM channels, R = Rhythm channels. \<value> is the amount to lower. When defining multiple volumedowns, use commas between each definition.
 ```
@@ -74,7 +68,9 @@ In \<part>, F represents the FM channels, S = SSG channels, P = PCM channels, R 
 #Tranpose	-3		;This will transpose the whole song down by 3 semitones
 ```
 
-##### Compile Options:
+---
+
+### Compile Options:
 These are instructions that act on compile time and tell it how to handle some things.
 ```
 #Option		<flags>
@@ -107,11 +103,19 @@ If you only wish to change the file extension you can only put the extension in 
 ```
 **\#Octave Reverse** is a command for reversing the function of the `>` and `<` command. By default, `>` increases and `<` decreases the current octave, This header will reverse it if you prefer the other way around. You can also set it to "Normal" but it's redundant.
 
+---
+
+There are many more headers that can be defined, but the others are more situational, so for the purposes of this guide I'll explain them when each one is relevant. But you can always check the [official manual](https://pigu-a.github.io/pmddocs/pmdmml.htm) and have everything explained together.
+
+All the headers presented above are completely optional for compilation, so you only need the ones you deem necessary for the song you're working on. I only recommend always .having `#Option /v/c` just in case
+
 ## Instrument Definition
 
 PMD only has instrument definitions for the FM instruments. They're a string of FM parameter values  beginning with @\<instrument number.
 
 >If you don't know how about FM synthesis in the OPN soundchips it's better to do some research to properly understand how the instruments work and some terms I won't explain. I recommend [smspower's article on the YM2612](https://www.smspower.org/maxim/Documents/YM2612).
+
+---
 
 ### OPNA instruments
 OPN instruments which are accepted by default will need 42 parameter values, which are organized in the following format:
@@ -134,6 +138,8 @@ To save lines for example, one could organize the same instrument in a single li
 ```
 The only problem with doing it this way is that it makes it harder to edit the instrument, if desired.
 
+---
+
 ### OPM instruments
 
 OPM instruments have one additional parameter in each operator, making it 46 in total. You can use them in your MML for the PC98, but you need to use the header **\#DT2Flag	on**, which will tell the compiler to ignore the extra 4 DT2 parameters.
@@ -151,5 +157,11 @@ OPM instruments have one additional parameter in each operator, making it 46 in 
 This is the same instrument as before but now in the OPM format.
 >Note: that this makes it so every instrument needs to be in OPM mode, so it's better to remove the DT2 parameter if all the others are in OPN mode.
 
+---
+
 ### External instrument file
-If using instruments from a preset bank, you might want to use an .FF file instead of including everything in the MML itself.
+If using instruments from a preset bank, you might want to convert it into a .FF file instead of including everything in the MML itself to save space on the script.
+
+
+
+I personally prefer not to as it limits 
