@@ -6,16 +6,16 @@ This part of the guide is focused on general concepts that you'll have to famili
 
 There are 4 distinct elements in a MML structure  not necesseraily be in the following order:
 
-###### Header:
+### Header:
 This will contain **metadata** about the song as well as compilation instructions. In here you may define a song's title, insert a comment that will be displayed on the compiled file, set things such as the main tempo, etc.
 
-##### Instrument Definition/Instrument Macros:
+### Instrument Definition/Instrument Macros:
 This will create the instruments and tables that to be called with their respective commands. Often times there'll only be one type of definition, but particularly in PSG soundchip it's common to have different macro types for different aspects. 
 
-##### Sequence Macros:
+### Sequence Macros:
 These are sequences you can call with their respective commands. It's useful to save time and typing and there are many ways of doing it. These
 
-##### Channels and Sequence
+### Channels and Sequence
 Assigning channels and which sequences they're tied to
 
 ## Part 5: Instrument Definition
@@ -38,7 +38,7 @@ For this guide we'll be using a familiar song as a basis.
 
 ![fleentstones](/images/granddad.png)
 
-#### Notes and Note Lengths
+### Notes and Note Lengths
 
 As usual, the notes are:
 ```
@@ -103,7 +103,7 @@ Loops work similar to how repetition works in sheet music, by setting a beginnin
 
 For all MML formats you set the start and end of a loop with `[ ]`. The basic syntax looks like this:
 ```
-[ (sequence) (break) (sequence)](number of repetitions)
+[ <sequence> <break> <sequence>]<number of repetitions>
 ```
 The break symbol varies depending on the format. In PMD's case it's `:`.
 
@@ -121,11 +121,11 @@ l4 [[adr8db8 adr8ag8 f+8f+8g8a8de : f+1]2 d1 ]2
 >```
 >[cdefgb MP-80]2
 >```
-The effect will be active the second time it plays.
+>The effect will be active the second time it plays.
 
 Just to get finished with the basic sequences, there are 2 things that we won't be needed for this song specifically, but are still part of the basic sequence:
 
-##### Tie/Slu
+### Tie/Slur
 Ties or Slurs are used both to change notes without retriggering the instrument/envelope and to extend a current note length. In PMD they're done with a `&` but it's not uncommon for drivers to use `^`  too.
 
 Example 1:
@@ -143,7 +143,7 @@ Example 1:
 
 When the goal is just to extend the note length, some drivers allow you to just add a length value instead of the note after the tie. Others might have a different command specific for that (usually for saving space in compilation), but the ties will always allow for that.
 
-##### Dotted Notes
+### Dotted Notes
 By adding a dot `.` after the note or note length, it'll multiply its length by 1.5x, as it does in sheet music. Some drivers even allow you to stack them up, but it's not very common.
 
 Example:
@@ -160,7 +160,7 @@ Title format is `Command Name (Common Representation if applicable)`.
 
 These commands will affect everything that comes after it, requiring a reset to the previous value if one wishes to return to how it was previously.
 
-##### Tempo ( T[value]  t[value] )
+### Tempo ( T[value]  t[value] )
 This sets the tempo of the song from that point forward. Most often the BPM itself but it can be the internal timer.
 
 Using + or - before the value turns it into a relative change.
@@ -174,7 +174,7 @@ Example:
 >l8 t150 cdefg t170 cdefg
 >```
 
-##### Volume ( V[value] v[value] )
+### Volume ( V[value] v[value] )
 This sets the volume of the current channel from that point forward. The value range will depend on the driver and/or soundchip.
 
 Like tempo, more often than not you can  change it relatively with + or -. Many drivers also use `(` and `)` for changing it relatively.
@@ -184,7 +184,7 @@ Example:
 >l8 v13 cdefg v10 cdefg v+3 cdefg ((( cdefg
 >```
 
-##### Transposition
+### Transposition
 There are 2 main types of transposition commands: Normal Transposition and Channel Transposition.
 
 Normal transposition will make it so everything placed after it will be transposed by + or - x semitones.
@@ -211,7 +211,7 @@ Example:
 
 These commands are big time and typing savers. Useful for playing the same line in other keys or writing something in a key with less sharps or flats, as to have to type + or - less often.
 
-##### Detune ( D±[value])
+### Detune ( D±[value])
 This will detune the current channel by + or - steps from that point forward.
 
 Most often this will change the value according to the soundchip's pitch range instead of a linear one, so how much true detune it amounts to will change depending on which point at the range you are. Usually the higher the note is, the stronger the detune will be.
@@ -221,7 +221,7 @@ Most often this will change the value according to the soundchip's pitch range i
 >```
 >Result: the second one is at higher range so the detune change is much more noticeable.
 
-##### Quantization ( Q[value] q[value] )
+### Quantization ( Q[value] q[value] )
 Quantization in MML is used to automatically cut notes within their original lengths. There are 2 possible ways of doing it (usually both are supported): corase and fine.
 
 With the coarse setting, (in PMD, an upper case `Q`) it takes the note and only plays for x/8 of its length. This works like a stacatto in musical notation, except you can specify how much of the note you want played.
