@@ -32,7 +32,7 @@ As said in Part 1, modern MML's basic syntax derives from sheet music. It's not 
 
 For those more familiar with trackers, which have a rigid visual timescale unlike sheet music, it can be useful to think of MML as taking the sequential values of a channel and removing the empty space between commands.
 
-_pedipanol's note: I'll see if I can make an explanation easier for tracker musicians who don't know how to read sheet music in the future._
+_pedipanol's note: I'll see if I can make an explanation in the future that's easier for tracker musicians who don't know how to read sheet music._
 
 Most of what's contained here is **basically universal** among all syntaxes. However, some of them might tackle things diferently, or some of them might **not support** one or two things. If you want to try things out as they're explained, **please follow the Setting Up section in PMD's page**, which is the format I'll be using for this explanation (write the sequences in channel G so it doesn't require additional setup; this is done by starting a line with `G` followed by some whitespace). Audio examples will also be provided.
 
@@ -42,7 +42,7 @@ For this guide, we'll be using a familiar song as a basis.
 
 #### Notes and Note Lengths
 
-The usual notes are those standard in music:
+The usual notes are those standard across music:
 ```
 a b c d e f g
 ```
@@ -123,7 +123,7 @@ l4 [[adr8db8 adr8ag8 f+8f+8g8a8de : f+1]2 d1 ]2
 >```
 >[cdefgb MP-80]2
 >```
-...the `MP` effect (a rising/falling pitch bend) will be active the second time it plays.
+...the `MP` effect (a rising/falling pitch) will be active the second time it plays.
 
 Just to get finished with the basic sequences, there are 2 things that won't be needed for this song specifically, but are still common in basic sequences:
 
@@ -134,7 +134,7 @@ Example 1:
 >```
 >c8 & d8 e4
 >```
-> Result: `d` will play without playing a new note. The result is a slur from `c` to `d`. And `e` will not be slurred.
+> Result: `d` will play without playing a new note. The result is a slur from `c` to `d`. The `e` is not slurred.
  
 Example 2:
 >```
@@ -178,7 +178,7 @@ Example:
 ##### Volume ( V[value] v[value] )
 This sets the volume of the current channel from that point forward. The value range will depend on the driver and/or soundchip.
 
-Like tempo, more often than not you can change it relatively with + or -. Many drivers also use `(` and `)` for incrementing or decrementing.
+Like tempo, more often than not you can change it relatively with + or -. Many drivers also use `(` and `)` for changing it relatively.
 
 Example:
 >```
@@ -212,12 +212,12 @@ Example:
 >l8 cdefg def+ga ef+g+ab
 >```
 
-These commands are big time and typing savers, useful for playing the same line in other keys, or writing something in a key with less sharps or flats, thus having to type + or - less often.
+These commands are big time and typing savers, useful for playing the same line in other keys, or writing something in a key with less sharps or flats, thus having to type `+` or `-` less often.
 
 ##### Detune ( D±[value])
-This will detune the current channel by + or - steps from that point forward.
+This will detune the current channel by a certain amount from that point forward.
 
-Most often this will change the value according to the soundchip's pitch range instead of by a more standard unit (such as cents), so how much true detune it amounts to will change depending on which point in the range you are. Usually, the higher the note is, the stronger the detune will be for the same amount.
+Most often, this will change the value according to the soundchip's pitch range instead of by a more intuitive unit (such as cents), so how much true detune it amounts to will change depending on which point in the range you are. Usually, the higher the note is, the stronger the detune will be for the same amount.
 
 >```
 >l2   o2 D0 g D-2 g   o6 D0 g D-2 g
@@ -235,7 +235,7 @@ Example:
 >```
 >Result: will only play half (4/8) of its length. After the `Q4` command, it would be the same as if `l16 crdrerfrgr` was typed instead.
 
-With the fine setting, (in PMD, a lower case `q`) it'll subtract the given number of ticks from the ending of the note.
+With the fine setting, (in PMD, a lower case `q`) it'll subtract the given number of ticks from the length of the note.
 
 Example:
 >```
@@ -271,7 +271,7 @@ Example:
 >```
 >The above example is a typical FM drum setting in PMD. Each macro (represented by `![character]`) contains respectively:
 > 1. Change instrument (`@`)
-> 2. Set pitch bending (`MP`), or turn it off (`*0`)
+> 2. Set pitch fall (`MP`), or turn it off (`*0`)
 > 3. Volume (`v`)
 > 4. Set octave (`o`)
 > 5. Transpose (`_`)
@@ -292,6 +292,6 @@ Example:
 
 Among many other uses.
 
-Most times, the sequence in those a macro is added to the main sequence as is during compilation, so they'll operate like any normal sequence. Remember to keep track of what commands you're using in one in case it results in any unintended change.
+Most times, the sequence in a macro is added to the main sequence as is during compilation, so they'll operate like any normal sequence. Remember to keep track of what commands you're using in one in case it results in any unintended change.
 
-Very few drivers will have absolute macros, which are referenced, instead of added, in the sequence. This helps save space, but also limits the freedom you have with macros a bit, mainly when it comes to relative changes. Definitely use them for drums if your driver supports it, since the example setup above increases the file size drastically.
+Very few drivers will have absolute macros, which are referenced, instead of added, within the sequence. This helps save space in the compiled file, but also limits the freedom you have with macros a bit, mainly when it comes to relative changes. Definitely use them for drums if your driver supports it, since the example setup above increases the file size drastically.

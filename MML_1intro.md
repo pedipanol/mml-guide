@@ -8,7 +8,7 @@ MML, standing for Music Macro Language, was introduced to the general public as 
 
 The note sequence format was designed **based on sheet music** sequencing. This was a key element for it getting popular in Japan, as musicians essentially were just writing sheet music in plain text form, and so the **same baseline framework started being used for most drivers** (consumer-grade or not) going forward.
 
-As trackers were introduced for western machines, it took until the late 2000's with **LSDJ**   and **Famitracker** for them to become widely known in the Japanese chiptune scene. With the **MSX** seeing some success (mainly in areas where Commodore didn't dominate the 8-bit market), MML was known to some degree.
+As trackers were introduced for western machines, it took until the late 2000's with **LSDJ** and **Famitracker** for them to become widely known in the Japanese chiptune scene. With the **MSX** seeing some success (mainly in areas where Commodore didn't dominate the 8-bit market), MML was known to some degree.
 
 In 2001, **Music Compiler Kit** (also known as mck) for the NES/Famicom was created in Japan, and with Jake Kaufman himself translating its manual to English, awareness of the MML format in the west increased, raising even more as tools based around mck's format for other systems (like HusiC) got developed.
 
