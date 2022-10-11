@@ -113,7 +113,7 @@ PMD only has instrument definitions for the FM instruments. They're a string of 
 
 >If you don't know how about FM synthesis in the OPN soundchips it's better to do some research to properly understand how the instruments work and some terms I won't explain. I recommend [smspower's article on the YM2612](https://www.smspower.org/maxim/Documents/YM2612).
 
-##### OPNA instruments
+### OPNA instruments
 OPN instruments which are accepted by default will need 42 parameter values, which are organized in the following format:
 
 ```
@@ -134,7 +134,7 @@ To save lines for example, one could organize the same instrument in a single li
 ```
 The only problem with doing it this way is that it makes it harder to edit the instrument, if desired.
 
-##### OPM instruments
+### OPM instruments
 
 OPM instruments have one additional parameter in each operator, making it 46 in total. You can use them in your MML for the PC98, but you need to use the header **\#DT2Flag	on**, which will tell the compiler to ignore the extra 4 DT2 parameters.
 ```
@@ -151,5 +151,5 @@ OPM instruments have one additional parameter in each operator, making it 46 in 
 This is the same instrument as before but now in the OPM format.
 >Note: that this makes it so every instrument needs to be in OPM mode, so it's better to remove the DT2 parameter if all the others are in OPN mode.
 
-##### External instrument file
+### External instrument file
 If using instruments from a preset bank, you might want to use an .FF file instead of including everything in the MML itself.

@@ -35,7 +35,8 @@ _I'll see if I can make an explanation easier for tracker musicians who don't kn
 Most of what's contained here is **basically universal** among all syntaxes. Some of them might tackle things diferently, some of them might **not support** one or two things. If you want to try things out as they're explained, **please follow the Setting Up section in PMD's page** which is the format I'll be using for this explanation (write the sequences in channel G so it doesn't require additional setup). Audio examples will also be provided.
 
 For this guide we'll be using a familiar song as a basis.
-![[Pasted image 20220912160839.png]]
+
+![fleentstones](/images/granddad.png)
 
 #### Notes and Note Lengths
 
