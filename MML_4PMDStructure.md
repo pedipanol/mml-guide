@@ -109,15 +109,24 @@ There are many more headers that can be defined, but the others are more situati
 
 All the headers presented above are completely optional for compilation, so you only need the ones you deem necessary for the song you're working on. I only recommend always .having `#Option /v/c` just in case
 
+---
+
 ## Instrument Definition
+
+If you don't know by now, the PC-98, with the Speakboard, 86 and other soundboards, uses the [YM2608 or OPNA Soundchip](https://en.wikipedia.org/wiki/Yamaha_YM2608), consisting of:
+ - 6 FM Channels (4-operator OPN-type FM Synthesis)
+ - 3 SSG Channels ([AYM](https://en.wikipedia.org/wiki/General_Instrument_AY-3-8910)-type PSG)
+ - 1 ADPCM Channel (8-bit, max 16khz sample rate)
+ - 6 Rhythm Channels (Hardcoded drum samples)
+
+The 86 soundboard also includes its own cpu-powered PCM output. Which is stereo, 16-bit and 44100hz. PMD can harness its power with the PPZ8 driver (for multi-PCM) and PMD86, using it instead of the OPNA's ADPCM.
 
 PMD only has instrument definitions for the FM instruments. They're a string of FM parameter values  beginning with @\<instrument number.
 
 >If you don't know how about FM synthesis in the OPN soundchips it's better to do some research to properly understand how the instruments work and some terms I won't explain. I recommend [smspower's article on the YM2612](https://www.smspower.org/maxim/Documents/YM2612).
 
----
 
-### OPNA instruments
+### FM instruments
 OPN instruments which are accepted by default will need 42 parameter values, which are organized in the following format:
 
 ```
@@ -138,7 +147,6 @@ To save lines for example, one could organize the same instrument in a single li
 ```
 The only problem with doing it this way is that it makes it harder to edit the instrument, if desired.
 
----
 
 ### OPM instruments
 
@@ -157,11 +165,87 @@ OPM instruments have one additional parameter in each operator, making it 46 in 
 This is the same instrument as before but now in the OPM format.
 >Note: that this makes it so every instrument needs to be in OPM mode, so it's better to remove the DT2 parameter if all the others are in OPN mode.
 
+### Using an external FM instrument file
+
+If using instruments from a preset bank, or if you don't want to include the FM instruments in your MML for whatever reason, you might want to use an instrument file instead.
+
+.FF are PMD's instrument bank files, which will be referenced by the script when loading instruments with the `@` commands. They can be made with VEDSE.EXE on DOS or YM2608 Tone Editor on Windows.
+
+>YM2608 tone editor can be also used to convert commom FM instrument file formats to .FF banks.
+
+To use the bank file in your script, you need to use the following header:
+
+```
+#FFFile     <filename>.FF
+```
+
+---
+### SSG and PCM instruments
+SSG and PCM don't have an instrument definition in the same way that FM does.
+
+SSG is shaped by commands that will change its wave mode, volume envelope and noise frequency which are explained in the    chip-specific commands page.
+
+PCM is defined both by external file handling and chip commands, thus needing its own page.
+
 ---
 
-### External instrument file
-If using instruments from a preset bank, you might want to convert it into a .FF file instead of including everything in the MML itself to save space on the script.
+## Channels
 
+In PMD, channels are defined at the beginning of each line. This means all the sequence written in the current line will be played in the channel associated with the letter(s) at the beginning.
 
+A space or tab is needed after defining the channel(s).
 
-I personally prefer not to as it limits 
+```
+G   l8 cdefgab>c4.   ;Channel G plays the first line
+H   l4 c e d g c     ;Channel H plays the second line
+```
+
+PMD also allows you to address 2 channels at the same time. This will not necessarily make them play together, since the prior sequence would have to be in sync. One can take advantage of this to create 2+ channel layering or echo.
+
+```
+G   v12              ;Sets Channel G
+H   r8. D-2 v8       ;Sets Ch. H to play with a detune and delay
+GH  o4 l8 cdefgab>c  ;Play both, H sounding like an echo of G
+```
+
+The channel letter association with the soundchip is as following:
+```
+A   FM Channel 1
+B   FM Channel 2
+C   FM Channel 3
+D   FM Channel 4
+E   FM Channel 5
+F   FM Channel 6
+G   SSG Channel 1
+H   SSG Channel 2
+I   SSG Channel 3
+J   ADPCM/86PCM Channel
+```
+
+The Rhythm channels can be used in any of those channels, as it's called using commands, allowing it to be easily played together with the drums being played in any of these channels.
+
+PMD also has driver channels that perform different functions:
+```
+K          Rhythm/SSGPCM Channel
+R<value>   Rhythm channel macros
+```
+The K channel is an option for sequencing drums. It works on SSG channel 3 and takes priority over channel I. By default it'll be used for the internal SSG drums (notably used on Touhou games), but with additional setup it can play SSGPCM samples or custom SSG drums or SFX.
+
+Extra channels can be created for using FM channel 3's Expanded mode and PPZ8. You can associate them with any letter you want (besides the default ones) as long as it's defined on the following headers:
+
+```
+#FM3Extend  <channel(s)> ; Commonly XYZ
+#PPZExtend  <channel(s)> ; Commonly abcdefgh
+```
+
+## Macros
+
+Aside from R which can only be used in the K channel, PMD has an universal macro. It works by setting it up in a marco line starting with `!`, associating it with any string, then calling that string in the channel sequence. As follows:
+
+```
+!a    cdefg       ;Sets the macro "a" with the "cdefg" sequence.
+
+A   !<string>     ;Inserts "cdefg" in channel A
+```
+
+The macros are inserted on compile time, meaning it'll only save typing and time. It's good to use macros whenever you see yourself repeating a sequence or sequence of commands often. They're notably seen in drums.
