@@ -97,13 +97,13 @@ These are plugins for Winamp and foobar2000, respectively, that use FMPMD's plug
 2. Download [the OPNA Rhythm Sound Source (RSS) samples](http://snesmusic.org/hoot/drum_samples.zip).
 3. Extract them in the same folder.
 
-##### Winamp
+### Winamp
 4. Download [inFMPMD](http://www.purose.net/befis/download/)
 5. Extract it to (Winamp's installation folder)\Plugins\ .
 6. Copy PMDWin.dll and the 2608 Rhythm samples and paste both on the Winamp's plugin folder.
 7. On Winamp, go to Options->Preferences->Plugins->Input, click inFMPMD v1.4.0, then on Settings below. On the Mixer tab disable "Enable PPS" and turn on "RHYTHM with PPS" (must be reversed for some songs, but there are more tracks that need this than vice versa).
 
-###### foobar2000
+### foobar2000
 4. Download [foo_input_fmpmd](https://ux.getuploader.com/foobar2000/download/31)
 5. Extract it to (foobar's installation folder)\components\.
 6. Open foobar2000 then go to File -> Preferences -> Tools -> FMP/PMD Input Settings  
