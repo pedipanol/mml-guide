@@ -264,8 +264,8 @@ Example:
 >```
 >!b	@1 MP-80 v10 o1 _+9 Q4 \vh12 \b\h 
 >!s	@2 MP-40 v13 o4 _+7 Q8 \vh12\vs15\s\h
->!H	@4 *0 	 v12 o7 _0 Q8 \c
->!h	@5 *0 	 v10 o7 _0	Q4 \vh6\h
+>!H	@4 *0    v12 o7 _0  Q8 \c
+>!h	@5 *0    v10 o7 _0  Q4 \vh6\h
 >
 >A	l8 !b c !h c !s c !h c !b c c !s c !H c
 >```
