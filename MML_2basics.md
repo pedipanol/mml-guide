@@ -32,7 +32,7 @@ As said in Part 1, modern MML's basic syntax derives from sheet music. It's not 
 
 For those more familiar with trackers, which have a rigid visual timescale unlike sheet music, it can be useful to think of MML as taking the sequential values of a channel and removing the empty space between commands.
 
-_pedipanol's note: I'll see if I can make an explanation in the future that's easier for tracker musicians who don't know how to read sheet music._
+_I'll see if I can make an explanation in the future that's easier for tracker musicians who don't know how to read sheet music._
 
 Most of what's contained here is **basically universal** among all syntaxes. However, some of them might tackle things diferently, or some of them might **not support** one or two things. If you want to try things out as they're explained, **please follow the Setting Up section in PMD's page**, which is the format I'll be using for this explanation (write the sequences in channel G so it doesn't require additional setup; this is done by starting a line with `G` followed by some whitespace). Audio examples will also be provided.
 
