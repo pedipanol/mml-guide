@@ -209,6 +209,7 @@ GH  o4 l8 cdefgab>c  ;Play both, H sounding like an echo of G
 ```
 
 The channel letter association with the soundchip is as following:
+
 ```
 A   FM Channel 1
 B   FM Channel 2
@@ -225,10 +226,12 @@ J   ADPCM/86PCM Channel
 The Rhythm channels can be used in any of those channels, as it's called using commands, allowing it to be easily played together with the drums being played in any of these channels.
 
 PMD also has driver channels that perform different functions:
+
 ```
 K          Rhythm/SSGPCM Channel
 R<value>   Rhythm channel macros
 ```
+
 The K channel is an option for sequencing drums. It works on SSG channel 3 and takes priority over channel I. By default it'll be used for the internal SSG drums (notably used on Touhou games), but with additional setup it can play SSGPCM samples or custom SSG drums/SFX.
 
 Extra channels can be created for using FM channel 3's Expanded mode and PPZ8. You can associate them with any letter you want (besides the default ones) as long as it's defined on the following headers:
