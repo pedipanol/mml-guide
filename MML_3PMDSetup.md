@@ -18,7 +18,7 @@ To use this method in modern machines, an emulator is needed. I recommend [DOSBo
 1. Download the latest version (currently 4.8s) of PMD at [KAJA's website](https://sites.google.com/site/kajapon/pmd) and extract it. Look for the text "Ver.4.8s + Source [20/01/22]".
 2. Download the [english version of the compiler](https://drive.google.com/drive/folders/1fSH39Vr97_29tvjni6H7WXJlxH_HmZx0) (by Mana, Pigu and VasteelXolotl) and replace the existing MC.EXE in the PMD folder. This step isn't mandatory, but without it, most error messages will be in Japanese, which might also be corrupted into [mojibake](https://en.wikipedia.org/wiki/Mojibake) depending on your DOS emulator and its settings.
 3. Transfer the folder to the PC-98 or your DOS emulator's folder.
-4. For a test run, run the following commands:
+4. For a test run, run the following commands:[^1]
 ```
 pmdb2
 mc /p sample.mml
@@ -33,7 +33,7 @@ PMDDotNET is a Windows port of PMD's source code made by [kuma4649](https://gith
 1. Download the latest release at [Github](https://github.com/kuma4649/PMDDotNET/releases) and extract it.
 2. Drag and drop the MML file onto `compile.bat`.
 	(use the ones provided with [PMD](https://sites.google.com/site/kajapon/pmd) if you don't have one around)
-3. Drag and drop the compiled .M file onto `play.bat`.
+3. Drag and drop the compiled `.M` file onto `play.bat`.
 
 If the program doesn't run (and it's not a problem with the MML), it might be a Windows problem which can be addressed by running `removeZoneIdent.bat` and running it again.
 
@@ -53,8 +53,7 @@ If the program doesn't run properly, it might be a Windows problem which can be 
 An open source tool by Rerrahkr for automating the process of compiling and playing songs. It works by setting it to watch whenever the MML file is updated, which triggers it to compile and then play the resulting file.
 
 1. Download [PMD File Watcher](https://github.com/rerrahkr/PMDFileWatcher/releases/latest) and extract it.
-2. In File -> Settings, in MML Compiler, navigate and select `PMDDotNETConsole.exe` (if using PMDDotNET) or `MC.EXE` (if using PMD), then change the other options if you desire.
-**Note:** If using `MC.EXE`, you'll need to use [MS-DOS Player](http://takeda-toshiya.my.coocan.jp/msdos/index.html) and set it in PMD File Watcher's settings, below the MML Compiler settings.
+2. In File -> Settings, in MML Compiler, navigate and select `PMDDotNETConsole.exe` (if using PMDDotNET) or `MC.EXE` (if using PMD), then change the other options if you desire. If using `MC.EXE`, you'll also need to use [MS-DOS Player](http://takeda-toshiya.my.coocan.jp/msdos/index.html) and set it in PMD File Watcher's settings, below the MML Compiler settings.
 3. If you want the song to play after compiling, go to the Play tab, select the player, and check Autoplay.
 
 
@@ -67,7 +66,7 @@ Same as the compiler, an emulator is needed for running this method in modern ma
 1. Download the latest version (currently 4.8s) of PMD at [KAJA's website](https://sites.google.com/site/kajapon/pmd) and extract it. Look for the text "Ver.4.8s + Source [20/01/22]".
 2. Transfer the folder to the PC-98 or your DOS emulator's folder.
 3. On DOS, run the desired driver (next section details them).
-4. Run `pmp <filename>` for playback.
+4. Run `pmp <filename>` for playback.[^1]
 
 [MSDP](https://www.vector.co.jp/soft/dos/art/se056754.html) and [FMDSP](https://www.vector.co.jp/soft/dos/art/se022227.html) are 2 alternate players that include an interface for loading songs more easily, and a song visualizer which includes a piano view and shows other details. To use them, extract them to the folder the driver is in, run the driver, then load MDSP or FMDSP.
 
@@ -104,11 +103,11 @@ These are plugins for Winamp and foobar2000, respectively, that use FMPMD's plug
 7. On Winamp, go to Options -> Preferences -> Plugins -> Input, click inFMPMD v1.4.0, then on Settings below. On the Mixer tab, disable "Enable PPS" and turn on "RHYTHM with PPS" (must be reversed for some songs, but there are more tracks that need this than vice versa).
 
 ### foobar2000
-4. Download [foo_input_fmpmd](https://ux.getuploader.com/foobar2000/download/31).
-5. Extract it to `(foobar's installation folder)\components\`.
-6. Open foobar2000, then go to File -> Preferences -> Tools -> FMP/PMD Input Settings.
-7. On Driver Modules Location, point it to `PMDWin.dll`'s folder, and the RSS Samples'.  
-8. On PMDWinDriver settings, uncheck "Use PPS" and check "OPNA Rhythm with SSG Effect" (must be reversed for some songs, but there are more tracks that need this than vice versa).
+8. Download [foo_input_fmpmd](https://ux.getuploader.com/foobar2000/download/31).
+9. Extract it to `(foobar's installation folder)\components\`.
+10. Open foobar2000, then go to File -> Preferences -> Tools -> FMP/PMD Input Settings.
+11. On Driver Modules Location, point it to `PMDWin.dll`'s folder, and the RSS Samples'.  
+12. On PMDWinDriver settings, uncheck "Use PPS" and check "OPNA Rhythm with SSG Effect" (must be reversed for some songs, but there are more tracks that need this than vice versa).
 
 ### 98fmplayer _(Windows)_
 Open source player for Windows developed by myon98. It replicates the look of FMDSP on the PC-98 and includes a live osciloscope viewer.
@@ -135,8 +134,8 @@ Editting FM instruments in the MML itself can be rough, as compilation and playb
 Included in the PMD 4.8s package, PMD Voice Editor is a program for editting, loading and saving PMD's instrument patches and banks. Follow these steps:
 
 1. Download "PMD98用 Preset FM" from [KAJA's Website](https://sites.google.com/site/kajapon/pmd) and put it in PMD's folder (read the above DOS guides if you don't have it set up).
-2. In DOS, run `VEDSE.EXE EFFEC.FF` in PMD's folder.
-3. Press any of the keys in the Z row of the keyboard, this should play a sound.[^1]
+2. In DOS, run `VEDSE.EXE EFFEC.FF` in PMD's folder.[^1]
+3. Press any of the keys in the Z row of the keyboard, this should play a sound.[^2]
 4. Quitting with Esc will overwrite and save the loaded file.
 
 The .FF files it outputs are FM instrument banks which can be loaded in the MML via the `#FFFile` header.
@@ -154,4 +153,6 @@ Developed by Rerrahkr, YM2608 Tone Editor is an OPN instrument editor for Window
 
 It can be convenient to have it open as you type the MML to adjust or load instruments as you need, and test them without having to compile the song. Important to note is that the SSG-EG parameters have to be input in the script as a command.
 
-[^1]Different keyboards alongside IME settings might make this not function correctly. If it does not function correctly, try changing the IME settings, or use a different keyboard if available.
+[^1]: To navigate to different folders in DOS, use `cd <folder>`. To go outside of a folder, use `cd ..`. Folder paths always use `\` as a separator. If using a PC-98 or a DOS emulator in PC-98 mode, a `\` might appear as a `¥`. This is normal.
+
+[^2]: Different keyboards alongside IME settings might make this not function correctly. If it does not function correctly, try changing the IME settings, or use a different keyboard if available.
