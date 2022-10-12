@@ -36,6 +36,8 @@ You can stack dots as long as it's divisible, and it'll keep multiplying the cur
 G   g4...   ;equals g4&8&16&32
 ```
 
+One can also do notate note lengths using ticks for more precise timings. To do so, one a `%<value>` is attached to the note or `l` command.
+
 ### Octaves
 
 Octaves are defined by the `o<value>` command.
@@ -75,7 +77,7 @@ If the loop count value is ommited, it'll loop infinitely by default. One can ch
 
 ### Tempo (t\<value>)
 
-t\<value> sets/changes the tempo, by an absolute value or by adding or decreasing with + or - to the current value.
+**t\<value>** sets/changes the tempo, by an absolute value or by adding or decreasing with + or - to the current value.
 
 Same as the `#Tempo` header, it uses a half-note as the beat instead of a quarter note, meaning the value has to be halved to get the actual BPM.
 
@@ -96,6 +98,48 @@ A   v12 gdefg   ;v12 corresponds to V117 on the FM channels
 The manual has a [table specifying what each value corresponds to](https://pigu-a.github.io/pmddocs/pmdmml.htm#5-1).
 
 **) and (** respectively increases and decreases the volume in the same increments as `v`. You can do it in `V` increments by adding a `^<value>` after.
+
 ```
 A   v12 cdefg ) cdefg ;Is the same as v117 cdefg V121 cdefg
 A   (^13 cdefg        ;               V108 cdefg
+```
+Same as octaves, adding a + or a - before the value in the  lowercase `v` command will change the current and all the following volume commands commands by that value (fine value).
+
+### Transposition/Modulation ( _\<value> , __\<value> , _M\<value>)
+
+In PMD there are 3 types of transposition:
+
+**_\<value>** transposes the following written sequence by + or - \<value> semitones:
+```
+G  _+2 cdefg   ;Transposes to def+ga
+```
+**__\<value>** is a relative transposition, meaning it'll add or subtract from the transposition status, allowing it to continually transpose even on loops, for example:
+```
+;The _<value> command acts only on what's written, so
+G  [ga:b _+5]3         ;This will sound like "gab >cde cd"
+
+;The __<value> command acts on the currently playing note, so
+G  [ga:b __+5]3        ;This will sound like "gab >cde fg
+```
+**_M\<value>** is a channel transposition command, so it transposes everything after it, including the transpose commands.
+```
+G  _M+2 cde _+5 cde __+5 c+d   ;Will become def+ gab c+d
+```
+
+### Quantization ( Q\<value>, q\<value>)
+
+PMD has both the coarse and fine quantization methods.
+
+**Q\<value>** plays the following notes for only <value>/8ths of its length and cuts the rest of it.
+```
+G  l8 Q8 cdefg ;The note plays normally
+G  l8 Q4 cdefg ;It sounds as if l16 crdrerfrgr was typed instead
+```
+
+**q\<value>** subtracts the specified number of ticks from the end of the note length and cuts it.
+```
+G  l8 q0 cdefg ;The note plays as normal
+G  l8 q1 cdefg ;The note cuts just before the next
+```
+
+There's a lot more into **q\<value>**, but as it's complicated and situational, find it more at the Advanced Section.
