@@ -52,7 +52,7 @@ Something to reinforce early is that **MML is case-sensitive** in most drivers. 
 ```
 1 = Whole note | 2 = Half Note | 4 = Quarter Note | 8 = Eigth Note | and so on...
 ```
-The range of values you can input will vary depending on the driver and the **tick count** for the whole note. Most drivers will have **96 ticks per whole note** as default, as they can be divided by a wide range of numbers, but you can change it as you please.
+The range of values you can input will vary depending on the driver and the **tick count** for the whole note. Since it works by dividing that number, you can also easily make triplets using multiples of 3.
 
 From these two we can start transcribing the song above, starting with the two quarter notes for `a` and `d`:
 ```
