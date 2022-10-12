@@ -155,4 +155,4 @@ It can be convenient to have it open as you type the MML to adjust or load instr
 
 [^1]: To navigate to different folders in DOS, use `cd <folder>`. To go outside of a folder, use `cd ..`. Folder paths always use `\` as a separator. If using a PC-98 or a DOS emulator in PC-98 mode, a `\` might appear as a `¥`. This is normal.
 
-[^2]: Different keyboards alongside IME settings might make this not function correctly. If it does not function correctly, try changing the IME settings, or use a different keyboard if available.
+[^2]: Different keyboards, alongside IME settings, might make this not function correctly. If so, try changing the IME settings, or using a different keyboard if available.
