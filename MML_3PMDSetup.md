@@ -16,7 +16,7 @@ There are 3 methods for using PMD depending on your computer and OS.
 To use this method in modern machines, an emulator is needed. I recommend [DOSBox-X](https://dosbox-x.com) set to PC-98 mode, because it doesn't require using external programs for managing files, but the audio is not the best. You can skip configuring it to PC-98 mode if you want to use a windows-based player (next section).
 
 1. Download the latest version (currently 4.8s) of PMD at [KAJA's website](https://sites.google.com/site/kajapon/pmd) and extract it. Look for the text "Ver.4.8s + Source [20/01/22]".
-2. Download the [english version of the compiler](https://drive.google.com/drive/folders/1fSH39Vr97_29tvjni6H7WXJlxH_HmZx0) (by Mana, Pigu and VasteelXolotl) and replace the existing MC.EXE in the PMD folder. This step isn't mandatory, but without it, most error messages will be in Japanese, which might also be corrupted into [mojibake](https://en.wikipedia.org/wiki/Mojibake) depending on your DOS emulator and its settings.
+2. Download the [English version of the compiler](https://drive.google.com/drive/folders/1fSH39Vr97_29tvjni6H7WXJlxH_HmZx0) (by Mana, Pigu and VasteelXolotl) and replace the existing MC.EXE in the PMD folder. This step isn't mandatory, but without it, most error messages will be in Japanese, which might also be corrupted into [mojibake](https://en.wikipedia.org/wiki/Mojibake) depending on your DOS emulator and its settings.
 3. Transfer the folder to the PC-98 or your DOS emulator's folder.
 4. For a test run, run the following commands:[^1]
 ```
@@ -140,7 +140,7 @@ Included in the PMD 4.8s package, PMD Voice Editor is a program for editting, lo
 
 The .FF files it outputs are FM instrument banks which can be loaded in the MML via the `#FFFile` header.
 
-Operation of the program itself is explained in VEDSE.DOC. It's in japanese, but machine translation should suffice in making things understandable. Important to note is that the SSG-EG parameters have to be input in the script as a command.
+Operation of the program itself is explained in VEDSE.DOC. It's in Japanese, but machine translation should suffice in making things understandable. Important to note is that the SSG-EG parameters have to be input in the script as a command.
 
 ### YM2608 Tone Editor _(Windows)_
 Developed by Rerrahkr, YM2608 Tone Editor is an OPN instrument editor for Windows. It can read many instrument and bank formats, as well as PMD's song files, which is convenient for getting instruments.
