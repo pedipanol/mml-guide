@@ -109,11 +109,11 @@ Same as octaves, adding a + or a - before the value in the  lowercase `v` comman
 
 In PMD there are 3 types of transposition:
 
-**_\<value>** transposes the following written sequence by + or - \<value> semitones:
+**_\<value>** transposes the following written sequence by the given amount of semitones:
 ```
 G  _+2 cdefg   ;Transposes to def+ga
 ```
-**__\<value>** is a relative transposition, meaning it'll add or subtract from the transposition status, allowing it to continually transpose even on loops, for example:
+**__\<value>** is a relative transposition, meaning it'll add or subtract from the current transposition setting, allowing it to continually transpose even on loops, for example:
 ```
 ;The _<value> command acts only on what's written, so
 G  [ga:b _+5]3         ;This will sound like "gab >cde cd"
@@ -143,3 +143,33 @@ G  l8 q1 cdefg ;The note cuts just before the next
 ```
 
 There's a lot more into **q\<value>**, but as it's complicated and situational, find it more at the Advanced Section.
+
+### Detune ( D\<value> , DD\<value> , I\<value> )
+
+There are 3 types of Detune in PMD
+
+**D\<value>** is the main detune, which will change the tuning of the following written sequence by the given amount of units, accordingly to the chip's tuning table, which means it's inequal across types of channels and note you're in.
+```
+G   o2 D0 c D-2 c   o4 D0 c D-2 c    o6 D0 c D-2 c
+;  The same detune becomes makes a more drastic change on higher notes
+```
+**DD\<value>** is a relative detune, meaning it'll add or subtract from the current detune setting.
+```
+G   o4 D0 c D-2 [ c  DD-2]4
+```
+
+**I\<value>** (upper case i) is another detune command, which tries to mantain the same level of detune accross the complete range.
+
+## Additional Notation Commands
+
+### Portamento ( {\<start note>\<end note>} )
+Portamento, or pitch slides, work by enclosing 2 notes in `{ }` brackets.
+```
+G  l8 o4 cdef {g>c}4. c
+```
+They behave as a note itself so they'll use the default length if you only use the brackets, or the note length you attach to it. You can also tie into and out of them:
+```
+G  l8 o5 c<ba16.&{ag}32g fed16.&{dc}32c
+```
+
+### 

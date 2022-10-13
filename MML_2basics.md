@@ -159,7 +159,7 @@ Title format for each section is `Command Name (Common Representation if applica
 
 These commands will affect everything that comes after it, requiring a reset to the previous value if one wishes to return to how it was previously.
 
-### Tempo ( T[value]  t[value] )
+### Tempo ( T\<value>  t\<value> )
 This sets the tempo of the song from that point forward. Most often, the value is the desired BPM itself, but sometimes it can be the internal timer.
 
 Using + or - before the value turns it into a relative change.
@@ -173,7 +173,7 @@ Example:
 >l8 t150 cdefg t170 cdefg
 >```
 
-### Volume ( V[value] v[value] )
+### Volume ( V\<value> v\<value> )
 This sets the volume of the current channel from that point forward. The value range will depend on the driver and/or soundchip.
 
 Like tempo, more often than not you can change it relatively with + or -. Many drivers also use `(` and `)` for changing it relatively.
@@ -221,7 +221,7 @@ Most often, this will change the value according to the soundchip's pitch range 
 >```
 >Result: the second one is at higher range, so the detune change is much more noticeable.
 
-### Quantization ( Q[value] q[value] )
+### Quantization ( Q\<value> q\<value> )
 Quantization in MML is used to automatically cut off notes within their original lengths. There are 2 possible ways of doing it (usually both are supported): corase and fine.
 
 With the coarse setting, (in PMD, an upper case `Q`) it takes the note and only plays for the given number of eighths of its length. This works like a stacatto in musical notation, except you can specify how much of the note you want played.
@@ -250,6 +250,19 @@ Will sound the same as
 ```
 l4 Q8 c&d8r8e
 ```
+
+### Detune ( D\<value> )
+
+Detune changes the tunning of the following sequence by the specified negative or positive value.
+```
+l4 o4 cdefg D-8 cdefg
+```
+
+There are many uses for it, such as making music using quarter tones, making complex layered instruments, and avoiding frequency clashes.
+
+Most drivers will do it by shifting the position in the chip's tuning table by the specified value, wich results with it not being equal among the whole frequency range. For example, a -1 detune will make a much noticeable difference at high frequencies than on lower ones.
+
+Some drivers try to make up for that with a driver-based fixed detune that will ajust and try to make it equal across the whole spectrum.
 
 ## Part 8: Sequence Macros
 
