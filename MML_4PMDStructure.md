@@ -27,7 +27,7 @@ To include credits/information about the song in the file, we use the following 
 
 `#Memo` can contain anything you want the person playing the file to read. You can make multiple `#Memo` lines if desired, but in most players, only the last one willl be displayed.
 
->Note: If you're using the DOS setup to compile, and you use Japanese/Chinese characters in those headers, it's important to set the encoding of your MML file to Shift-JIS, because UTF-8 will output incorrect characters after the compilation. In Notepad++, this can be changed in Encoding -> Character Sets -> Japanese -> Shift-JIS. Not all text editors support this, so be careful.
+>Note: If you're using the DOS setup to compile, and you use Japanese/Chinese characters in those headers, it's important to set the encoding of your MML file to Shift-JIS, because UTF-8 will output incorrect characters after the compilation. In Notepad++, this can be changed in Encoding -> Character Sets -> Japanese -> Shift-JIS. Not all text editors support this, so be mindful.
 
 Example:
 >```
