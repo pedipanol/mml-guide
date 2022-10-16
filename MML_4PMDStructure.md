@@ -4,7 +4,7 @@ PMD is a pretty versatile driver when it comes to its structure. The function of
 
 The only thing you need for compilation to be successful is a sequence, though the abscence of the parts will result in silence or an error if you address something that hasn't been defined.
 
-Commentaries can be written in the MML with `;` at any point; everything after it on the same line will be ignored. Additionally, ```` acts as a comment toggle; everything after one until the next ````` will be ignored.
+Commentaries can be written in the MML with `;` at any point; everything after it on the same line will be ignored. Additionally, `` ` `` acts as a comment toggle; everything after one until the next `` ` `` will be ignored.
 
 ---
 
@@ -256,7 +256,7 @@ Aside from R, which can only be used in the K channel, PMD has a universal macro
 ```
 !a    cdefg       ;Sets the macro "a" with the "cdefg" sequence.
 
-A   !a     ;Inserts "cdefg" in channel A
+A   !a            ;Inserts "cdefg" in channel A
 ```
 
 The macros are inserted at compile time, meaning it'll only save typing and time, not compiled file size. It's good to use macros whenever you see yourself repeating a sequence or sequence of commands often. They're notably seen in drums.
