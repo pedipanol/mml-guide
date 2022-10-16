@@ -23,7 +23,7 @@ To include credits/information about the song in the file, we use the following 
 #Arranger	<string>
 #Memo		<string>
 ```
-`#Title`, `#Composer` and `#Arranger` are straightforward enough.
+`#Title`, `#Composer`, and `#Arranger` are straightforward enough.
 
 `#Memo` can contain anything you want the person playing the file to read. You can make multiple `#Memo` lines if desired, but in most players, only the last one willl be displayed.
 
@@ -120,7 +120,7 @@ If you don't know by now, the PC-98, with the Speakboard, 86, and other soundboa
  - 6 Rhythm Channels (Hardcoded drum samples)
 
 If you're unfamiliar with what these mean, think of:
- - FM: Sega Genesis, 80s-era synth music
+ - FM: Sega Genesis/Mega Drive, 80s-era synth music
  - SSG: square waves, 80s home consoles, Game Boy
  - ADPCM: small MP3 files
  - rhythm: a drum set
