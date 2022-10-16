@@ -172,4 +172,7 @@ They behave as a note itself so they'll use the default length if you only use t
 G  l8 o5 c<ba16.&{ag}32g fed16.&{dc}32c
 ```
 
-### 
+Alternatively you also add the delay to the portamento itself is by adding a note legnth value after a comma. This will make the portamento hold the first note for that specified length:
+```
+G  l8 o5 c<ba16.&{ag}32g
+```
