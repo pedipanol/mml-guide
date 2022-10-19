@@ -79,7 +79,7 @@ These are instructions that act on compile time and tell it how to handle some t
 ```
 **`#Option <string>`** lets you choose which flags to use in the compiler automatically. The commands are the same as the ones indicated by MC.EXE. They can be lower or upper case. Note that this is specifically only for the first argument. The input MML and output `.M` are not included.
 
-The main flags you're gonna usually want are `/V` and `/C`. Without `/V`, some parts of the MML are ignored (not good!), and `/C` will display channel lengths, which can help spot possible mistakes.
+The main flags you're gonna usually want are `/V` and `/C`. Without `/V`, some parts of the MML are ignored (not good!), and `/C` will display the channel's lengths in ticks, which can help spot possible mistakes.
 
 If using PMDDotNET, a PC-98 emulator, or a PC-98 machine, you can also use `/P`, so the song plays automatically after compiling.
 

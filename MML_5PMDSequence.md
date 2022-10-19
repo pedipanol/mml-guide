@@ -160,6 +160,16 @@ G   o4 D0 c D-2 [ c  DD-2]4
 
 **I\<value>** (upper case i) is another detune command, which tries to mantain the same level of detune accross the complete range.
 
+### Channel Loop ( L )
+
+Loops everything from this command up to the end of the channel forever.
+```
+G  o4 L cdefg      ; cdefg loops endlessly
+```
+The same rules as the nested loop apply. Commands that affect notes and note lengths get reset and effect commands does not. It's good to reset the commands to their default or previous value after the channel loop command.
+
+If using `/C` in the `#Option` header, along the whole song's length, it'll also display specifically the length of the loop, so it's good to pay attention whether the lengths match for a perfect loop.
+
 ## Additional Notation Commands
 
 ### Portamento ( {\<start note>\<end note>} )
@@ -177,3 +187,61 @@ Alternatively you can also add the delay to the portamento itself is by adding a
 G  l8 o5 {gc}4,8..c4defge ;Expands to g8..&{gc}32
 ```
 When doing this, the first value represents the whole length of the first note and the portamento, so the second length shouldn't be longer than the second.
+
+### Fast-forward ( "\<sequence>" )
+
+This will skip anything written between the quotation marks. This is useful if you're using the DOS or PMDDotNet setup and want the song to start at a given point.
+
+This can be used at any point of the MML except Headers and Instruments.
+
+```
+"
+A  defga     ;Skips everything between the quotation marks
+"
+A  cdefg     ;The starts here
+```
+One could use the multi-line comment format with ` ` ` for achieving a similar result, but the important difference is that this will keep the command progression of the song
+
+```
+`              ;comment begins
+G	cdefgab>c< MP-80  ;Completely ignores everything
+`              ;comment ends
+G	def+gab>c+d<      ;Sequence plays without the effect
+
+"              ;fast-forward begins
+G	cdefgab>c< MP-80  ;Skips this sequence
+"              ;fast-forward ends
+G	def+gab>c+d<      ;Sequence plays with the effect.
+```
+
+### Retrigger/Echo ( W\<value>,\<value> )
+
+This retrigger the following notes every number of ticks specified in the first value, decreasing or increasing the volume by the second value. If the second value isn't specified, it defaults to -1.
+```
+G  v15 W6 d1         ;Is the same as v15 [d16 (]16
+G  v1  W6,+1 d1      ;Is the same as v0  [d16 )]16
+```
+A third value can be added, which will change the behavior a bit, as follows:
+```
+0 = Retrigger notes  ;default
+1 = Tie notes        ;notes will be tied while changing volume
+2 = Retrigger once   ;only one additional note will be played
+3 = Tie notes once   ;same as above but with notes tied
+```
+
+Using W0 will disable the command.
+
+### Grace Note ( S\<tick>,\<semitones>,\<tie>)
+The grace note effect will automatically add a gliding number of semitones to the beginning of the notes following the command.
+
+First you specify the length of each semitone added, then you specify how many semitones to glide it from (default -1):
+```
+G  v15 q1 S3,-2 d4      ;it's the same as c%6&c+%6&d8
+```
+An additional third value can be added, to make the notes not tie (default)
+
+```
+G  v15 q1 S3,-2,0 d4    ;it's the same as c%6c+%6d8
+```
+
+Using S0 will disable the command.

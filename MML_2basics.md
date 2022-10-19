@@ -264,6 +264,19 @@ Most drivers will do it by shifting the position in the chip's tuning table by t
 
 Some drivers try to make up for that with a driver-based fixed detune that will ajust and try to make it equal across the whole spectrum.
 
+### Channel Loop ( L )
+
+Channel loop sets the loop point of the current channel, meaning everything after it up to the end of the song will play in repeat endlessly. In most drivers this is set by the letter `L`.
+
+```
+L cdefg         ;cdefg plays on repeat forever
+```
+
+This is done by channel, meaning if you want to have the whole song use that loop point you need to point it accordingly.
+
+This also means you can loop them out of sync, which is sually a bad idea but can be used for making loops more interesting and whatnot. Nin-kuukuu used it for making a [40+ days long song](https://www.youtube.com/watch?v=EjLWJIFM1ho).
+
+
 ## Part 8: Sequence Macros
 
 Sequence macros are useful for saving time and typing, making the driver play the set sequence whenever it's called. There are many situations where they can be useful, including:
