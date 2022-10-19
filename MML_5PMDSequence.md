@@ -2,6 +2,8 @@
 
 This page is an adendum to the topics in the Basic MML Sequence part of the manual. If you haven't, read it first.
 
+---
+
 ## The Basic Sequence
 
 ### Notes
@@ -19,6 +21,9 @@ The key signature will be ignored if the opposite symbol or `=` is attached to t
 ```
 G   _{+fcg} ab>cd efg=a4  ;g natural plays instead of g+
 ```
+
+---
+
 ### Note Lengths
 
 Independent on the tempo of the song, PMD uses a fixed tick length for the whole note (96 by default). Note lengths will divide that number, meaning the possible note lengths are:
@@ -38,6 +43,8 @@ G   g4...   ;equals g4&8&16&32
 
 One can also do notate note lengths using ticks for more precise timings. To do so, one a `%<value>` is attached to the note or `l` command.
 
+---
+
 ### Octaves
 
 Octaves are defined by the `o<value>` command.
@@ -52,6 +59,8 @@ GH o4 cdefg     ;H will play at octave 3 instead of 4
 ```
 
 By default, `>` increases and `<` decreases octaves. This can be reversed with the `#Octave Reverse` header, or using the `X` command, if one wishes.
+
+---
 
 ### Loops
 PMD's Loop Format:
@@ -73,6 +82,8 @@ PMD can nest loops infinitely and how commands behave in looping depends on each
 
 If the loop count value is ommited, it'll loop infinitely by default. One can change this behavior with the `#LoopDefault <value>` header, which will set a default loop count value.
 
+---
+
 ## Common Commands
 
 ### Tempo (t\<value>)
@@ -84,6 +95,8 @@ Same as the `#Tempo` header, it uses a half-note as the beat instead of a quarte
 ```
 G   l8 t50 cdefg t+5 cdefg   ;sets the BPM to 100, then 110
 ```
+---
+
 ### Volume (V\<value>, v\<value>, ( , ) )
 
 **V\<value>** is the default command for setting volume. Its range depends on which channel you're sequencing.
@@ -104,6 +117,8 @@ A   v12 cdefg ) cdefg ;Is the same as v117 cdefg V121 cdefg
 A   (^13 cdefg        ;               V108 cdefg
 ```
 Same as octaves, adding a + or a - before the value in the  lowercase `v` command will change the current and all the following volume commands commands by that value (fine value).
+
+---
 
 ### Transposition/Modulation ( _\<value> , __\<value> , _M\<value>)
 
@@ -126,6 +141,8 @@ G  [ga:b __+5]3        ;This will sound like "gab >cde fg
 G  _M+2 cde _+5 cde __+5 c+d   ;Will become def+ gab c+d
 ```
 
+---
+
 ### Quantization ( Q\<value>, q\<value>)
 
 PMD has both the coarse and fine quantization methods.
@@ -144,6 +161,8 @@ G  l8 q1 cdefg ;The note cuts just before the next
 
 There's a lot more into **q\<value>**, but as it's complicated and situational, find it more at the Advanced Section.
 
+---
+
 ### Detune ( D\<value> , DD\<value> , I\<value> )
 
 There are 3 types of Detune in PMD
@@ -160,6 +179,8 @@ G   o4 D0 c D-2 [ c  DD-2]4
 
 **I\<value>** (upper case i) is another detune command, which tries to mantain the same level of detune accross the complete range.
 
+---
+
 ### Channel Loop ( L )
 
 Loops everything from this command up to the end of the channel forever.
@@ -170,6 +191,7 @@ The same rules as the nested loop apply. Commands that affect notes and note len
 
 If using `/C` in the `#Option` header, along the whole song's length, it'll also display specifically the length of the loop, so it's good to pay attention whether the lengths match for a perfect loop.
 
+---
 ## Additional Notation Commands
 
 ### Portamento ( {\<start note>\<end note>} )
@@ -187,6 +209,8 @@ Alternatively you can also add the delay to the portamento itself is by adding a
 G  l8 o5 {gc}4,8..c4defge ;Expands to g8..&{gc}32
 ```
 When doing this, the first value represents the whole length of the first note and the portamento, so the second length shouldn't be longer than the second.
+
+---
 
 ### Fast-forward ( "\<sequence>" )
 
@@ -214,6 +238,8 @@ G	cdefgab>c< MP-80  ;Skips this sequence
 G	def+gab>c+d<      ;Sequence plays with the effect.
 ```
 
+---
+
 ### Retrigger/Echo ( W\<value>,\<value> )
 
 This retrigger the following notes every number of ticks specified in the first value, decreasing or increasing the volume by the second value. If the second value isn't specified, it defaults to -1.
@@ -231,6 +257,7 @@ A third value can be added, which will change the behavior a bit, as follows:
 
 Using W0 will disable the command.
 
+---
 ### Grace Note ( S\<tick>,\<semitones>,\<tie>)
 The grace note effect will automatically add a gliding number of semitones to the beginning of the notes following the command.
 
