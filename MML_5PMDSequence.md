@@ -212,6 +212,12 @@ When doing this, the first value represents the whole length of the first note a
 
 ---
 
+### Arpeggios ( {{ }} )
+
+TBW
+
+---
+
 ### Fast-forward ( "\<sequence>" )
 
 This will skip anything written between the quotation marks. This is useful if you're using the DOS or PMDDotNet setup and want the song to start at a given point.
@@ -259,6 +265,7 @@ Using W0 will disable the command.
 
 ---
 ### Grace Note ( S\<tick>,\<semitones>,\<tie>)
+
 The grace note effect will automatically add a gliding number of semitones to the beginning of the notes following the command.
 
 First you specify the length of each semitone added, then you specify how many semitones to glide it from (default -1):

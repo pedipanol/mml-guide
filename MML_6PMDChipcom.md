@@ -73,6 +73,8 @@ That also means there are more variables to keep in mind:
 
 The 2 central commands for LFO are `M`, which sets the speed and range, and `*`, which sets its activation.
 
+---
+
 ### LFO Activation *\<value>
 
 This command sets both when a command will activate or deactivate as well as what will it do depending on the value:
@@ -85,6 +87,8 @@ This command sets both when a command will activate or deactivate as well as wha
 With these values, the LFO state will be reset on every new note. If you don't want it reset in everynote, use 4 5 6 and 7 respectively instead.
 
 In the FM channels, the amplitude modulation by default will only affect the carriers for a tremolo effect. If you want it to affect the modulators you'll have to set it with the LFO operator flag command.
+
+---
 
 ### LFO Setting ( M\<delay>,\<speed>,\<depthA>,\<depthB> )
 
@@ -163,7 +167,37 @@ A   o3 d1                 ;Both play at the same time
 
 ---
 
+### Use TimerA for LFO
+
+By default, PMD uses the TimerB for its LFO setting, which is controlled by the #Tempo setting or `t` command.
+
+This allows for the LFO to be more easily consistent with the timing of the song, but on the other hand it also can make the effect timing itself become inconsistent when a song has tempo changes throughout.
+
+Because of this you can choose to use TimerA, which is a fixed clock running at around 54.25 Hz.
+
+To do so you either add the following header:
+```
+#LFOSpeed   Extend
+```
+Or use the command MX1.
+
+---
+
 ## Chip Commands
+
+### Panning ( p\<value>)
+Only supported by the FM and PCM channels, this command works the same way in both.
+
+Values are: 1 = Right, 2 = Left, 3 = Both
+```
+ABC l1 v10 o5 @0  
+A   p3 c            ;center pan
+B   p1 e            ;right pan
+C   p2 g            ;left pan
+```
+Being a limitation of the soundchip, only hardpanning is supported by this command. 
+
+---
 
 ### Chip Part Volume Mixer ( DF\<value> , DS\<value> , DP\<value> , DR\<value> )
 
@@ -176,3 +210,181 @@ G  v15 q2 DS00 d4 DS20 d4 DS40 d4 ;Volume decreases with higher values
 Use this in conjuction with the volume effects for mixing the song.
 
 This works the same as the `#Volumedown` header.
+
+---
+
+## FM Commands
+
+### Operator Flag ( s\<operator> )
+
+This changes which FM operators the current channel will use. This command is mainly used for FM3Extend, but can also find its use in other situations such as 2-op chords.
+
+The values for each operator are:
+```
+Operator 1 = 1, Operator 2 = 2, Operator 3 = 4, and Operator 4 = 8.
+```
+
+To control 2 or more with the same command you add the corresponding numbers, so for example, to control Operators 2 and 4 it's 8+2 = 10.
+
+_This is because the flag is done using binary values, allowing them to be stored in a single hex number._
+
+This applies to every command using the \<operator> flag.
+
+---
+
+### Change Operator Level ( O\<operator>,\<value>)
+
+Changes the attenuation level (TL) on the selected operator(s) to the value specified. This is specially useful for making cool effects with the modulators [like this song's bass](https://youtu.be/GxDur7step8?t=50), but it can also be used to change the instrument's base volume level when used in the carriers.
+
+```
+;TL on Operator 1 is 18
+@1 4 7 31 1 1 1 5 18 0 1 2 1 31 4 3 8 10 0 0 1 3 0 31 1 1 1 5 10 0 1 6 1 31 4 3 8 10  4 0 1 5 0 
+
+A   @1 cdefg O1,25 cdefg       ;Operator 1's TL changes to 30
+```
+
+You can also do a relative change by adding a + or a - before the value.
+
+```
+;TL on Operator 1 is 30
+@1 4 7 31 1 1 1 5 30 0 1 2 1 31 4 3 8 10 0 0 1 3 0 31 1 1 1 5 10 0 1 6 1 31 4 3 8 10  4 0 1 5 0 
+
+A	@1 Q3 o2 l16
+A	[e O5,-1]12 eeee [e O5,+1]12 eeee ;TL on Operators 1 and 3 decreases then increases
+```
+
+---
+
+### Set Feedback Level ( FB\<value> )
+
+This changes the Feedback parameter on the currently playing instrument.
+```
+;Feedback in the instrument is 7 (third value)
+@1 4 7 31 1 1 1 5 18 0 1 2 1 31 4 3 8 10 0 0 1 3 0 31 1 1 1 5 10 0 1 6 1 31 4 3 8 10 4 0 1 5 0 
+
+A   @1 cdefg FB3 cdefg      ;Changes it to 3
+```
+Changing the instrument will overwrite this change.
+
+### Delay Operator Input ( sk\<operator>,\<value> )
+
+Delays the input (key-on) in the selected operator(s) by the specified number of ticks:
+
+```
+@0 6 6 31 12 9 0 3 43 1 2 0 0 31 9 8 6 3 0 1 1 3 0 31 13 8 5 3 0 1 4 7 0 31 16 16 5 13 13 1 15 0 0
+
+A	@0 l4 o6 cdefg sk12,3 cdefg  ;Higher pitched layer gets delayed a bit
+```
+
+### SSG-EG
+
+TBW
+
+---
+
+## Volume Envelopes ( SSG , PCM )
+
+PMD has 2 types of software envelopes which can be used in both the SSG and PCM channel, both use the same command and are differentiated by the amount of values input.
+
+### Volume Envelope Setting 1 ( E\<ar>,\<dr>,\<sr>,\<rr>,\<sl>,\<al>)
+
+This envelope is an ADSR based in the envelope parameters of the FM instruments, but not necessarily a 1:1 recreation of their speeds.
+
+Parameters and value ranges are:
+
+```
+AR = Attack Rate    (0-31)
+DR = Decay Rate     (0-31)
+SR = Sustain Rate   (0-31)
+RR = Release Rate   (0-15)
+SL = Sustain Level  (0-15)
+AL = Attack Level   (0-15)
+```
+Attack level is the volume where the attack starts. It can be ommitted, in which case it starts from zero.
+
+```
+G   o5 v15 E18,31,15,0,0,0 e1  ;quick fade in then fade out envelope
+```
+
+---
+
+### Volume Envelope Setting 2 ( E\<al>,\<dd>,\<sr>,\<rr> )
+
+This envelope mode is more mathematical and thus more complicated to understand.
+
+---
+
+### Using TimerA for Volume envelopes
+
+By default, PMD uses the TimerB for its envelope setting, which is controlled by the #Tempo setting or `t` command.
+
+This allows for the envelope to be more easily consistent with the timing of the song, but on the other hand it also can make the effect timing itself become inconsistent when a song has tempo changes throughout.
+
+Because of this you can choose to use TimerA, which is a fixed clock running at around 54.25 Hz.
+
+To do so you either add the following header:
+```
+#EnvelopeSpeed   Extend
+```
+Or use the command EX1.
+
+## SSG Commands
+
+As mentioned on the Instrument page, SSG instruments are made using commands, which are all listed here.
+
+---
+
+### Preset Volume Envelopes ( @\<value>)
+
+PMD has 10 preset envelopes for the SSG, they are selected with the @ command and the corresponding envelopes are:
+```
+@0	E0,0,0,0	; Default
+@1	E2,-1,0,1	; Synth type 1
+@2	E2,-2,0,1	; Synth type 2
+@3	E2,-2,0,8	; Synth type 3
+@4	E2,-1,24,1	; Piano type 1
+@5	E2,-2,24,1	; Piano type 2
+@6	E2,-2,4,1	; Glockenspiel/Marimba type
+@7	E2,1,0,1	; Strings Type
+@8	E1,2,0,1	; Brass type 1
+@9	E1,2,24,1	; Brass type 2
+```
+
+These presets can't be called on the PCM channels but you can use the E commands above if desired.
+
+---
+
+### Channel Mode ( P\<value> )
+
+Sets the current channel to output:
+```
+1 - Square Wave
+2 - Noise
+3 - Square + Noise
+0 - Mute
+```
+
+```
+G   @6 v15 l2 P1 c P2 c P3 c P0 c  ;Each of the modes, respectively
+```
+
+Note: PMD doesn't support the Envelope Generator natively. Bruteforcing it is possible but requires extensive knowledge of the soundchip's registers.
+
+---
+
+### Noise Frequency ( w\<value>)
+
+Changes the noise frequency, ranging from 0-31, where the lower the value, the higher the frequency. This affects all SSG Channels.
+```
+G   @6 v15
+G   P2 w0 c w10 c w20 c w30 c   ;Different frequencies in noise mode
+G   P3 w0 c w10 c w20 c w30 c   ;And tone+noise mode
+```
+
+---
+
+## PCM Commands
+
+As using PCM requires a specific setup, it's not worth addressing its commands in this page. Check out the Handling PCM page for more details.
+
+---
