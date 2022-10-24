@@ -273,7 +273,7 @@ A third value can be added, which will change the behavior a bit, as follows:
 Using `W0` will disable the command.
 
 ---
-### Grace Note (`S\<ticks>,\<semitones>,\<tie>`)
+### Grace Note (`S<ticks>,<semitones>,<tie>`)
 The grace note effect will automatically add a gliding over the number of semitones to the beginning of the notes following the command.
 
 First, you specify the length of each semitone added, then you specify how many semitones to glide from (default -1):
