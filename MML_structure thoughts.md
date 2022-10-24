@@ -1,0 +1,85 @@
+MML Guide
+
+- Foreword and Special Thanks
+- Ramblings:
+    - History 
+    - Why Learn MML?
+- The Basics:
+    - Structure
+    - Instrument Definition
+    - Basic Sequence
+    - Common Commands
+    - Sequence Macros
+- PMD:
+    - Setup
+        - Compiler
+        - Players
+        - Instrument Editor
+    - Structure
+        - Header
+        - Instrument Definition
+        - Channels
+        - Macros
+    - Sequence
+        - Basic Sequence
+        - Common Commands
+        - Additional Notation Commands
+    - LFO and Chip Commands
+        - LFO
+        - Chip Commands
+        - FM Commands
+        - Software Envelopes
+        - SSG Commands
+    - Rhythm
+        - Rhythm Sound Source Commands
+        - The K and R channels
+    - Handling PCM
+        - The 4 Types of PCM
+        - ADPCM
+            - Making a .PPC file
+            - Sequencing and Commands
+        - 86PCM
+            - Making a .P86 file
+            - Sequencing and Commands
+        - PPZ8
+            - Making a .PZI file
+            - Sequencing and Commands
+        - PPS
+            - Making a .PPS file
+            - Sequencing and Commands
+    - FM Channel 3 Extended Mode
+    - Tips and Tricks
+        - Ensuring channel sinchrony
+        - FM Drums
+        - SSG Drums
+
+    Advanced Information
+
+    - Tempo
+        - Timer 
+        - Zenlen
+        - Relation between Tempo, Timer and Zenlen
+    - LFO Waveforms
+        - Relation between LFO values
+    - Advanced Commands
+        - Direct Register Writes
+        - Driver Commands
+    
+    Information I want to cover but might not be in the first release of the guide.
+
+    - Sound Effects
+        - FM Sound Effects
+            - Creating an .EFC file
+            - Loading an .EFC file
+            - Calling FM SFX
+        - SSG Sound Effects
+            - Creating a .DAT file
+            - Loading a .DAT file
+            - Calling SSG SFX
+    - PMDIBM
+        - Differences from PC98 PMD
+        - Instrument Format
+        - Unsupported Commands
+        - Additional waveforms
+    - Tips and Tricks
+        - Optimising Filesize
