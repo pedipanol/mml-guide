@@ -143,7 +143,7 @@ Example 2:
 
 When the goal is just to extend the note length, some drivers allow you to just add a length value instead of the note after the tie. The previous example can be rewritten in this way as `c8 & 8`. Others might have a different command specific for that (usually for saving space in compilation), but the ties will always allow for that.
 
-By adding a `.` after the note or note length, it'll add half of its length, as a dotten note does in sheet music. Some drivers even allow you to stack them up, progressively adding halves as a quarter, then an eighth, a sixteenth, etc., but it's not very common.
+By adding a `.` after the note or note length, it'll add half of its length, as a dotted note does in sheet music. Some drivers even allow you to stack them up, progressively adding halves as a quarter, then an eighth, a sixteenth, etc., but it's not very common.
 
 Example:
 >```
