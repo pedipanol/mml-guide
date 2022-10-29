@@ -47,6 +47,7 @@ MML Guide
         - PPS
             - Making a .PPS file
             - Sequencing and Commands
+    - SSG-EG
     - FM Channel 3 Extended Mode
     - Tips and Tricks
         - Ensuring channel sinchrony
