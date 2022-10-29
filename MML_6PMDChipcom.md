@@ -22,7 +22,7 @@ Frequency sets the speed of the LFO and is shared across all channels. Being a g
 In the first value, 1 activates the LFO and 0 disables it. The second value ranges from 0 to 7 and controls its frequency.
 ```
 A  @0 #1,7 r r       ;Activates LFO and sets its frequency to 7
-B  @0 r #1,3 r       ;Changes the frequency value to 3, also affecting channel A
+B  @0 r #1,3 r       ;Changes the frequency value to 3, also affecting channel A 
 ```
 
 Pitch Modulation Level and Amplitude Modulation Level are set individually in each channel using the command **H\<value>,\<value>** where the first value sets the Pitch Modulation level and the second, Amplitude Modulation.
@@ -75,7 +75,7 @@ The 2 central commands for LFO are `M`, which sets the speed and range, and `*`,
 
 ---
 
-### LFO Activation *\<value>
+### LFO Activation `*<value>`
 
 This command sets both when a command will activate or deactivate as well as what will it do depending on the value:
 ```
@@ -90,17 +90,17 @@ In the FM channels, the amplitude modulation by default will only affect the car
 
 ---
 
-### LFO Setting ( M\<delay>,\<speed>,\<depthA>,\<depthB> )
+### LFO Setting ( `M<delay>,<speed>,<depthA>,<depthB>` )
 
-\<delay> sets how many ticks to wait before the effect starts, \<speed> sets the tick length for each step, and \<depthA> sets the amount to vary in each. How \<depthB> behaves will depend on the waveform selected.
+`<delay>` sets how many ticks to wait before the effect starts,`<speed>` sets the tick length for each step, and `<depthA>` sets the amount to vary in each. How `<depthB>` behaves will depend on the waveform selected.
 
 For this example I'll use the default Triangle waveform:
 ![Triangle Wavefrom](/images/MW1.png)
 _Graphics by Altiami_
 
-After \<delay> ticks, the LFO will take \<depthA> steps every \<speed> ticks, \<depthB> times. Then it inverts the \<depthB> value to reach the base again and then do the same on the opposite direction.
+After `<delay>` ticks, the LFO will take `<depthA>` steps every `<speed>` ticks, `<depthB>` times. Then it inverts the `<depthB>` value to reach the base again and then do the same on the opposite direction.
 
-This can be a bit hard to wrap your head around, but what you need to understand is that in this case \<speed> and \<depthB> is what you'll use to set the frequency of the LFO, and \<depthA> is what you'll use to set the amount to change.
+This can be a bit hard to wrap your head around, but what you need to understand is that in this case `<speed>` and `<depthB>` is what you'll use to set the frequency of the LFO, and `<depthA>` is what you'll use to set the amount to change.
 
 Combining it with the activation command for a vibrato effect:
 ```
@@ -109,11 +109,11 @@ G	o5 M24,1,3,2 *1 d1
 
 ---
 
-### Operator Flag ( MM\<value> )
+### Operator Flag ( MM`<operator>` )
 
 This sets which operators will be affected by the LFO. This allows for amplitude modulation on the modulators as well as pitch modulation on specific operators of FM channel 3.
 
-For the value, Operator 1 = 1, Operator 2 = 2, Operator 3 = 4, and Operator 4 = 8.
+For the value, Operator 1 = `1`, Operator 2 = `2`, Operator 3 = `4`, and Operator 4 = `8`.
 To affect 2 or more operators at the same time, you add the values for the ones you want.
 
 ```
@@ -123,7 +123,7 @@ A   MM5 d1               ; Operators 1 and 3 are affected (1+4 = 5)
 
 ---
 
-### LFO Waveform (MW\<value>)
+### LFO Waveform ( `MW<value>` )
 
 This changes the waveform used with the corresponding value.
 ```
@@ -139,7 +139,7 @@ Each one behaves differently by changing how the values in the LFO setting is ca
 
 ---
 
-### Pitch Slide ( MP\<value> )
+### Pitch Slide ( `MP<value>` )
 
 This a shortcut command made specifically for a pitch down (negative value) or pitch up (positive value) effect. On which only the depthA value has to be specified:
 ```
@@ -150,11 +150,11 @@ You can input a delay with a second value too.
 G   MP20,6 *1 o5 c      ;Expands to M6,1,20,255 *1
 ```
 
-As such, it replaces the current LFO settings and can be turned off with *0.
+As such, it replaces the current LFO settings and can be turned off with `*0`.
 
 ---
 
-### Multiple LFO Definition ( \<command>A , \<command>B )
+### Multiple LFO Definition ( `<command>A` , `<command>B` )
 
 As said above, you can set 2 different LFO settings per channel. You can specify a second one by adding a `B` between any of the commands in this section and their values.
 
@@ -179,13 +179,13 @@ To do so you either add the following header:
 ```
 #LFOSpeed   Extend
 ```
-Or use the command MX1.
+Or use the command `MX1`.
 
 ---
 
 ## Chip Commands
 
-### Panning ( p\<value>)
+### Panning ( `p<value>` )
 Only supported by the FM and PCM channels, this command works the same way in both.
 
 Values are: 1 = Right, 2 = Left, 3 = Both
@@ -199,7 +199,7 @@ Being a limitation of the soundchip, only hardpanning is supported by this comma
 
 ---
 
-### Chip Part Volume Mixer ( DF\<value> , DS\<value> , DP\<value> , DR\<value> )
+### Chip Part Volume Mixer ( `DF<value>` , `DS<value>` , `DP<value>` , `DR<value>` )
 
 This changes the volume of the soundboard's mixer for each part of the YM2608 soundchip. DF for FM, DS for SSG, DP for ADPCM, DR for Rhythm. This affects all channels in each part.
 
@@ -215,7 +215,7 @@ This works the same as the `#Volumedown` header.
 
 ## FM Commands
 
-### Operator Flag ( s\<operator> )
+### Operator Flag ( `s<operator>` )
 
 This changes which FM operators the current channel will use. This command is mainly used for FM3Extend, but can also find its use in other situations such as 2-op chords.
 
@@ -228,11 +228,11 @@ To control 2 or more with the same command you add the corresponding numbers, so
 
 _This is because the flag is done using binary values, allowing them to be stored in a single hex number._
 
-This applies to every command using the \<operator> flag.
+This applies to every command using the `<operator>` flag.
 
 ---
 
-### Change Operator Level ( O\<operator>,\<value>)
+### Change Operator Level ( `O<operator>,<value>` )
 
 Changes the attenuation level (TL) on the selected operator(s) to the value specified. This is specially useful for making cool effects with the modulators [like this song's bass](https://youtu.be/GxDur7step8?t=50), but it can also be used to change the instrument's base volume level when used in the carriers.
 
@@ -243,7 +243,7 @@ Changes the attenuation level (TL) on the selected operator(s) to the value spec
 A   @1 cdefg O1,25 cdefg       ;Operator 1's TL changes to 30
 ```
 
-You can also do a relative change by adding a + or a - before the value.
+You can also do a relative change by adding a `+` or a `-` before the value.
 
 ```
 ;TL on Operator 1 is 30
@@ -255,7 +255,7 @@ A	[e O5,-1]12 eeee [e O5,+1]12 eeee ;TL on Operators 1 and 3 decreases then incr
 
 ---
 
-### Set Feedback Level ( FB\<value> )
+### Set Feedback Level ( `FB<value>` )
 
 This changes the Feedback parameter on the currently playing instrument.
 ```
@@ -266,7 +266,7 @@ A   @1 cdefg FB3 cdefg      ;Changes it to 3
 ```
 Changing the instrument will overwrite this change.
 
-### Delay Operator Input ( sk\<operator>,\<value> )
+### Delay Operator Input ( `sk<operator>,<value>` )
 
 Delays the input (key-on) in the selected operator(s) by the specified number of ticks:
 
@@ -276,17 +276,13 @@ Delays the input (key-on) in the selected operator(s) by the specified number of
 A	@0 l4 o6 cdefg sk12,3 cdefg  ;Higher pitched layer gets delayed a bit
 ```
 
-### SSG-EG
-
-TBW
-
 ---
 
 ## Volume Envelopes ( SSG , PCM )
 
 PMD has 2 types of software envelopes which can be used in both the SSG and PCM channel, both use the same command and are differentiated by the amount of values input.
 
-### Volume Envelope Setting 1 ( E\<ar>,\<dr>,\<sr>,\<rr>,\<sl>,\<al>)
+### Volume Envelope Setting 1 ( `E<ar>,<dr>,<sr>,<rr>,<sl>,<al>` )
 
 This envelope is an ADSR based in the envelope parameters of the FM instruments, but not necessarily a 1:1 recreation of their speeds.
 
@@ -308,7 +304,7 @@ G   o5 v15 E18,31,15,0,0,0 e1  ;quick fade in then fade out envelope
 
 ---
 
-### Volume Envelope Setting 2 ( E\<al>,\<dd>,\<sr>,\<rr> )
+### Volume Envelope Setting 2 ( `E<al>,<dd>,<sr>,<rr>` )
 
 This envelope mode is more mathematical and thus more complicated to understand.
 
@@ -316,7 +312,7 @@ This envelope mode is more mathematical and thus more complicated to understand.
 
 ### Using TimerA for Volume envelopes
 
-By default, PMD uses the TimerB for its envelope setting, which is controlled by the #Tempo setting or `t` command.
+By default, PMD uses the TimerB for its envelope setting, which is controlled by the `#Tempo` setting or `t` command.
 
 This allows for the envelope to be more easily consistent with the timing of the song, but on the other hand it also can make the effect timing itself become inconsistent when a song has tempo changes throughout.
 
@@ -326,7 +322,7 @@ To do so you either add the following header:
 ```
 #EnvelopeSpeed   Extend
 ```
-Or use the command EX1.
+Or use the command `EX1`.
 
 ## SSG Commands
 
@@ -334,9 +330,9 @@ As mentioned on the Instrument page, SSG instruments are made using commands, wh
 
 ---
 
-### Preset Volume Envelopes ( @\<value>)
+### Preset Volume Envelopes ( `@<value>` )
 
-PMD has 10 preset envelopes for the SSG, they are selected with the @ command and the corresponding envelopes are:
+PMD has 10 preset envelopes for the SSG, they are selected with the `@` command and the corresponding envelopes are:
 ```
 @0	E0,0,0,0	; Default
 @1	E2,-1,0,1	; Synth type 1
@@ -350,11 +346,11 @@ PMD has 10 preset envelopes for the SSG, they are selected with the @ command an
 @9	E1,2,24,1	; Brass type 2
 ```
 
-These presets can't be called on the PCM channels but you can use the E commands above if desired.
+These presets can't be called on the PCM channels but you can use the `E` commands above if desired.
 
 ---
 
-### Channel Mode ( P\<value> )
+### Channel Mode ( `P<value>` )
 
 Sets the current channel to output:
 ```
@@ -372,7 +368,7 @@ Note: PMD doesn't support the Envelope Generator natively. Bruteforcing it is po
 
 ---
 
-### Noise Frequency ( w\<value>)
+### Noise Frequency ( `w<value>` )
 
 Changes the noise frequency, ranging from 0-31, where the lower the value, the higher the frequency. This affects all SSG Channels.
 ```

@@ -10,25 +10,26 @@ This page is an addendum to the topics in the Basic MML Sequence part of the man
 
 Notes are `a b c d e f g`, and a rest is `r`. A repeat note is `x`, and will play the same note as the previous one typed.
 
-**Sharps and Flats (`+` and `-`)** can be stacked as willed. This means one can, for example, write `a++` which will result in the same as a `b`. This is equivalent to double sharps and flats, and beyond, in music.
+**Sharps and Flats (`+` and `-`)** are treated relatively, allowing them to be stacked as willed. This means one can, for example, write `a++` which will result in the same as a `b`. This is equivalent to double sharps and flats, and beyond, in music.
 
 There's also a **key signature command**, which will automatically sharpen or flatten the defined notes:
 ```
 G   _{+fcg}         ;Auto sharps f, c, and g
 G   l8 ab>cd efga4  ;Plays the A major scale
 ```
-The key signature will be ignored if the opposite symbol or `=` is attached to the note:
+The key signature will be ignored if a `=` is attached to the note:
 ```
 G   _{+fcg} ab>cd efg=a4  ;g natural plays instead of g+
 ```
-The `=` can also be used to reset the notes in the key signature:
+
+As PMD's sharps and flats are treated relatively, this also means the opposite symbol (`-`) could be used to make the g natural as well.
+
+It's important to note that, while PMD deals with sharps/flats relatively, in the key signature command it's absolute, so only a `=` can reset the notes.
+
 ```
 G   _{=fcg}         ;Resets the auto sharp of f, c, and g
 G   l8 ab>cd efga4  ;Plays the A minor scale
 ```
-Important! The key signature does not change what the base meaning of a note is when adding a sharp, flat, or natural. For example, `_{+cfg} g-` will play **G flat, not G sharp flat (G natural)**.
-
----
 
 ### Note Lengths
 
