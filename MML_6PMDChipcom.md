@@ -1,10 +1,10 @@
 # LFO and Chip-Specific Commands
 
-Now that we took a look at the basic sequence, we'll check the chip-specific commands. As this guide is focused on the PC-98 version of PMD, some of the commands present here might not work on the other systems it supports, or might work differently.
+Now that we've taken a look at the basic sequence, we'll check the chip-specific commands. As this guide is focused on the PC-98 version of PMD, some of the commands present here might not work on the other systems it supports, or might work differently.
 
 ## LFO
 
-LFO, or Low Frequency Oscillator is used in PMD for modulating pitch and/or volume. There are many uses for it but the main ones are for a Vibrato and Tremolo effect.
+LFO, or **L**ow **F**requency **O**scillator, is used in PMD for modulating (changing based on a defined pattern) pitch and/or volume. There are many uses for it, but the main ones are vibrato and tremolo effects.
 
 PMD has 2 types of LFO: Software LFO and Hardware LFO.
 
@@ -14,26 +14,30 @@ Hardware LFO is very limited compared to software, so it's unlikely that you'd w
 
 ### Hardware LFO
 
-The OPN soundchips' internal LFO only affects the FM channels and
-use 3 parameters for controlling it: Frequency, Pitch Modulation Level and Amplitude Modulation Level.
+The OPN soundchips' internal LFO only affects the FM channels and uses 3 parameters for controlling it: Frequency, Pitch Modulation Level and Amplitude Modulation Level.
 
-Frequency sets the speed of the LFO and is shared across all channels. Being a global setting, PMD also uses it in the same command used to activate the Hardware LFO on the song: **#\<value>,\<value>**
+**Frequency** sets the speed of the LFO and is shared across all channels. Being a global setting, PMD also uses it in the same command used to activate the Hardware LFO on the song: **`#<value>,<value>`**.
 
-In the first value, 1 activates the LFO and 0 disables it. The second value ranges from 0 to 7 and controls its frequency.
+Note: the `#` here is not the same as that used for header commands. The difference is that the latter is *always* is the first non-whitespace character of the line.
+
+In the first value, 1 activates the LFO, and 0 disables it. The second value ranges from 0–7 and controls its frequency. The actual frequency used is specific to the soundchip. Lower values correspond to a lower frequency.
+
 ```
-A  @0 #1,7 r r       ;Activates LFO and sets its frequency to 7
+A  @0 #1,7 r r       ;Activates hardware LFO and sets its frequency to 7
 B  @0 r #1,3 r       ;Changes the frequency value to 3, also affecting channel A 
 ```
 
-Pitch Modulation Level and Amplitude Modulation Level are set individually in each channel using the command **H\<value>,\<value>** where the first value sets the Pitch Modulation level and the second, Amplitude Modulation.
+**Pitch Modulation Level** and **Amplitude Modulation Level** are set individually in each channel using the command **`H<value>,<value>`**, where the first value sets the Pitch Modulation Level, and the second, Amplitude Modulation.
 
-Pitch Modulation makes a vibrato-like effect which its range is increased the higher the value is. The value range is 0-7, where 0 disables it.
+Pitch Modulation makes a vibrato-like effect, where its range is increased the higher the value is. The value range is 0–7, where 0 disables it.
 ```
 A   @0 #1,1 H7,0 o5 l4 cdefg
 ```
-Amplitude Modulation's effect depends on the instrument having the AMS parameter set to 1. The value range on the H command is 0-3, where 0 disables it.
+Amplitude Modulation's effect depends on the instrument having the AMS parameter set to 1 (see [FM instrument definitions](/MML_4PMDStructure.md#FM_instruments)). The value range on the H command is 0–3, where 0 disables it. It may also be omitted, defaulting to 0.
 
-The gist of it is that when active in carrier operators it'll make a tremolo-like effect:
+The effect it produces depends whether the slots of the instrument which have AMS enabled are *carriers* or *modulators*. A *modulator* slot (often called "operator" in this context) is a slot which modulates a slot ahead of it in the instrument's selected algorithm. A *carrier* operator is a slot which is at the end of the instrument's selected algorithm, thus outputting sound.
+
+The gist of it is that when active in carrier operators, it'll make a tremolo-like effect:
 ```
 @0 4 7 ;On algorithm 4, OP1 and OP3 are modulators and OP2 and OP4 are carriers 
  31 1 1 1  5 18 0 1 2 0 ;<- AMS is the last parameter in each operator
@@ -44,7 +48,7 @@ The gist of it is that when active in carrier operators it'll make a tremolo-lik
 A   @0 #1,3 H0,3 o4 l4 cdefg  ;Results in tremolo Effect
 ```
 
-And on modulators it'll make a wahwah-like effect:
+And on modulators, it'll make a wahwah-like effect:
 ```
 @1 4 7 ;Same instrument as above, but with different AMS
  31 1 1 1  5 18 0 1 2 1 ;Turns on AMS on OP1 (modulator) 
@@ -61,7 +65,7 @@ A third value can be added to the `H` command, which will make it delay its acti
 A   @0 #1,1 H7,0,24 o5 l2 cdefg
 ```
 
-While #0 can be used for disabling the LFO, it'll do so on all channels, so it's advised to use H0 instead if working in a song using Hardware LFO.
+While #0 can be used for disabling the LFO, it'll do so on all channels, so it's advised to use H0 instead if working with a song using Hardware LFO.
 
 ---
 
