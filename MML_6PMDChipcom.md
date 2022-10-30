@@ -416,9 +416,9 @@ Note: PMD doesn't support the Envelope Generator natively. Brute-forcing it is p
 
 ---
 
-### Noise Frequency ( `w<value>` )
+### Noise Frequency (`w<value>`)
 
-Changes the noise frequency, ranging from 0-31, where the lower the value, the higher the frequency. This affects all SSG Channels.
+Changes the noise frequency, ranging from 0–31, where the lower the value, the higher the frequency. This affects all SSG Channels.
 ```
 G   @6 v15
 G   P2 w0 c w10 c w20 c w30 c   ;Different frequencies in noise mode
