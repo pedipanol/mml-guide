@@ -16,7 +16,8 @@ If you followed this guide, it should already support SSG-EG. If you had downloa
 
 It doesn't support SSG-EG at all.
 
-### Emulator
+### Neko Project II
+
 
 ### np2fmgen
 
