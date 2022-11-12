@@ -18,8 +18,11 @@ It doesn't support SSG-EG at all.
 
 ### Neko Project II
 
+Only the fmgen fork supports it, if you set it to use the genpfm.dll instead of the internal.
 
-### np2fmgen
+The problem is that this emulation won't properly support SSGPCM, making it very noisy, so keep that in mind when testing a song in this emulator.
+
+
 
 However it's a complicated feature that you have to build your instrument speficically to use, or else it won't work. Using an instrument editor such as YM2608 tone editor on Windows or VEDSE on DOS will allow you to test the values properly.
 
