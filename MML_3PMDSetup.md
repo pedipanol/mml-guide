@@ -156,3 +156,26 @@ It can be convenient to have it open as you type the MML to adjust or load instr
 [^1]: To navigate to different folders in DOS, use `cd <folder>`. To go outside of a folder, use `cd ..`. Folder paths always use `\` as a separator. If using a PC-98 or a DOS emulator in PC-98 mode, a `\` might appear as a `¥`. This is normal.
 
 [^2]: Different keyboards, alongside IME settings, might make this not function correctly. If so, try changing the IME settings, or using a different keyboard if available.
+
+## PC-98 Emulators
+
+### NekoProject II fmgen
+
+This is the best option for audio because while it's not well rounded it allows you to use custom sound emulations of which 2 are essential:
+
+1. Download np2fmgen.7z [here](http://nenecchi.kirara.st/) and extract it.
+2. Download fmdllset.7z from the same page and extract fmgen.dll and genpfm.dll to the emulator folder.
+3. Launch your prefered instance of the emulator and then close it.
+4. Open the created .ini file in a text editor, then add the following line:
+	
+	```
+	FMGenDll=fmgen.dll
+	```
+	or
+	```
+	FMGenDll=genpfm.dll
+	```
+
+>fmgen.dll provides the most well rounded emulation so it's prefered, unless you want to use SSG-EG, which genpfm.dll has support for.
+
+To use this emulator you'll need a hard disk image. [YAHDI](https://nfggames.com/forum2/index.php?topic=5463.0) is the most used one and I recommend it.
