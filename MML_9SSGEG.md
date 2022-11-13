@@ -8,39 +8,27 @@ However it`s a pretty complex feature that not even many musicians used before t
 
 First you must ensure the player you're using supports it.
 
-### FMPMD2000 (Windows)
+| Player | SSG-EG | Comment |
+| ------ | ------ | ------- |
+| FMPMD2000 | Yes | Versions released after 2020 |
+| 98fmplayer | No | |
+| PMDDotNET | No | Dev plans to add it |
+| MML2VGM | No | Dev plans to add it |
+| NekoProject II fmgen | Yes | use genpfm.dll |
 
-If you followed this guide, it should already support SSG-EG. If you had downloaded it before 2020, you should update it.
+## Usage
 
-### 98fmplayer (Windows)
+SSG-EG is a complicated feature that you have to build your instrument speficically to use, or else it won't work. Using an instrument editor such as YM2608 tone editor on Windows or VEDSE on DOS will allow you to test the values properly.
 
-It doesn't support SSG-EG at all.
-
-### Neko Project II
-
-Only the fmgen fork supports it, if you set it to use the genpfm.dll instead of the internal.
-
-The problem is that this emulation won't properly support SSGPCM, making it very noisy, so keep that in mind when testing a song in this emulator.
-
-
-
-However it's a complicated feature that you have to build your instrument speficically to use, or else it won't work. Using an instrument editor such as YM2608 tone editor on Windows or VEDSE on DOS will allow you to test the values properly.
-
-( `SE<operator>,<value>` )
-
-After creating a instrument and putting it in the script, call the instrument with `@` and then use the `SE` command, assigning the operators then the shape in the second value.
+After creating a instrument and putting it in the script, call the instrument with `@` and then use the command `SE<operator>,<value>`:
 
 ```
 @0 0 0 31 19 31 15 2 29 0 7 7 0 31 11 31 15 1 28 0 0 3 0 24 11  0 15 2 29 0 2 0 0 27 13 12 15 2  2 0 2 0 0
 
-A	@0 SE3,8 l8 o3 [c4gc2.<g16g16>[c<g]3]4  ;
+A	@0 l8 o3 [c4gc2.<g16g16>[c<g]3]4  ;Instrument without SSG-EG
+A	SE3,8    [c4gc2.<g16g16>[c<g]3]4  ;Activating SSG-EG changes the sound to a timpani-like sound
 ```
 
-It's important to note that SSG-EG as a feature was barely used until the 2000's, and support for SSG-EG was only added when KAJA updated PMD in 2020. Because of this, many players and emulators never properly implemented it at all.
+It's important to note that the SSG-EG won't reset on instrument change, so you need to deactivate it with `SE0` when changing to a instrument that doesn't use it.
 
-If you try playing the script above and it doesn't sound like a timpani instrument, it should be a bad emulation problem:
- - If using FMPMD, update it to the latest version
- - In NekoProject, only np2fmgen using the genpfm.dll supports it
- - PMDDotNet/MML2VGM doesn't support it
-
-If you're gonna use SSG-EG unfortunately you'll need to use the few players that support it.
+If you don't know how SSG-EG works and how to make instruments that use it, [this video](https://youtu.be/IKOR0TUlnWU) has a quick look into it at the first part. The software is different but it works the same.
