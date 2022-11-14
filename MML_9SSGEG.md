@@ -15,6 +15,7 @@ First you must ensure the player you're using supports it.
 | PMDDotNET | No | Dev plans to add it |
 | MML2VGM | No | Dev plans to add it |
 | NekoProject II fmgen | Yes | use genpfm.dll |
+| DOSBox-X | No | |
 
 ## Usage
 

@@ -12,13 +12,14 @@ _I'm planning on making an addendum explaining usage and differences for PMDIBM 
 
 There are 3 methods for using PMD depending on your computer and OS.
 
-### DOS _(Native, Windows, Mac, Linux_)
-To use this method in modern machines, an emulator is needed. I recommend [DOSBox-X](https://dosbox-x.com) set to PC-98 mode, because it doesn't require using external programs for managing files, but the audio is not the best. You can skip configuring it to PC-98 mode if you want to use a windows-based player (next section).
+### DOS _(Native, Emulator)
+
+This is how to set up the original/native version of PMD. To use this method in modern machines, an [emulator](#pc-98-emulators) is needed. 
 
 1. Download the latest version (currently 4.8s) of PMD at [KAJA's website](https://sites.google.com/site/kajapon/pmd) and extract it. Look for the text "Ver.4.8s + Source [20/01/22]".
 2. Download the [English version of the compiler](https://drive.google.com/drive/folders/1fSH39Vr97_29tvjni6H7WXJlxH_HmZx0) (by Mana, Pigu and VasteelXolotl) and replace the existing MC.EXE in the PMD folder. This step isn't mandatory, but without it, most error messages will be in Japanese, which might also be corrupted into [mojibake](https://en.wikipedia.org/wiki/Mojibake) depending on your DOS emulator and its settings.
 3. Transfer the folder to the PC-98 or your DOS emulator's folder.
-4. For a test run, run the following commands:[^1]
+4. For a test run, run the following commands[^1]:
 ```
 pmdb2
 mc /p sample.mml
@@ -34,6 +35,8 @@ PMDDotNET is a Windows port of PMD's source code made by [kuma4649](https://gith
 2. Drag and drop the MML file onto `compile.bat`.
 	(use the ones provided with [PMD](https://sites.google.com/site/kajapon/pmd) if you don't have one around)
 3. Drag and drop the compiled `.M` file onto `play.bat`.
+
+With this program You can automate the compilation process with [PMD File Watcher](#pmd-file-watcher-windows).
 
 If the program doesn't run (and it's not a problem with the MML), it might be a Windows problem which can be addressed by running `removeZoneIdent.bat` and running it again.
 
@@ -52,21 +55,28 @@ If the program doesn't run properly, it might be a Windows problem which can be 
 ### PMD File Watcher _(Windows)_
 An open source tool by Rerrahkr for automating the process of compiling and playing songs. It works by setting it to watch whenever the MML file is updated, which triggers it to compile and then play the resulting file.
 
+For using it you need to either have  [PMDDotNET](#pmd-file-watcher-windows) or the [MS-DOS Player](#ms-dos-player) setup beforehand.
+
 1. Download [PMD File Watcher](https://github.com/rerrahkr/PMDFileWatcher/releases/latest) and extract it.
-2. In File -> Settings, in MML Compiler, navigate and select `PMDDotNETConsole.exe` (if using PMDDotNET) or `MC.EXE` (if using PMD), then change the other options if you desire. If using `MC.EXE`, you'll also need to use [MS-DOS Player](http://takeda-toshiya.my.coocan.jp/msdos/index.html) and set it in PMD File Watcher's settings, below the MML Compiler settings.
+2. In File -> Settings, in MML Compiler, navigate and select `PMDDotNETConsole.exe` (if using PMDDotNET) or `MC.EXE` (if using PMD), then change the other options if you desire.
+	
+	2.1. If using the original `MC.EXE`, then also select `msdos.exe` after checking "MS-DOS Player", just below the MML Compiler settings.
+
 3. If you want the song to play after compiling, go to the Play tab, select the player, and check Autoplay.
 
 
 ## PMD Music File Playback
-PMD compiles the MML scripts into a binary form with the extension `.M`  by default. This can be changed as desired with the `#Filename` header. Commonly, people use the `.M2` for specifically OPNA tracks and `.MZ` for tracks using PPZ, so theses are the 3 formats that will be recognized by most players.
+
+PMD compiles the MML scripts into a binary form with the extension `.M`  by default. This can be changed as desired with the `#Filename` header. Commonly, people use the `.M2` for specifically OPNA tracks and `.MZ` for tracks using PPZ, so these are the 3 formats that will be recognized by most players.
 
 ### DOS _(Native, Windows, Mac, Linux)_
-Same as the compiler, an emulator is needed for running this method in modern machines. This is the only way to play the non-PC-98 formats supported by PMD. Steps 1 and 2 are the same as the one you set up in PMD.
+
+Same as the compiler, an [emulator](#pc-98-emulators) is needed for running this method in modern machines. Steps 1 and 2 are the same as the one you set up in PMD.
 
 1. Download the latest version (currently 4.8s) of PMD at [KAJA's website](https://sites.google.com/site/kajapon/pmd) and extract it. Look for the text "Ver.4.8s + Source [20/01/22]".
 2. Transfer the folder to the PC-98 or your DOS emulator's folder.
 3. On DOS, run the desired driver (next section details them).
-4. Run `pmp <filename>` for playback.[^1]
+4. Run `pmp <filename>` for playback¹.
 
 [MSDP](https://www.vector.co.jp/soft/dos/art/se056754.html) and [FMDSP](https://www.vector.co.jp/soft/dos/art/se022227.html) are 2 alternate players that include an interface for loading songs more easily, and a song visualizer which includes a piano view and shows other details. To use them, extract them to the folder the driver is in, run the driver, then load MDSP or FMDSP.
 
@@ -133,7 +143,7 @@ Editting FM instruments in the MML itself can be rough, as compilation and playb
 ### DOS _(Native, Windows, Mac, Linux)_
 Included in the PMD 4.8s package, PMD Voice Editor is a program for editting, loading and saving PMD's instrument patches and banks. Follow these steps:
 
-1. Download "PMD98用 Preset FM" from [KAJA's Website](https://sites.google.com/site/kajapon/pmd) and put it in PMD's folder (read the above DOS guides if you don't have it set up).
+1. Download "PMD98用 Preset FM" from [KAJA's Website](https://sites.google.com/site/kajapon/pmd) and put it in PMD's folder setup in [DOS](#dos-_native-emulator)
 2. In DOS, run `VEDSE.EXE EFFEC.FF` in PMD's folder.[^1]
 3. Press any of the keys in the Z row of the keyboard, this should play a sound.[^2]
 4. Quitting with Esc will overwrite and save the loaded file.
@@ -153,17 +163,16 @@ Developed by Rerrahkr, YM2608 Tone Editor is an OPN instrument editor for Window
 
 It can be convenient to have it open as you type the MML to adjust or load instruments as you need, and test them without having to compile the song. Important to note is that the SSG-EG parameters have to be input in the script as a command.
 
-[^1]: To navigate to different folders in DOS, use `cd <folder>`. To go outside of a folder, use `cd ..`. Folder paths always use `\` as a separator. If using a PC-98 or a DOS emulator in PC-98 mode, a `\` might appear as a `¥`. This is normal.
-
-[^2]: Different keyboards, alongside IME settings, might make this not function correctly. If so, try changing the IME settings, or using a different keyboard if available.
-
 ## PC-98 Emulators
 
-### NekoProject II fmgen
+### NekoProject II fmgen (Windows)
 
 This is the best option for audio because while it's not well rounded it allows you to use custom sound emulations of which 2 are essential:
 
-1. Download np2fmgen.7z [here](http://nenecchi.kirara.st/) and extract it.
+1. Download np2fmgen.7z [here](http://nenecchi.kirara.st/) and extract it
+	
+>This website is http only. If it gives a japanese error message, it`s probably because your browser is in https-only mode.
+
 2. Download fmdllset.7z from the same page and extract fmgen.dll and genpfm.dll to the emulator folder.
 3. Launch your prefered instance of the emulator and then close it.
 4. Open the created .ini file in a text editor, then add the following line:
@@ -178,4 +187,37 @@ This is the best option for audio because while it's not well rounded it allows 
 
 >fmgen.dll provides the most well rounded emulation so it's prefered, unless you want to use SSG-EG, which genpfm.dll has support for.
 
-To use this emulator you'll need a hard disk image. [YAHDI](https://nfggames.com/forum2/index.php?topic=5463.0) is the most used one and I recommend it.
+To use this emulator you'll need a hard disk image. [YAHDI](https://nfggames.com/forum2/index.php?topic=5463.0) is the most used one and I recommend it. Download it and follow the guide to convert it to `.nhd`.
+
+After setting up, follow the [DOS](#dos-_native-emulator) setup for PMD.
+
+### DOSBox-X (Windows, Mac, Linux)
+
+While not as compatible as NekoProject II, DOSBox-X can be a good choice for using PMD as it use a local folder as an HD instead of a hard disk image, making file management much easier.
+
+To use it:
+
+1. Download [DOSBox-X](github.com/joncampbell123/dosbox-x/releases/latest/) and extract it.
+
+2. In the program's folder, open dosbox-x.conf in a text editor
+3. Search for `machine` until you find the setting that is set to `= svga_s3` (it's in line 215 as of writing this) then change it to `= pc98`
+
+This should already give you a working setup, of which the folder "drivez" is used for file management. There's some [additional configurations](https://dosbox-x.com/wiki/Guide%3APC‐98-emulation-in-DOSBox‐X) you might want to make but they aren't necessary for the purposes of this guide.
+
+After setting up, follow the [DOS](#dos-_native-emulator) setup for PMD.
+
+### MS-DOS Player
+
+This is an emulator for running general simple DOS programs in command line. The only reason you'd want this is if you only want to run the original `MC.EXE` and no other PC-98 program.
+
+1. Download [MS-DOS Player](http://takeda-toshiya.my.coocan.jp/msdos/index.html) and open the file in
+2. Extract the msdos.exe file contained in either "msdos\binary\i486_x86" or "..\i486_x64" according to your operating system to the folder you'll work in.
+3. Following the [DOS](#dos-_native-emulator) guide put just MC.EXE in the folder.
+
+You can automate the compilation process with [PMD File Watcher](#pmd-file-watcher-windows).
+
+---
+
+[^1]: : To navigate to different folders in DOS, use `cd <folder>`. To go outside of a folder, use `cd ..`. Folder paths always use `\` as a separator. If using a PC-98 or a DOS emulator in PC-98 mode, a `\` might appear as a `¥`. This is normal.
+
+[^2]: Different keyboards, alongside IME settings, might make this not function correctly. If so, try changing the IME settings, or using a different keyboard if available.
