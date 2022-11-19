@@ -34,6 +34,7 @@ A	SE3,8    [c4gc2.<g16g16>[c<g]3]4  ;Activating SSG-EG changes the sound to a ti
 
 `value` indicates the mode of the SGG-EG. Its range is 0–15. The following table is a summary of all types.
 | Type | Result |
+| ---- | ------ |
 | 0–7 | Disables SSG-EG |
 | 8 | Repeats the ADSR envelope upon the volume reaching 0 |
 | 9 | As if SSG-EG was disabled, though it is enabled |
