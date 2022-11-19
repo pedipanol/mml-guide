@@ -32,8 +32,8 @@ A	SE3,8    [c4gc2.<g16g16>[c<g]3]4  ;Activating SSG-EG changes the sound to a ti
 
 `<operator>` indicates which FM slots the SSG-EG applies to. The expected value is [similar to other individual-slot commands](./4Chipcom.md#operator-flag-soperator). 0 is not a valid value. Note that any slots not specified are not changed.
 
-`value` indicates the mode of the SGG-EG. Its range is 0–15. The following table is a summary of all types.
-| Type | Result |
+`<value>` indicates the mode of the SGG-EG. Its range is 0–15. The following table is a summary of all types.
+| Mode | Result |
 | ---- | ------ |
 | 0–7 | Disables SSG-EG |
 | 8 | Repeats the ADSR envelope upon the volume reaching 0 |
