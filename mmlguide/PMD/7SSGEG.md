@@ -1,12 +1,12 @@
 # SSG-EG
 
-SSG-EG is a feature of the OPN that replaces the ADSR envelope with a wave shape. It works similar to an amplitude LFO, except it can get to frequencies high enough to be perceived as a note pitch, and modify the base sine wave. This allows for creating more complex sounds with the FM channels.
+SSG-EG is a feature of the OPN soundchip that uses the ADSR envelope to create a wave shape as the final envelope. It works similarly to an amplitude LFO, except it can get to frequencies high enough to be perceived as a note pitch and modify the base sine wave. This allows for creating more complex sounds with the FM channels.
 
-However it`s a pretty complex feature that not even many musicians used before the 2000's. Because of this not many players and emulators support it, it wasn't even implemented into PMD properly until KAJA updated it in 2020.
+However it's a pretty complex feature that not even many musicians used before the 2000's. Because of this, not many players or emulators support it. It wasn't even implemented into PMD properly until KAJA updated it in 2020.
 
 ## Players
 
-First you must ensure the player you're using supports it.
+First, you must ensure the player you're using supports it.
 
 | Player | SSG-EG | Comment |
 | ------ | ------ | ------- |
@@ -30,6 +30,19 @@ A	@0 l8 o3 [c4gc2.<g16g16>[c<g]3]4  ;Instrument without SSG-EG
 A	SE3,8    [c4gc2.<g16g16>[c<g]3]4  ;Activating SSG-EG changes the sound to a timpani-like sound
 ```
 
-It's important to note that the SSG-EG won't reset on instrument change, so you need to deactivate it with `SE0` when changing to a instrument that doesn't use it.
+`<operator>` indicates which FM slots the SSG-EG applies to. The expected value is [similar to other individual-slot commands](./4Chipcom.md#operator-flag-soperator). 0 is not a valid value. Note that any slots not specified are not changed.
 
-If you don't know how SSG-EG works and how to make instruments that use it, [this video](https://youtu.be/IKOR0TUlnWU) has a quick look into it at the first part. The software is different but it works the same.
+`value` indicates the mode of the SGG-EG. Its range is 0–15. The following table is a summary of all types.
+| Type | Result |
+| 0–7 | Disables SSG-EG |
+| 8 | Repeats the ADSR envelope upon the volume reaching 0 |
+| 9 | As if SSG-EG was disabled, though it is enabled |
+| 10 | Repeats the ADSR envelope forward and backward, reversing when the volume reaches 0 or maximum respectively |
+| 11 | Uses the ADSR envelope, then stays at maximum volume |
+| 12–15 | The same as the respective type minus 4, but inverted so that volume 0 is maximum and vice versa |
+
+A difference to the ADSR envelope when using SSG-EG is that AR is fixed at 31 regardless of the instrument definition. Furthermore, because SSG-EG expects the ADSR envelope to reach 0, if it does not (due to DR, SL, or SR not allowing it), then SSG-EG can't apply.
+
+It's important to note that the SSG-EG won't reset on instrument change, so you need to deactivate it with `SE15,0` when changing to an instrument that doesn't use it.
+
+If you don't know how SSG-EG works and how to make instruments that use it, [this video](https://youtu.be/IKOR0TUlnWU) has a quick look into it at the first part. The software is different, but it works the same.
