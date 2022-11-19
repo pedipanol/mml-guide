@@ -38,7 +38,7 @@ Most of what's contained here is **basically universal** among all syntaxes. How
 
 For this guide, we'll be using a familiar song as a basis.
 
-![fleentstones](/mmlguide/images/granddad.png)
+![fleentstones](./images/granddad.png)
 
 ### Notes and Note Lengths
 
