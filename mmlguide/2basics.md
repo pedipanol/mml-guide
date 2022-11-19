@@ -38,7 +38,7 @@ Most of what's contained here is **basically universal** among all syntaxes. How
 
 For this guide, we'll be using a familiar song as a basis.
 
-![fleentstones](/images/granddad.png)
+![fleentstones](/mmlguide/images/granddad.png)
 
 ### Notes and Note Lengths
 
@@ -274,7 +274,7 @@ L cdefg         ;cdefg plays on repeat forever
 
 This is done by channel, meaning if you want to have the whole song use that loop point you need to point it accordingly.
 
-This also means you can loop them out of sync, which is sually a bad idea but can be used for making loops more interesting and whatnot. Nin-kuukuu used it for making a [40+ days long song](https://www.youtube.com/watch?v=EjLWJIFM1ho).
+This also means you can loop them out of sync, which is usually a bad idea but can be used for making loops more interesting and whatnot. Nin-kuukuu used it for making a [40+ days long song](https://www.youtube.com/watch?v=EjLWJIFM1ho).
 
 
 ## Part 8: Sequence Macros
