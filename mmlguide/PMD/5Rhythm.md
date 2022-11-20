@@ -40,7 +40,7 @@ Before moving on, keep in mind that "triggered upon the next note" also refers t
 ```
 I   t50 [\b r \s r \h]2 \t r
 ;           ^      ^^      ^
-; Hihat plays both at the first and next note
+; Hi-hat plays both at the first and next note
 ```
 
 ### RSS Channel Volume (`\v<perc><value>`)
@@ -191,6 +191,6 @@ This is a list of commands that can be used on both PMD rhythm sequence types fo
  - `C` - Zenlen
  - `T` - Timer
 
-Almost everything else will be ignored or will result in a compile error. There are some additional commands that are only supported by direct use of SSGPCM, which are properly explained in [its own page](./7SSGEG.md).
+Almost everything else will be ignored or will result in a compile error. There are some additional commands that are only supported by direct use of SSGPCM, which are properly explained in [its own section](./6PCM.md).
 
 _Reminder to hyperlink on final revision_
