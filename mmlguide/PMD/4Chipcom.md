@@ -33,7 +33,7 @@ Pitch Modulation makes a vibrato-like effect, where its range is increased the h
 ```
 A   @0 #1,1 H7,0 o5 l4 cdefg
 ```
-Amplitude Modulation's effect depends on the instrument having the AMS parameter set to 1 (see [FM instrument definitions](/MML_4PMDStructure.md#fm-instruments)). The value range on the H command is 0–3, where 0 disables it. It may also be omitted, defaulting to 0.
+Amplitude Modulation's effect depends on the instrument having the AMS parameter set to 1 (see [FM instrument definitions](./2Structure.md#fm-instruments)). The value range on the H command is 0–3, where 0 disables it. It may also be omitted, defaulting to 0.
 
 The effect it produces depends whether the slots of the instrument which have AMS enabled are *carriers* or *modulators*. A *modulator* slot (often called "operator" in this context) is a slot which modulates a slot ahead of it in the instrument's selected algorithm. A *carrier* operator is a slot which is at the end of the instrument's selected algorithm, thus outputting sound.
 
@@ -100,7 +100,7 @@ In the FM channels, the amplitude modulation by default will only affect the car
 `<delay>` sets how many ticks to wait before the effect starts,`<speed>` sets the tick length for each step, and `<depthA>` sets the amount to vary for each step. How `<depthB>` behaves will depend on the waveform selected.
 
 For this example I'll use the default Triangle waveform:
-![Triangle Wavefrom](/images/MW1.png)
+![Triangle Wavefrom](./images/MW1.png)
 _Graphics by Altiami_
 
 > _**An important warning from Altiami**: This graphic is partially incorrect! The height of the wave is `<depthA> * <depthB>`, not `<depthB>`! This graphic will be corrected hopefully sooner than later._

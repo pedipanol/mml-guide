@@ -12,7 +12,7 @@ _I'm planning on making an addendum explaining usage and differences for PMDIBM 
 
 There are 3 methods for using PMD depending on your computer and OS.
 
-### DOS _(Native, Emulator)
+### DOS _(Native, Emulator)_
 
 This is how to set up the original/native version of PMD. To use this method in modern machines, an [emulator](#pc-98-emulators) is needed. 
 
@@ -55,7 +55,7 @@ If the program doesn't run properly, it might be a Windows problem which can be 
 ### PMD File Watcher _(Windows)_
 An open source tool by Rerrahkr for automating the process of compiling and playing songs. It works by setting it to watch whenever the MML file is updated, which triggers it to compile and then play the resulting file.
 
-For using it you need to either have  [PMDDotNET](#pmd-file-watcher-windows) or the [MS-DOS Player](#ms-dos-player) setup beforehand.
+For using it you need to either have  [PMDDotNET](#pmddotnet-windows) or the [MS-DOS Player](#ms-dos-player) setup beforehand.
 
 1. Download [PMD File Watcher](https://github.com/rerrahkr/PMDFileWatcher/releases/latest) and extract it.
 2. In File -> Settings, in MML Compiler, navigate and select `PMDDotNETConsole.exe` (if using PMDDotNET) or `MC.EXE` (if using PMD), then change the other options if you desire.
@@ -143,7 +143,7 @@ Editting FM instruments in the MML itself can be rough, as compilation and playb
 ### DOS _(Native, Windows, Mac, Linux)_
 Included in the PMD 4.8s package, PMD Voice Editor is a program for editting, loading and saving PMD's instrument patches and banks. Follow these steps:
 
-1. Download "PMD98用 Preset FM" from [KAJA's Website](https://sites.google.com/site/kajapon/pmd) and put it in PMD's folder setup in [DOS](#dos-_native-emulator)
+1. Download "PMD98用 Preset FM" from [KAJA's Website](https://sites.google.com/site/kajapon/pmd) and put it in PMD's folder setup in [DOS](#dos-native-emulator)
 2. In DOS, run `VEDSE.EXE EFFEC.FF` in PMD's folder.[^1]
 3. Press any of the keys in the Z row of the keyboard, this should play a sound.[^2]
 4. Quitting with Esc will overwrite and save the loaded file.
@@ -189,7 +189,7 @@ This is the best option for audio because while it's not well rounded it allows 
 
 To use this emulator you'll need a hard disk image. [YAHDI](https://nfggames.com/forum2/index.php?topic=5463.0) is the most used one and I recommend it. Download it and follow the guide to convert it to `.nhd`.
 
-After setting up, follow the [DOS](#dos-_native-emulator) setup for PMD.
+After setting up, follow the [DOS](#dos-native-emulator) setup for PMD.
 
 ### DOSBox-X (Windows, Mac, Linux)
 
@@ -204,7 +204,7 @@ To use it:
 
 This should already give you a working setup, of which the folder "drivez" is used for file management. There's some [additional configurations](https://dosbox-x.com/wiki/Guide%3APC‐98-emulation-in-DOSBox‐X) you might want to make but they aren't necessary for the purposes of this guide.
 
-After setting up, follow the [DOS](#dos-_native-emulator) setup for PMD.
+After setting up, follow the [DOS](#dos-native-emulator) setup for PMD.
 
 ### MS-DOS Player
 
@@ -212,12 +212,12 @@ This is an emulator for running general simple DOS programs in command line. The
 
 1. Download [MS-DOS Player](http://takeda-toshiya.my.coocan.jp/msdos/index.html) and open the file in
 2. Extract the msdos.exe file contained in either "msdos\binary\i486_x86" or "..\i486_x64" according to your operating system to the folder you'll work in.
-3. Following the [DOS](#dos-_native-emulator) guide put just MC.EXE in the folder.
+3. Following the [DOS](#dos-native-emulator) guide put just MC.EXE in the folder.
 
 You can automate the compilation process with [PMD File Watcher](#pmd-file-watcher-windows).
 
 ---
 
-[^1]: : To navigate to different folders in DOS, use `cd <folder>`. To go outside of a folder, use `cd ..`. Folder paths always use `\` as a separator. If using a PC-98 or a DOS emulator in PC-98 mode, a `\` might appear as a `¥`. This is normal.
+[^1]: : To navigate to different folders in DOS, use `cd <folder>`. To go outside of a folder, use `cd ..`. Folder paths always use `\` as a separator. If using a PC-98 or a DOS emulator in PC-98 mode, and also depending on the font, a `\` might appear as a `¥`. This is normal.
 
 [^2]: Different keyboards, alongside IME settings, might make this not function correctly. If so, try changing the IME settings, or using a different keyboard if available.
