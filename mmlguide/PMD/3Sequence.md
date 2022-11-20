@@ -58,7 +58,7 @@ G   g%45   ;equals g4...
 ### Octaves
 
 Octaves are defined by the `o<value>` command.
-The range is 1–8 except for ADPCM, which is 1–6. 
+The range is 1–8 except for ADPCM, which is 1–7. 
 
 The default octave is `o4`. The default for other commands can be changed by the octave setters.
 
