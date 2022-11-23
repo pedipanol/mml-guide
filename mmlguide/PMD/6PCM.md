@@ -17,7 +17,7 @@ That being said, most PC-98 audio aficionados will have an 86 soundboard with a 
 
 ## Making a PCM conversion workspace
 
-To make your own PCM samplebanks, you'll need to set up a workspace folder on DOS. For this purpose, [DOSBox-X](./1setup#dosbox-x-windows-mac-linux) is recommended, as it's easier to handle files.
+To make your own PCM samplebanks, you'll need to set up a workspace folder on DOS. For this purpose, [DOSBox-X](./1Setup.md#dosbox-x-windows-mac-linux) is recommended, as it's easier to handle files.
 
 Once the DOS folder is set up, get the following files:
 
