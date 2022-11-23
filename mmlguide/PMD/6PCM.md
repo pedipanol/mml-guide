@@ -212,7 +212,7 @@ In DOS, go to your workspace folder and use the following command:
 pcmconv /w <input>.raw /b <output>.pc8
 ```
 
-`/w` specifies the (input) file ss a RAW 16-bit little-endian file, `/b` specifies the (output) file as 8-bit signed.
+`/w` specifies the (input) file as a RAW 16-bit little-endian file, `/b` specifies the (output) file as 8-bit signed.
 
 Since PMD uses a really specific frequency for o5g. If you're using a pitched sample and the input file is tuned, add the frequency to the conversion, as follows:
 
