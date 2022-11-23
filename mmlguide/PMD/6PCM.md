@@ -232,7 +232,7 @@ Now to wrap up the package.
     ```
 
 
-2. Run the following command to clear the sample memory from RAM:
+2. Run the following command to clear the sample memory in RAM:
     ```
     pmdpcm86 /c
     ```
