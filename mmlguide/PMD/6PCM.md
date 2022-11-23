@@ -186,7 +186,7 @@ First you need to get your samples ready. Open your samples in an audio editor, 
 
     As PMD tries to make 86PCM compatible with ADPCM, it'll have many similarities with it, including its recommended sample rates and whatnot.
 
-    The only documented sample rate is 16504hz, which will play at `o5g`. But since some audio editors don't support it, I recommend exporting to the closest one upwards. I use 22050hz.
+    The only documented sample rate is 16504Hz, which will play at `o5g`. But since some audio editors don't support it, I recommend exporting to the closest one upwards. I use 22050Hz.
 
     The highest supported sample rate is not documented, and it can go above the ADPCM's.
 
