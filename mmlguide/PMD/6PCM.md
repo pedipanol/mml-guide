@@ -196,7 +196,7 @@ First you need to get your samples ready. Open your samples in an audio editor, 
 
 - Export them as 16-bit unsigned RAW.
     
-    In audacity this is done by going to "Export Audio...", choosing "Other uncompressed files" at the time of export, and then choosing "16-bit unsigned" and RAW (headerless).
+    In Audacity, this is done by going to "Export Audio...", choosing "Other uncompressed files" at the time of export, and then choosing "16-bit unsigned" and RAW (headerless).
 
 I also recommend putting a brief moment of silence after the sample finishes to avoid potential clicks in the converted audio.
 
