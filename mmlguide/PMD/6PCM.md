@@ -34,7 +34,7 @@ Once the DOS folder is set up, get the following files:
 2. If you haven't, download PMD Ver.4.8s from [KAJA's website](https://sites.google.com/site/kajapon/pmd)
     
     Extract or copy the following files into the folder:
-    -`PMDB2.COM
+    - PMDB2.COM
     - PMD86.COM
 
 3. Download PCMCONV from [vector.jp](https://www.vector.co.jp/soft/dl/dos/art/se004506.html) (click the green "Go to the download page" then the "Download Now" button)
