@@ -28,6 +28,8 @@ Once the DOS folder is set up, get the following files:
     - PMDPCM86.EXE
     - MAKEPPS.EXE
     - P86DRV.COM
+    - PDR.COM
+    - PPSDRV.COM
     - PMDPCM.DOC (optional)
     - MAKEPPS.DOC (optional)
 
@@ -289,3 +291,118 @@ As mentioned before, if the sample is encoded as 16504Hz, `o5g` will play the sa
 If you're using a pitched sample and its pitch is any note other than a G, it's recommended to use a global transposition `_M<value>` and/or global detune command `DD<value>` to pitch it accordingly.
 
 Making a macro is advised if using multiple samples with different base pitches and volumes.
+
+#### Portamento and Pitch LFO
+
+The portamento notation (`{}`) is not supported in the 86PCM. Using it will result in only the last note being played.
+```
+J   @1 {cg}4        ;Only g is played
+```
+
+Additionally, any pitch LFO command will be ignored.
+
+#### Panning
+
+While the ADPCM on the OPNA has hardpanning, the 86PCM has full stereo control so PMD has an additional panning command allowing for the extended range, with `px<value>`
+
+The value range is -127 to 127, in which the negative values pan torwards the right and the positive values pan to the left.
+
+PMD can also do a reverse phase effect, which results in a "surround" sound compared to the mono original sound. To use it you just add a 1 after the panning value:
+
+```
+J   @1 c2 px0,1 c2
+```
+
+This is a good effect if you want to the samples to sound fuller, however it might render the PCM channel silent if listening to the song in a mono speaker or environment, so keep that in mind.
+
+The normal `p<value>` pan command also works in PMD86, and it's also hardpanned. However it gains an additional value in `p4` which allows for phase reversing.
+
+## PPSDRV (PPS)
+
+This is the most complex PCM mode to work with and the most limited in many ways. I also don't fully understand it _that well_ compared to everything else in this guide.
+
+PPSDRV is a PCM driver for the SSG, which allows 4-bit 16000khz PCM playback on the SSG Channel 3. It can also play 2 samples simultanelously, but at a lower quality.
+
+This is the only PCM mode that will work on a PC98 with a 26 soundboard (which has a YM2203 instead of a YM2608), so using it can be good for compatibility.
+
+There's a total size limit of 58kb for the samples after conversion.
+
+#### Preparing the Samples
+
+First you need to get your samples ready. Open your samples in an audio editor, then:
+
+- Resample them
+
+    The recommended sample rate is 16000hz. It allows for some fluctuation as we'll see, but to avoid trouble is best to stick the the default sequence by the driver.
+
+- If it's a stereo sample, convert it to mono
+
+    The converter doesn't support stereo samples.
+
+- Export them as 16-bit unsigned RAW.
+    
+    In Audacity, this is done by going to "Export Audio...", choosing "Other uncompressed files" at the time of export, and then choosing "16-bit unsigned" and RAW (headerless).
+
+I also recommend putting a brief moment of silence after the sample finishes to avoid potential clicks in the converted audio.
+
+Save the samples individually in the workspace folder.
+
+#### Sample Conversion
+
+Now we'll use PCMCONV to get them to the PPSDRV format.
+
+In DOS, go to your workspace folder and use the following command:
+
+```
+pcmconv /w <input>.raw /n <output>.spc
+```
+
+`/w` specifies the (input) file as a RAW 16-bit little-endian file, `/n` specifies the (output) file as 4-bit signed.
+
+If for some reason you wish to, you can also specify the sample rate of the samples after each filename:
+
+```
+pcmconv /v guitar.raw 16000 /a guitar.spb 16000
+```
+
+#### Packing it up in a PPS Bank
+
+As the PPS needs some variables to be specified, it uses an external text file for defining its samples. So create a .txt document in the folder, change its extension to .cfg and open it in a text editor like notepad.
+
+The text structure is as follows:
+```
+#<output filename>.pps
+
+<filename>.spc  <slot>  <pitch>  <volume>
+<filename>.spc  <slot>  <pitch>  <volume>
+[...]
+```
+
+In the first line you specify the name of the output .PPS file. Then the specifics of each sample.
+
+`<filename>` corresponds to the SPC file outputted by PCMCONV before. You can also use `=<slot>` instead to use a previously loaded sample.
+
+`<slot>` sets which slot in the PPS file the sample will take, which is relevant when calling it. 0 through 13 can be choosen
+
+`<pitch>` changes the playback speed of the sample, changing its pitch. The allowed range is from -224 to +30.
+
+`<volume>` will reduce the sample's volume. This is useful if the end result is too loud, but it'll reduce the output quality.
+
+Additionally, comments with `;` are allowed and you can space at will as long as the values are properly defined.
+
+An example of the final file is:
+```
+#TEST.PPS
+
+;Filename		Slot	Pitch	Volume
+kick.spc		0		0		0		
+snare.spc       1       0       0
+guita.spc       2       0       0
+=2              3       -56     0       ;plays guita.spc at a lower pitch
+```
+
+Once everything is defined, to create a .PPS file you simply run
+
+```
+makepps <filename>.cfg
+```
