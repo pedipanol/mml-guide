@@ -180,6 +180,8 @@ PMD's internal 86PCM driver replaces the ADPCM channel with a higher quality 8-b
 
 There's no size limit.
 
+### Making a P86 File
+
 #### Preparing the Samples
 
 First you need to get your samples ready. Open your samples in an audio editor, then:
@@ -321,11 +323,16 @@ The normal `p<value>` pan command also works in PMD86, and it's also hardpanned.
 
 This is the most complex PCM mode to work with and the most limited in many ways. I also don't fully understand it _that well_ compared to everything else in this guide.
 
+While FMPMD and MML2VGM provide some form of emulation, it's not at all accurate. The only way to get accurate playback outside a the real PC98 machine is with [NekoProject II fmgen](1Setup.md\#nekoproject-ii-fmgen-windows) using fmgen.dll .
+
+
 PPSDRV is a PCM driver for the SSG, which allows 4-bit 16000khz PCM playback on the SSG Channel 3. It can also play 2 samples simultanelously, but at a lower quality.
 
 This is the only PCM mode that will work on a PC98 with a 26 soundboard (which has a YM2203 instead of a YM2608), so using it can be good for compatibility.
 
 There's a total size limit of 58kb for the samples after conversion.
+
+### Making a PPS File
 
 #### Preparing the Samples
 
@@ -406,3 +413,71 @@ Once everything is defined, to create a .PPS file you simply run
 ```
 makepps <filename>.cfg
 ```
+
+### Driver Load Order
+
+PMD uses the same sequencing format as the rhythm channel, and because of this, in a real machine or emulator, a specific driver load order is required:
+
+```
+pdr
+ppsdrv
+pmd/pmdb2/pmd86 etc.
+```
+
+PDR and PPSDRV can use additional commands but those can be addressed in the MML itself and it's better if done so.
+
+If you're working on real hardware and you have a slow one, try adding `/l` so it plays at the low frequency mode, as it might not support the high frequency mode.
+
+### Sequence and Commands
+
+Compared to other types of PCM supported by PMD, PPSDRV is quite unique, as it's fixed to a pitch and doesn't allow sample looping.
+
+It uses the rhythm channel (`K`) for sequencing and behaves the same but with some additional capabilities in comparison. So it's important to read about it [here](5Rhythm.md\#pmds-rhythm-channel) if you have not yet.
+
+#### Selecting Samples
+
+The slot you associated in the .cfg file will correspond to the instrument value as follows:
+
+|Sample Slot|Instrument Number|
+|---|---|
+|0|@1|
+|1|@2|
+|2|@4|
+|3|@8|
+|4|@16|
+|5|@32|
+|6|@64|
+|7|@128|
+|8|@256|
+|9|@512|
+|10|@1024|
+|11|@2048|
+|12|@4096|
+|13|@8192|
+
+So for example:
+
+```
+K   R0
+R0  @512 c    ;Plays the sample in slot 9
+```
+
+When specifying the Double pcm mode with `*0` can also play 2 samples at the same time by adding 2 of them together:
+
+```
+K   *0 R0 R1
+R0  @2 c @4 c ;Plays slot 1 then 2 
+R1  @6 c      ;Plays both together
+```
+
+The only thing you need to keep in mind is that the same sample cannot play at 2 different sample rates at the same time.(?)
+
+#### Volume Change
+
+You can change the volume with `v<value>`, the range is 0-15.
+```
+K   R0
+R0  @1 v15 c v8 c ;Plays slot 0 at full volume then lower
+```
+
+Note that you're lowering the bitrate of your sample playback when doing this, so their quality will worsen the lower the volume is.
