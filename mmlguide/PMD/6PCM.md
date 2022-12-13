@@ -30,6 +30,7 @@ Once the DOS folder is set up, get the following files:
     - P86DRV.COM
     - PDR.COM
     - PPSDRV.COM
+    - PPC2PVI.COM
     - PMDPCM.DOC (optional)
     - MAKEPPS.DOC (optional)
 
@@ -38,6 +39,7 @@ Once the DOS folder is set up, get the following files:
     Extract or copy the following files into the folder:
     - PMDB2.COM
     - PMD86.COM
+    - PMDPPZ.COM
 
 3. Download PCMCONV from [vector.jp](https://www.vector.co.jp/soft/dl/dos/art/se004506.html) (click the green "Go to the download page" then the "Download Now" button)
 
@@ -481,3 +483,24 @@ R0  @1 v15 c v8 c ;Plays slot 0 at full volume then lower
 ```
 
 Note that you're lowering the bitrate of your sample playback when doing this, so their quality will worsen the lower the volume is.
+
+## PPZ8 (PVI,PZI)
+
+PPZ8 is a driver that synthesizes up to 8 PCM channels using the 86PCM, with soft panning possibilities and no memory limit aside from the user's PC98 setup.
+
+It supports 2 kinds of PCM banks: .PVI and .PZI
+
+### Making a PVI File
+
+.PVI is an ADPCM sample bank format which was used in FMP, both for its ADPCM playback and also the original PPZ driver, which was similar to PPS but allowed for PCM synthesis in all 3 SSG channels.
+
+Being ADPCM means it was easy for KAJA to make a converter from the PPC banks, and the format is even supported by PMDB2. So the simplest way to make the PVI banks is to follow the [Making a PPC File](#making-a-ppc-file) guide then run the following program:
+
+```
+PPC2PVI <filename>.PPC
+```
+
+And it should output a file with the same name and the .PVI extension.
+
+### Making a PZI File
+
