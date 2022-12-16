@@ -2,7 +2,7 @@
 
 SSG-EG is a feature of the OPN soundchip that uses the ADSR envelope to create a wave shape as the final envelope. It works similarly to an amplitude LFO, except it can get to frequencies high enough to be perceived as a note pitch and modify the base sine wave. This allows for creating more complex sounds with the FM channels.
 
-However it's a pretty complex feature that not even many musicians used before the 2000's. Because of this, not many players or emulators support it. It wasn't even implemented into PMD properly until KAJA updated it in 2020.
+However it's a pretty complex feature that not even many musicians used before the 2000's. Because of this, only a couple players/emulators support it. It wasn't even implemented into PMD properly until KAJA updated it in 2020.
 
 ## Players
 
@@ -11,11 +11,11 @@ First, you must ensure the player you're using supports it.
 | Player | SSG-EG | Comment |
 | ------ | ------ | ------- |
 | FMPMD2000 | Yes | Versions released after 2020 |
-| 98fmplayer | No | |
-| PMDDotNET | No | Dev plans to add it |
-| MML2VGM | No | Dev plans to add it |
 | NekoProject II fmgen | Yes | use genpfm.dll |
+| 98fmplayer | No | |
 | DOSBox-X | No | |
+| PMDDotNET | No | Dev prefers keeping to 4.8o specs |
+| MML2VGM IDE | No | Dev prefers keeping to 4.8o specs |
 
 ## Usage
 
