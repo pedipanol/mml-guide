@@ -1,38 +1,10 @@
-## Part 3: This Guide
+# The Basic Sequence
 
-This part of the guide is focused on general concepts that you'll have to familiarize yourself with to write music in MML. The explanations here will be more broad, but it's important as a basis once you start learning a specific driver, and so you know what to look for.
-
-## Part 4: The Structure
-
-There are 4 distinct elements in a MML structure (not necessarily in the following order):
-
-### Header:
-This will contain **metadata** about the song, as well as compilation instructions. In here, you may define a song's title, insert a comment that will be displayed in the compiled file, set musical details such as the main tempo, etc.
-
-### Instrument Definition/Instrument Macros:
-This will create the instruments and tables to be called with their respective commands. Oftentimes, there'll only be one type of definition, but particularly for a soundchip with PSG, it's common to have different macro types for different aspects.
-
-### Sequence Macros:
-These are sequences you can call with their respective commands. It's useful for saving time and typing, and there are many ways of doing it.
-
-### Channels and Sequence
-Assigning channels and which sequences they're tied to
-
-## Part 5: Instrument Definition
-
-As said above, this will vary a lot depending on the driver being used, but the general concept is that when you want a channel to use a certain instrument, you'll call it by its number and/or name. The command used will be the same character you used to set it, most often a `@`.
-
-Some drivers will have instrument macros, requiring you to use 2 or more separate commands to call them.
-
-Some drivers or channels won't need this setting for a simple sequence, as they support a blank instrument or might have some prebuilt ones. But more often than not, if you use a value not assigned to a setting, it'll result in a compilation error or will mute the current channel, so it's important to keep it in mind.
-
-## Part 6: The Basic Sequence
-
-As said in Part 1, modern MML's basic syntax derives from sheet music. It's not necessarily made to be read by performers such as [ABC Notation](https://en.wikipedia.org/wiki/ABC_notation) or for full creation of sheet music like [Lilypond](https://en.wikipedia.org/wiki/LilyPond), but many of its core elements are made having sheet music notation as its conception. So the best way to explain the basic syntax is with sheet music.
+As said in the introduction, modern MML's basic syntax derives from sheet music. It's not necessarily made to be read by performers such as [ABC Notation](https://en.wikipedia.org/wiki/ABC_notation) or for full creation of sheet music like [Lilypond](https://en.wikipedia.org/wiki/LilyPond), but many of its core elements are made having sheet music notation as its conception. So the best way to explain the basic syntax is with sheet music.
 
 For those more familiar with trackers, which have a rigid visual timescale unlike sheet music, it can be useful to think of MML as taking the sequential values of a channel and removing the empty space between commands.
 
-_I'll see if I can make an explanation in the future that's easier for tracker musicians who don't know how to read sheet music._
+_I'll see if I can make an explanation in the future that's easier for people who don't have a clue about sheet music._
 
 Most of what's contained here is **basically universal** among all syntaxes. However, some of them might tackle things diferently, or some of them might **not support** one or two things. If you want to try things out as they're explained, **please follow the Setting Up section in PMD's page**, which is the format I'll be using for this explanation (write the sequences in channel G so it doesn't require additional setup; this is done by starting a line with `G` followed by some whitespace). Audio examples will also be provided.
 
@@ -58,18 +30,40 @@ From these two we can start transcribing the song above, starting with the two q
 ```
 a4d4
 ```
+<audio
+        controls
+        src="/audio/grand1.mp3">
+            <a href="/media/grand1.mp3">
+                Sample Audio
+            </a>
+</audio>
+
 Now, we need a **rest**. For that we'll use the letter `r`. It works **the same as a note**, so you'll assign a length to it too, i.e. `r8`.
 
 Let's continue:
 ```
 a4d4r8d4b8 a4d4r8a4g8
 ```
->Notice that in the first measure, I chose to type the high `d` as `d4` instead of tying 2 `d8`'s. This is just because it would be redundant. One could use the tie command `&` and write it as `d8&d8` if desired.
+<audio
+        controls
+        src="/audio/grand2.mp3">
+            <a href="/media/grand2.mp3">
+                Sample Audio
+            </a>
+</audio>
+>Notice that in the first measure, I chose to type the second `d` as `d4` instead of tying 2 `d8`'s. This is just because it would be redundant. One could use the tie command `&` and write it as `d8&d8` if desired.
 
 For the next part we'll need a sharp `f`. For sharp and flat notes, we simply add a `+` or `-` after the note respectively. The note + sharp is treated as a note input by itself, so it's **always before the length**. So for an eighth note `f` sharp, this would be `f+8`.
 ```
 a4d4r8d4b8 a4d4r8a4g8 f+8f+8g8a8d4e4 f+1
 ```
+<audio
+        controls
+        src="/audio/grand3.mp3">
+            <a href="/media/grand3.mp3">
+                Sample Audio
+            </a>
+</audio>
 >Notice how I used a space when the measure ended. **Space may freely be used in the script** as the result will be the same, for the most part. Each format will differ, as each disagrees about some specifics, but as a rule of thumb:
 >1. Don't put space between numbers
 >2. Don't put space before sharps/flats.
@@ -79,15 +73,15 @@ a4d4r8d4b8 a4d4r8a4g8 f+8f+8g8a8d4e4 f+1
 > Spacing can greatly improve readability of your script. Personally, I like using spaces to limit a measure, or a beat in really fast sections. I also use it often when there are 2 parts playing the same rhythmic patterns. There's a huge variety of ways you can do it.
 
 
-Before we wrap up this section, let's simplify the MML with one command: **default note length** (`l(value)`). This will set a default length value so that you don't have to keep typing the same value. It's good to anticipate which note will be the **most frequent** and set it as the default to save yourself time. In this case both 4 and 8 appear 8 times, so it's down to preference. I'll go with `l4`. This will mean removing the length after a note will make the length default to 4, a quarter note.
+Before we wrap up this section, let's simplify the MML with one command: **default note length** (`l<value>`). This will set a default length value so that you don't have to keep typing the same value. It's good to anticipate which note will be the **most frequent** and set it as the default to save yourself time. In this case both 4 and 8 appear 8 times, so it's down to preference. I'll go with `l4`. This will mean removing the length after a note will make the length default to 4, a quarter note.
 ```
 l4 adr8db8 adr8ag8 f+8f+8g8a8de f+1
 ```
 
-#### Octaves
+### Octaves
 If you tried playing what we wrote, you probably noticed that a note is playing in the **wrong octave**. Let's fix that.
 
-To **set** the current octave we use the `o(value)` command. This will change the current octave to a **fixed** one, and everything that comes after will use it as a basis (**absolute change**). Most drivers limit the range to 1-8 for simplicity's sake.
+To **set** the current octave we use the `o<value>` command. This will change the current octave to a **fixed** one, and everything that comes after will use it as a basis (**absolute change**). Most drivers limit the range to 1-8 for simplicity's sake.
 ```
 o4 l4 adr8db8 adr8ag8 f+8f+8g8a8de f+1
 ```
@@ -97,8 +91,15 @@ We can also change the octave relative to the previous one with the `<` and `>` 
 ```
 o4 l4 adr8>d<b8 adr8ag8 f+8f+8g8a8de f+1
 ```
+<audio
+        controls
+        src="/audio/grand4.mp3">
+            <a href="/media/grand4.mp3">
+                Sample Audio
+            </a>
+</audio>
 
-#### Loops
+### Loops
 _Ignore this part if you want to use AddMusicK._
 
 Loops work similarly to how repetition works in sheet music, by setting a beginning, end, and an optional break for quitting it from the last time it's played.
@@ -111,14 +112,26 @@ The break symbol varies depending on the format. In PMD's case, it's `:`. The pa
 
 Let's apply it to the song:
 ```
-l4 [adr8db8 adr8ag8 f+8f+8g8a8de : f+1]2 d1
+l4 [adr8>d<b8 adr8ag8 f+8f+8g8a8de : f+1]2 d1
 ```
-
+<audio
+        controls
+        src="/audio/grand5.mp3">
+            <a href="/media/grand5.mp3">
+                Sample Audio
+            </a>
+</audio>
 This won't be needed for this song, but in most formats, you can nest as many loops as you want. That is, you can have as many loops inside of loops inside of loops—etc.—as you want. This can help save a lot of typing and space. If we wanted to play the whole thing twice, we could type:
 ```
-l4 [[adr8db8 adr8ag8 f+8f+8g8a8de : f+1]2 d1 ]2
+l4 [[adr8>d<b8 adr8ag8 f+8f+8g8a8de : f+1]2 d1 ]2
 ```
-
+<audio
+        controls
+        src="/audio/grand6.mp3">
+            <a href="/media/grand6.mp3">
+                Sample Audio
+            </a>
+</audio>
 >How exactly the loops behave in regard to resetting commands and other settings depends on the driver, so I'll be sure to point out these differences on each's page. For example, PMD doesn't reset commands when looping, so if you type:
 >```
 >[cdefgb MP-80]2
@@ -151,7 +164,7 @@ Example:
 >```
 >Result: the same as placing a tie with a `d8` after, `d4&d8`.
 
-## Part 7: Common Commands
+## Common Commands
 
 This is an explanation on the most frequent sequence-related commands you'll find across all formats. All the examples will be done for PMD, but they'll apply to many others, at least in concept.
 
@@ -159,7 +172,7 @@ Title format for each section is `Command Name (Common Representation if applica
 
 These commands will affect everything that comes after it, requiring a reset to the previous value if one wishes to return to how it was previously.
 
-### Tempo ( T\<value>  t\<value> )
+### Tempo ( `T<value>`,`t<value>` )
 This sets the tempo of the song from that point forward. Most often, the value is the desired BPM itself, but sometimes it can be the internal timer.
 
 Using + or - before the value turns it into a relative change.
@@ -173,7 +186,7 @@ Example:
 >l8 t150 cdefg t170 cdefg
 >```
 
-### Volume ( V\<value> v\<value> )
+### Volume ( `V<value>`,`v<value>` )
 This sets the volume of the current channel from that point forward. The value range will depend on the driver and/or soundchip.
 
 Like tempo, more often than not you can change it relatively with + or -. Many drivers also use `(` and `)` for changing it relatively.
@@ -221,7 +234,7 @@ Most often, this will change the value according to the soundchip's pitch range 
 >```
 >Result: the second one is at higher range, so the detune change is much more noticeable.
 
-### Quantization ( Q\<value> q\<value> )
+### Quantization ( `Q<value>`,`q<value>` )
 Quantization in MML is used to automatically cut off notes within their original lengths. There are 2 possible ways of doing it (usually both are supported): corase and fine.
 
 With the coarse setting, (in PMD, an upper case `Q`) it takes the note and only plays for the given number of eighths of its length. This works like a stacatto in musical notation, except you can specify how much of the note you want played.
@@ -251,7 +264,7 @@ Will sound the same as
 l4 Q8 c&d8r8e
 ```
 
-### Detune ( D\<value> )
+### Detune ( `D<value>` )
 
 Detune changes the tunning of the following sequence by the specified negative or positive value.
 ```
@@ -264,7 +277,7 @@ Most drivers will do it by shifting the position in the chip's tuning table by t
 
 Some drivers try to make up for that with a driver-based fixed detune that will ajust and try to make it equal across the whole spectrum.
 
-### Channel Loop ( L )
+### Channel Loop ( `L` )
 
 Channel loop sets the loop point of the current channel, meaning everything after it up to the end of the song will play in repeat endlessly. In most drivers this is set by the letter `L`.
 
@@ -277,7 +290,7 @@ This is done by channel, meaning if you want to have the whole song use that loo
 This also means you can loop them out of sync, which is usually a bad idea but can be used for making loops more interesting and whatnot. Nin-kuukuu used it for making a [40+ days long song](https://www.youtube.com/watch?v=EjLWJIFM1ho).
 
 
-## Part 8: Sequence Macros
+## Sequence Macros
 
 Sequence macros are useful for saving time and typing, making the driver play the set sequence whenever it's called. There are many situations where they can be useful, including:
 

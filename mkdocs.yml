@@ -3,7 +3,10 @@ site_name: pedipanol's guide to MML
 nav:
     - Home: index.md
     - Introduction: intro.md
-    - General MML: basics.md
+    - General MML:
+        - mml.md
+        - structure.md
+        - basics.md
     - PMD:
         - pmd/intro.md
         - pmd/setup.md
@@ -19,3 +22,9 @@ nav:
         
 theme:
   name: readthedocs
+  highlightjs: false
+
+markdown_extensions:
+  - codehilite:
+      guess_lang: False
+      noclasses: True
