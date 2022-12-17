@@ -30,7 +30,7 @@ A	@0 l8 o3 [c4gc2.<g16g16>[c<g]3]4  ;Instrument without SSG-EG
 A	SE3,8    [c4gc2.<g16g16>[c<g]3]4  ;Activating SSG-EG changes the sound to a timpani-like sound
 ```
 
-`<operator>` indicates which FM slots the SSG-EG applies to. The expected value is [similar to other individual-slot commands](./PMDChipcom.md#operator-flag-soperator). 0 is not a valid value. Note that any slots not specified are not changed.
+`<operator>` indicates which FM slots the SSG-EG applies to. The expected value is [similar to other individual-slot commands](./chipcom.md#operator-flag-soperator). 0 is not a valid value. Note that any slots not specified are not changed.
 
 `<value>` indicates the mode of the SGG-EG. Its range is 0–15. The following table is a summary of all modes.
 

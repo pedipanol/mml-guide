@@ -58,7 +58,7 @@ These commands will set things that affect the whole song. Most of these expand 
 #Tempo      90  ;The output BPM will be double, 180
 ```
 
-There's a lot on how PMD's tempo works, and alternate methods of defining it. Read [the advanced page](./PMDAdvanced.md#tempo-timerb-and-whole-note-length) for more info.
+There's a lot on how PMD's tempo works, and alternate methods of defining it. Read [the advanced page](./advanced.md#tempo-timerb-and-whole-note-length) for more info.
 
 **`#Volumedown <part><value>,`** controls the soundboard's mixer between each group of channels. As the name implies, it lowers the volume. That means **positive numbers lower the volume**. The string uses this format throughout: \<part>\<value>.
 

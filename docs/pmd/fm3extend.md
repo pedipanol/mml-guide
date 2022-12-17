@@ -52,7 +52,7 @@ You can also input up to 3 letters. X, Y, and Z are common letters used for FM3E
 
 ### Assigning operators to the channels
 
-That was only the first step. Now, we have to assign the operators using the operator flag command `s<operator>`, explained in [Chip Commands](./PMDChipcom.md#operator-flag-soperator).
+That was only the first step. Now, we have to assign the operators using the operator flag command `s<operator>`, explained in [Chip Commands](./chipcom.md#operator-flag-soperator).
 
 ```
 #FM3Extend  X

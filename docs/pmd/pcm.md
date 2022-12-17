@@ -17,7 +17,7 @@ That being said, most PC-98 audio aficionados will have an 86 soundboard with a 
 
 ## Making a PCM conversion workspace
 
-To make your own PCM samplebanks, you'll need to set up a workspace folder on DOS. For this purpose, [DOSBox-X](./PMDSetup.md#dosbox-x-windows-mac-linux) is recommended, as it's easier to handle files.
+To make your own PCM samplebanks, you'll need to set up a workspace folder on DOS. For this purpose, [DOSBox-X](./setup.md#dosbox-x-windows-mac-linux) is recommended, as it's easier to handle files.
 
 Once the DOS folder is set up, get the following files:
 
@@ -174,7 +174,7 @@ Secondly, ADPCM doesn't natively support loop points, instead looping the entire
 
 #### Set volume envelope
 
-You can set a volume envelope with the `E` command and it works as [specified before in the guide](./PMDChipcom.md#volume-envelopes).
+You can set a volume envelope with the `E` command and it works as [specified before in the guide](./chipcom.md#volume-envelopes).
 
 #### Notes
 
@@ -298,7 +298,7 @@ You can change the value behavior to be similar to ADPCM's by adding `/s` to the
 
 #### Set volume envelope
 
-You can set a volume envelope with the `E` command and it works as [specified before in the guide](./PMDChipcom.md#volume-envelopes).
+You can set a volume envelope with the `E` command and it works as [specified before in the guide](./chipcom.md#volume-envelopes).
 
 #### Notes
 
@@ -337,7 +337,7 @@ The normal `p<value>` pan command also works in PMD86, and it's also hardpanned.
 
 This is the most complex PCM mode to work with and the most limited in many ways. I also don't fully understand it _that well_ compared to everything else in this guide.
 
-While FMPMD and MML2VGM provide some form of emulation, it's not at all accurate. The only way to get accurate playback outside a the real PC98 machine is with [NekoProject II fmgen](./PMDSetup.md#nekoproject-ii-fmgen-windows) using fmgen.dll .
+While FMPMD and MML2VGM provide some form of emulation, it's not at all accurate. The only way to get accurate playback outside a the real PC98 machine is with [NekoProject II fmgen](./setup.md#nekoproject-ii-fmgen-windows) using fmgen.dll .
 
 
 PPSDRV is a PCM driver for the SSG, which allows 4-bit 16000khz PCM playback on the SSG Channel 3. It can also play 2 samples simultanelously, but at a lower quality.
@@ -446,7 +446,7 @@ If you're working on real hardware and you have a slow one, try adding `/l` so i
 
 Compared to other types of PCM supported by PMD, PPSDRV is quite unique, as it's fixed to a pitch and doesn't allow sample looping.
 
-It uses the rhythm channel (`K`) for sequencing and behaves the same but with some additional capabilities in comparison. So it's important to read about it [here](./PMDRhythm.md#pmds-rhythm-channel) if you have not yet.
+It uses the rhythm channel (`K`) for sequencing and behaves the same but with some additional capabilities in comparison. So it's important to read about it [here](./rhythm.md#pmds-rhythm-channel) if you have not yet.
 
 #### Selecting Samples
 
@@ -621,7 +621,7 @@ However there's a limited range from -32768 (counting from the end of the sample
 
 #### Set volume envelope
 
-You can set a volume envelope with the `E` command and it works as [specified before in the guide](./PMDChipcom.md#volume-envelopes).
+You can set a volume envelope with the `E` command and it works as [specified before in the guide](./chipcom.md#volume-envelopes).
 
 #### Notes
 

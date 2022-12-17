@@ -5,17 +5,17 @@ nav:
     - Introduction: intro.md
     - General MML: basics.md
     - PMD:
-        - PMDintro.md
-        - PMDSetup.md
-        - PMDStructure.md
-        - PMDSequence.md
-        - PMDChipcom.md
-        - PMDRhythm.md
-        - PMDPCM.md
-        - PMDSSGEG.md
-        - PMDFM3Extend.md
-        - PMDTips.md
-        - PMDAdvanced.md
+        - pmd/intro.md
+        - pmd/setup.md
+        - pmd/structure.md
+        - pmd/sequence.md
+        - pmd/chipcom.md
+        - pmd/rhythm.md
+        - pmd/pcm.md
+        - pmd/ssgeg.md
+        - pmd/fm3extend.md
+        - pmd/tips.md
+        - pmd/advanced.md
         
 theme:
   name: material
