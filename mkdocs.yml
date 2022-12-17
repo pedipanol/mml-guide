@@ -1,0 +1,21 @@
+site_name: pedipanol's guide to MML
+
+nav:
+    - Home: index.md
+    - Introduction: intro.md
+    - General MML: basics.md
+    - PMD:
+        - PMDintro.md
+        - PMDSetup.md
+        - PMDStructure.md
+        - PMDSequence.md
+        - PMDChipcom.md
+        - PMDRhythm.md
+        - PMDPCM.md
+        - PMDSSGEG.md
+        - PMDFM3Extend.md
+        - PMDTips.md
+        - PMDAdvanced.md
+        
+theme:
+  name: material

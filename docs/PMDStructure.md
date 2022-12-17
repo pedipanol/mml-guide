@@ -17,12 +17,14 @@ Here, I'll explain the most important ones. I'll save some for the specific sect
 ### Metadata:
 
 To include credits/information about the song in the file, we use the following headers:
+
 ```
 #Title		<string>
 #Composer	<string>
 #Arranger	<string>
 #Memo		<string>
 ```
+
 `#Title`, `#Composer`, and `#Arranger` are straightforward enough.
 
 `#Memo` can contain anything you want the person playing the file to read. You can make multiple `#Memo` lines if desired, but in most players, only the last one willl be displayed.
@@ -30,12 +32,14 @@ To include credits/information about the song in the file, we use the following 
 >Note: If you're using the DOS setup to compile, and you use Japanese/Chinese characters in those headers, it's important to set the encoding of your MML file to Shift-JIS, because UTF-8 will output incorrect characters after the compilation. In Notepad++, this can be changed in Encoding -> Character Sets -> Japanese -> Shift-JIS. Not all text editors support this, so be mindful.
 
 Example:
->```
->#Title		PMD Test
->#Composer	pedipanol
->#Arranger	pedipanol
->#Memo		I like trains :D
->```
+
+```
+#Title		PMD Test
+#Composer	pedipanol
+#Arranger	pedipanol
+#Memo		I like trains :D
+```
+
 
 ---
 
@@ -44,7 +48,7 @@ Example:
 These commands will set things that affect the whole song. Most of these expand to their equivalent commands in compilation.
 ```
 #Tempo		<value>
-#Volumedown	<string>
+#Volumedown	<part><value>,[...]
 #Transpose	<value>
 ```
 
@@ -54,9 +58,9 @@ These commands will set things that affect the whole song. Most of these expand 
 #Tempo      90  ;The output BPM will be double, 180
 ```
 
-There's a lot on how PMD's tempo works, and alternate methods of defining it. Read [the advanced page](xAdvanced.md\#tempo-timerb-and-whole-note-length) for more info.
+There's a lot on how PMD's tempo works, and alternate methods of defining it. Read [the advanced page](./PMDAdvanced.md#tempo-timerb-and-whole-note-length) for more info.
 
-**`#Volumedown <string>`** controls the soundboard's mixer between each group of channels. As the name implies, it lowers the volume. That means **positive numbers lower the volume**. The string uses this format throughout: \<part>\<value>.
+**`#Volumedown <part><value>,`** controls the soundboard's mixer between each group of channels. As the name implies, it lowers the volume. That means **positive numbers lower the volume**. The string uses this format throughout: \<part>\<value>.
 
 For `<part>`, `F` represents the FM channels, `S` = SSG channels, `P` = PCM channels, `R` = Rhythm channels. Then, `<value>` is the amount to lower, having a range of 0–255. **When defining multiple groups, use commas between each definition.**
 ```

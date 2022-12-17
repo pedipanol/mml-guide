@@ -131,6 +131,7 @@ While a variety of commands are supported in the `K` channel itself, notes and r
 ### PMD Rhythm Definition Sequencing
 
 To select the instrument, we use `@<value>`. The values associated with each drum by default are as follows:
+
 ```
 @1	  - Bass Drum
 @2	  - Snare Drum 1
@@ -191,6 +192,6 @@ This is a list of commands that can be used on both PMD rhythm sequence types fo
  - `C` - Zenlen
  - `T` - Timer
 
-Almost everything else will be ignored or will result in a compile error. There are some additional commands that are only supported by direct use of SSGPCM, which are properly explained in [its own section](./6PCM.md).
+Almost everything else will be ignored or will result in a compile error. There are some additional commands that are only supported by direct use of SSGPCM, which are properly explained in [its own section](./PMDPCM.md#ppsdrv-pps).
 
 _Reminder to hyperlink on final revision_
