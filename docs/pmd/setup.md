@@ -2,9 +2,22 @@
 
 PMD is popular enough that there is a bunch of different tools for using it. Here I'll list a bunch of them and how to set them up.
 
+## Suggested Setup
+
+If you're on Windows, I recommend trying [MML2VGM IDE](#mml2vgm-ide-windows) as it makes the writing and playback process very convenient and don't require external programs. But it's quite CPU intensive.
+
+If it doesn't, get the following programs:
+
+- [Original Driver](#original-driver-native-emulator)
+- [ms-dos player](#ms-dos-player) or [DOSBox-X](#dosbox-x-windows-mac-linux)
+- [A player of your choice](#pmd-music-file-playback)
+- [YM2608 Tone Editor](#ym2608-tone-editor-windows)
+
+For Linux and MacOS [projmd](#projmd-linux-macos) should have you covered.
+
 ## The Driver, Compilers and Editors
 
-### DOS _(Native, Emulator)_
+### Original Driver _(Native, Emulator)_
 
 This is how to set up the original/native version of PMD. To use this method in modern machines, an [emulator](#pc-98-emulators) is needed. 
 
@@ -13,10 +26,9 @@ This is how to set up the original/native version of PMD. To use this method in 
 3. Transfer the folder to the PC-98 or your DOS emulator's folder.
 4. For a test run, run the following commands[^1]:
 ```
-pmdb2
 mc /p sample.mml
 ```
-If you get `Compile Completed`, and the song starts playing, it should have worked fine. If you encounter a problem with the first command, the emulator is not set up right. If on a real machine, try runing `pmd` instead.
+If you get `Compile Completed`, it should have worked fine. If you encounter a problem with the first command, the emulator is not set up right. If on a real machine, try runing `pmd` instead.
 
 ### PMDDotNET _(Windows)_
 _Let me know if this works on Wine if anyone tries it._
@@ -44,6 +56,21 @@ An open source MML editor for PMD, MUCOM88, M98, moondriver, and its own mml2vgm
 
 If the program doesn't run properly, it might be a Windows problem which can be addressed by running `removeZoneIdent.bat` in the parent folder and running it again.
 
+### projmd (_Linux, MacOS_)
+
+A Linux wrapper for PMD and DOS-Box by opna2608, needs [Nix](https://nixos.org/manual/nix/stable/installation/installing-binary.html).
+
+1. Download or Clone the [projmd repository](https://github.com/OPNA2608/projmd)
+2. Download the [original PMD files](#original-driver-native-emulator) and extract them into the /PMD/ folder.
+3. Download [the OPNA Rhythm Sound Source (RSS) samples](http://snesmusic.org/hoot/drum_samples.zip) and extract it into the /pmdmini/ folder.
+4. Run shell.nix, this should add a new `pmd` command.
+5. The `pmd` command has the following functions:
+	- `pmd compile` compiles the MML file
+	- `pmd play` renders and plays the file
+	- `pmd watch` watches the MML files, compiling and playing whenever it's updated
+	- `pmd shell` puts you in a DOSBox session with the PMD tools in C:\ and the workspace directory in D:\
+
+
 ### PMD File Watcher _(Windows)_
 An open source tool by Rerrahkr for automating the process of compiling and playing songs. It works by setting it to watch whenever the MML file is updated, which triggers it to compile and then play the resulting file.
 
@@ -55,7 +82,6 @@ For using it you need to either have  [PMDDotNET](#pmddotnet-windows) or the [MS
 	2.1. If using the original `MC.EXE`, then also select `msdos.exe` after checking "MS-DOS Player", just below the MML Compiler settings.
 
 3. If you want the song to play after compiling, go to the Play tab, select the player, and check Autoplay.
-
 
 ## PMD Music File Playback
 
@@ -135,7 +161,7 @@ Editting FM instruments in the MML itself can be rough, as compilation and playb
 ### DOS _(Native, Windows, Mac, Linux)_
 Included in the PMD 4.8s package, PMD Voice Editor is a program for editting, loading and saving PMD's instrument patches and banks. Follow these steps:
 
-1. Download "PMD98用 Preset FM" from [KAJA's Website](https://sites.google.com/site/kajapon/pmd) and put it in PMD's folder setup in [DOS](#dos-native-emulator)
+1. Download "PMD98用 Preset FM" from [KAJA's Website](https://sites.google.com/site/kajapon/pmd) and put it in [PMD's folder](#original-driver-native-emulator)
 2. In DOS, run `VEDSE.EXE EFFEC.FF` in PMD's folder.[^1]
 3. Press any of the keys in the Z row of the keyboard, this should play a sound.[^2]
 4. Quitting with Esc will overwrite and save the loaded file.
@@ -181,7 +207,7 @@ This is the best option for audio because while it's not well rounded it allows 
 
 To use this emulator you'll need a hard disk image. [YAHDI](https://nfggames.com/forum2/index.php?topic=5463.0) is the most used one and I recommend it. Download it and follow the guide to convert it to `.nhd`.
 
-After setting up, follow the [DOS](#dos-native-emulator) setup for PMD.
+After setting up, follow the [Original Driver](#original-driver-native-emulator) setup for PMD.
 
 ### DOSBox-X (Windows, Mac, Linux)
 
@@ -196,7 +222,7 @@ To use it:
 
 This should already give you a working setup, of which the folder "drivez" is used for file management. There's some [additional configurations](https://dosbox-x.com/wiki/Guide%3APC‐98-emulation-in-DOSBox‐X) you might want to make but they aren't necessary for the purposes of this guide.
 
-After setting up, follow the [DOS](#dos-native-emulator) setup for PMD.
+After setting up, follow the [Original Driver](#original-driver-native-emulator) setup for PMD.
 
 ### MS-DOS Player
 
@@ -204,7 +230,7 @@ This is an emulator for running general simple DOS programs in command line. The
 
 1. Download [MS-DOS Player](http://takeda-toshiya.my.coocan.jp/msdos/index.html) and open the file in
 2. Extract the msdos.exe file contained in either "msdos\binary\i486_x86" or "..\i486_x64" according to your operating system to the folder you'll work in.
-3. Following the [DOS](#dos-native-emulator) guide put just MC.EXE in the folder.
+3. Following the [Original Driver](#original-driver-native-emulator) guide put just the translated MC.EXE in the folder.
 
 You can automate the compilation process with [PMD File Watcher](#pmd-file-watcher-windows).
 

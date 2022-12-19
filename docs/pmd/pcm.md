@@ -587,7 +587,7 @@ pziuty l <filename>.tfi
 
 And it should output a .PZI file.
 
-### Sequencing and Commands
+### Sequence and Commands
 
 To enable use of PPZ8 in your MML and associate the channels, use the following header:
 

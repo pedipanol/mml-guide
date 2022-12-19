@@ -39,7 +39,7 @@ The effect it produces depends whether the slots of the instrument which have AM
 
 The gist of it is that when active in carrier operators, it'll make a tremolo-like effect:
 ```
-@0 4 7 ;On algorithm 4, OP1 and OP3 are modulators and OP2 and OP4 are carriers 
+@0 4 7                  ;On algorithm 4, OP1 and OP3 are modulators and OP2 and OP4 are carriers 
  31 1 1 1  5 18 0 1 2 0 ;<- AMS is the last parameter in each operator
  31 4 3 8 10  0 0 1 3 1 ;Turns on AMS on OP2 (carrier)
  31 1 1 1  5 10 0 1 6 0
@@ -50,7 +50,7 @@ A   @0 #1,3 H0,3 o4 l4 cdefg  ;Results in tremolo Effect
 
 And on modulators, it'll make a wahwah-like effect:
 ```
-@1 4 7 ;Same instrument as above, but with different AMS
+@1 4 7                  ;Same instrument as above, but with different AMS
  31 1 1 1  5 18 0 1 2 1 ;Turns on AMS on OP1 (modulator) 
  31 4 3 8 10  0 0 1 3 0 
  31 1 1 1  5 10 0 1 6 1 ;Turns on AMS on OP3 (modulator)
@@ -109,7 +109,7 @@ After `<delay>` ticks, the LFO will change by `<depthA>` every `<speed>` ticks, 
 
 This can be a bit hard to wrap your head around, but what you need to understand is that in this case, `<speed>` and `<depthB>` are what you'll use to set the frequency of the LFO, and `<depthA>` is what you'll use to set the amount to change for each time step.
 
-Combining it with the activation command for a vibrato effect, we get:
+Combining it with the activation command for a vibrato effect, we'll have it working:
 ```
 G	o5 M24,1,3,2 *1 d1
 ```
@@ -120,8 +120,7 @@ G	o5 M24,1,3,2 *1 d1
 
 This sets which operators will be affected by the LFO. This allows for amplitude modulation on the modulators, as well as pitch modulation on specific operators of FM channel 3.
 
-For the value, `1` = Operator 1, `2` = Operator 2, `4` = Operator 3, and `8` = Operator 4.
-To affect 2 or more operators at the same time, you add the values for the ones you want.
+For the `<operator>`, `1` = Operator 1, `2` = Operator 2, `4` = Operator 3, and `8` = Operator 4. To affect 2 or more operators at the same time, you add the values for the ones you want.
 
 ```
 A	@1 M0,1,6,4 *2 o3 d1 ; By default it only affects the carriers.
@@ -142,13 +141,13 @@ This changes the waveform used with the corresponding value.
 5 Triangle Wave 3
 6 One-shot
 ```
-Each one behaves differently by changing how the values in the LFO setting are calculated. For an in-depth explanation, check out the Advanced page of the guide.
+Each one behaves differently by changing how the values in the LFO setting are calculated. An in-depth explanation about each will be added in the [Advanced info](advanced.md) page in a future update.
 
 ---
 
 ### Pitch Slide (`MP<value>`)
 
-This a shortcut command made specifically for a pitch down (negative value) or pitch up (positive value) effect, for which only the `<depthA>` value has to be specified:
+This a shortcut command made specifically for a pitch slide down (negative value) or pitch slide up (positive value) effect, for which only the `<depthA>` value has to be specified:
 ```
 G   MP-80 *1 o5 c       ;Expands to M0,1,-80,255 *1
 ```
@@ -163,7 +162,7 @@ As such, it replaces the current LFO settings and can be turned off with `*0`.
 
 ### Multiple LFO Definitions (`<command>[A]`, `<command>B`)
 
-As said above, you can set 2 different LFO settings per channel. You can specify the second one by adding a `B` as a suffix to the LFO commands.
+As said above, you can set **2 different LFO settings per channel**. You can specify the second one by adding a `B` as a suffix to the LFO commands.
 
 For visual aid, you can also add an `A` for specifically setting the first one, but it's not needed.
 ```

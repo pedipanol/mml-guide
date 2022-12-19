@@ -6,7 +6,7 @@ For those more familiar with trackers, which have a rigid visual timescale unlik
 
 _I'll see if I can make an explanation in the future that's easier for people who don't have a clue about sheet music._
 
-Most of what's contained here is **basically universal** among all syntaxes. However, some of them might tackle things diferently, or some of them might **not support** one or two things. If you want to try things out as they're explained, **please follow the Setting Up section in PMD's page**, which is the format I'll be using for this explanation (write the sequences in channel G so it doesn't require additional setup; this is done by starting a line with `G` followed by some whitespace). Audio examples will also be provided.
+Most of what's contained here is **basically universal** among all syntaxes. However, some of them might tackle things diferently, or some of them might **not support** one or two things. If you want to try things out as they're explained, **please follow the [PMD section](pmd/intro.md#introduction) up to the [PMD MML's Structure](pmd/structure.md)**, which is the format I'll be using for this explanation (write the sequences in channel G so it doesn't require additional setup; this is done by starting a line with `G` followed by some whitespace). But there shouldn't be any need as audio examples will also be provided.
 
 For this guide, we'll be using a familiar song as a basis.
 
@@ -33,7 +33,7 @@ a4d4
 <audio
         controls
         src="/audio/grand1.mp3">
-            <a href="/media/grand1.mp3">
+            <a href="/audio/grand1.mp3">
                 Sample Audio
             </a>
 </audio>
@@ -47,10 +47,11 @@ a4d4r8d4b8 a4d4r8a4g8
 <audio
         controls
         src="/audio/grand2.mp3">
-            <a href="/media/grand2.mp3">
+            <a href="/audio/grand2.mp3">
                 Sample Audio
             </a>
 </audio>
+
 >Notice that in the first measure, I chose to type the second `d` as `d4` instead of tying 2 `d8`'s. This is just because it would be redundant. One could use the tie command `&` and write it as `d8&d8` if desired.
 
 For the next part we'll need a sharp `f`. For sharp and flat notes, we simply add a `+` or `-` after the note respectively. The note + sharp is treated as a note input by itself, so it's **always before the length**. So for an eighth note `f` sharp, this would be `f+8`.
@@ -60,15 +61,17 @@ a4d4r8d4b8 a4d4r8a4g8 f+8f+8g8a8d4e4 f+1
 <audio
         controls
         src="/audio/grand3.mp3">
-            <a href="/media/grand3.mp3">
+            <a href="/audio/grand3.mp3">
                 Sample Audio
             </a>
 </audio>
+
 >Notice how I used a space when the measure ended. **Space may freely be used in the script** as the result will be the same, for the most part. Each format will differ, as each disagrees about some specifics, but as a rule of thumb:
->1. Don't put space between numbers
->2. Don't put space before sharps/flats.
->3. Don't put space before dots.
->3. Don't put space before command values.
+>
+> 1. Don't put space between numbers
+> 2. Don't put space before sharps/flats.
+> 3. Don't put space before dots.
+> 4. Don't put space before command values.
 >
 > Spacing can greatly improve readability of your script. Personally, I like using spaces to limit a measure, or a beat in really fast sections. I also use it often when there are 2 parts playing the same rhythmic patterns. There's a huge variety of ways you can do it.
 
@@ -82,19 +85,22 @@ l4 adr8db8 adr8ag8 f+8f+8g8a8de f+1
 If you tried playing what we wrote, you probably noticed that a note is playing in the **wrong octave**. Let's fix that.
 
 To **set** the current octave we use the `o<value>` command. This will change the current octave to a **fixed** one, and everything that comes after will use it as a basis (**absolute change**). Most drivers limit the range to 1-8 for simplicity's sake.
+
 ```
 o4 l4 adr8db8 adr8ag8 f+8f+8g8a8de f+1
 ```
+
 Usually `o4` is set for the octave containing middle `c`, but it can vary.
 
 We can also change the octave relative to the previous one with the `<` and `>` signs, which makes it easier for short changes (**relative change**). The default behavior is `<` decreases it and `>` increases. There are some exceptions, but usually, you can change this with a header.
 ```
 o4 l4 adr8>d<b8 adr8ag8 f+8f+8g8a8de f+1
 ```
+
 <audio
         controls
         src="/audio/grand4.mp3">
-            <a href="/media/grand4.mp3">
+            <a href="/audio/grand4.mp3">
                 Sample Audio
             </a>
 </audio>
@@ -114,24 +120,28 @@ Let's apply it to the song:
 ```
 l4 [adr8>d<b8 adr8ag8 f+8f+8g8a8de : f+1]2 d1
 ```
+
 <audio
         controls
         src="/audio/grand5.mp3">
-            <a href="/media/grand5.mp3">
+            <a href="/audio/grand5.mp3">
                 Sample Audio
             </a>
 </audio>
+
 This won't be needed for this song, but in most formats, you can nest as many loops as you want. That is, you can have as many loops inside of loops inside of loops—etc.—as you want. This can help save a lot of typing and space. If we wanted to play the whole thing twice, we could type:
 ```
 l4 [[adr8>d<b8 adr8ag8 f+8f+8g8a8de : f+1]2 d1 ]2
 ```
+
 <audio
         controls
         src="/audio/grand6.mp3">
-            <a href="/media/grand6.mp3">
+            <a href="/audio/grand6.mp3">
                 Sample Audio
             </a>
 </audio>
+
 >How exactly the loops behave in regard to resetting commands and other settings depends on the driver, so I'll be sure to point out these differences on each's page. For example, PMD doesn't reset commands when looping, so if you type:
 >```
 >[cdefgb MP-80]2
@@ -140,29 +150,60 @@ l4 [[adr8>d<b8 adr8ag8 f+8f+8g8a8de : f+1]2 d1 ]2
 
 Just to get finished with the basic sequences, there are 2 things that won't be needed for this song specifically, but are still common in basic sequences:
 
-Ties or slurs are used both to change notes without completely starting a new note, and to extend the current note's length. In PMD, they're done with an `&`, but it's not uncommon for drivers to use `^` too.
+### Ties/slurs
+
+They are used both to change notes without completely starting a new note, and to extend the current note's length. In PMD, they're done with an `&`, but it's not uncommon for drivers to use `^` too.
 
 Example 1:
->```
->c8 & d8 e4
->```
-> Result: `d` will play without playing a new note. The result is a slur from `c` to `d`. The `e` is not slurred.
+```
+c8 & d8 e4
+```
+
+<audio
+        controls
+        src="/audio/tie1.mp3">
+            <a href="/audio/tie1.mp3">
+                Sample Audio
+            </a>
+</audio>
+
+Result: `d` will play without playing a new note. The result is a slur from `c` to `d`. The `e` is not slurred.
  
 Example 2:
->```
->c8 & c8
->```
-> Result: it's the same as a `c4`, with the two eighth notes tied.
+```
+c8 c8 c8 & c8
+```
+
+<audio
+        controls
+        src="/audio/tie2.mp3">
+            <a href="/audio/tie2.mp3">
+                Sample Audio
+            </a>
+</audio>
+
+ Result: it's the same as a `c4`, with the two eighth notes tied.
 
 When the goal is just to extend the note length, some drivers allow you to just add a length value instead of the note after the tie. The previous example can be rewritten in this way as `c8 & 8`. Others might have a different command specific for that (usually for saving space in compilation), but the ties will always allow for that.
+
+### Dotted Notes
 
 By adding a `.` after the note or note length, it'll add half of its length, as a dotted note does in sheet music. Some drivers even allow you to stack them up, progressively adding halves as a quarter, then an eighth, a sixteenth, etc., but it's not very common.
 
 Example:
->```
->l4 ad.>d<b8 ad.ag8
->```
->Result: the same as placing a tie with a `d8` after, `d4&d8`.
+```
+l4 ad.>d<b8 ad.ag8
+```
+
+<audio
+        controls
+        src="/audio/grand7.mp3">
+            <a href="/audio/grand7.mp3">
+                Sample Audio
+            </a>
+</audio>
+
+Result: the same as placing a tie with a `d8` after, `d4&d8`.
 
 ## Common Commands
 
@@ -178,13 +219,21 @@ This sets the tempo of the song from that point forward. Most often, the value i
 Using + or - before the value turns it into a relative change.
 
 Example:
->```
->l8 t150 cdefg t+20 cdefg
->```
->Result: will sound the same as:
->```
->l8 t150 cdefg t170 cdefg
->```
+```
+l8 t150 cdefg t+20 cdefg
+```
+Result: will sound the same as:
+```
+l8 t150 cdefg t170 cdefg
+```
+
+<audio
+        controls
+        src="/audio/tempo.mp3">
+            <a href="/audio/tempo.mp3">
+                Sample Audio
+            </a>
+</audio>
 
 ### Volume ( `V<value>`,`v<value>` )
 This sets the volume of the current channel from that point forward. The value range will depend on the driver and/or soundchip.
@@ -192,9 +241,17 @@ This sets the volume of the current channel from that point forward. The value r
 Like tempo, more often than not you can change it relatively with + or -. Many drivers also use `(` and `)` for changing it relatively.
 
 Example:
->```
->l8 v13 cdefg v10 cdefg v+3 cdefg ((( cdefg
->```
+```
+l8 v13 cdefg v10 cdefg v+3 cdefg ((( cdefg
+```
+
+<audio
+        controls
+        src="/audio/volume.mp3">
+            <a href="/audio/volume.mp3">
+                Sample Audio
+            </a>
+</audio>
 
 ### Transposition/Modulation
 Note: While "transposition" is the common term, "modulation" is used in some reference materials. They usually mean the same thing.
@@ -204,35 +261,63 @@ There are 2 main types of transposition commands: normal transposition and chann
 Normal transposition will make it so everything placed after it will be transposed by the given number of semitones.
 
 Example:
->```
->l8 cdefg _+2 cdefg
->```
->Result: it sounds the same as
->```
->l8 cdefg def+ga
->```
+
+```
+l8 cdefg _+2 cdefg
+```
+Result: it sounds the same as
+```
+l8 cdefg def+ga
+```
+
+<audio
+        controls
+        src="/audio/trans1.mp3">
+            <a href="/audio/trans1.mp3">
+                Sample Audio
+            </a>
+</audio>
 
 Channel transposition behaves the same, but it'll include the relative transpositions without any conflict. Because of that, it's good to use it sparingly, and use the normal transposition instead until you want to transpose a whole song or section that already uses transposition commands in it.
 
 Example:
->```
->l8 cdefg _M+2 cdefg _+2 cdefg
->```
->Result: it sounds the same as
->```
->l8 cdefg def+ga ef+g+ab
->```
+```
+l8 cdefg _M+2 cdefg _+2 cdefg
+```
+Result: it sounds the same as
+```
+l8 cdefg def+ga ef+g+ab
+```
+
+<audio
+        controls
+        src="/audio/trans2.mp3">
+            <a href="/audio/trans2.mp3">
+                Sample Audio
+            </a>
+</audio>
 
 These commands are big time and typing savers, useful for playing the same line in other keys, or writing something in a key with less sharps or flats, thus having to type `+` or `-` less often.
 
+### Detune (`D<value>`>)
 This will detune the current channel by a certain amount from that point forward.
 
 Most often, this will change the value according to the soundchip's pitch range instead of by a more intuitive unit (such as cents), so how much true detune it amounts to will change depending on which point in the range you are. Usually, the higher the note is, the stronger the detune will be for the same amount.
 
->```
->l2   o2 D0 g D-2 g   o6 D0 g D-2 g
->```
->Result: the second one is at higher range, so the detune change is much more noticeable.
+```
+l2   o2 D0 g D-2 g   o6 D0 g D-2 g
+```
+Result: the second one is at higher range, so the detune change is much more noticeable.
+
+<audio
+        controls
+        src="/audio/detun.mp3">
+            <a href="/audio/detun.mp3">
+                Sample Audio
+            </a>
+</audio>
+
+Some drivers conpensate for this but it seems to be the exception rather than the rule.
 
 ### Quantization ( `Q<value>`,`q<value>` )
 Quantization in MML is used to automatically cut off notes within their original lengths. There are 2 possible ways of doing it (usually both are supported): corase and fine.
@@ -240,18 +325,35 @@ Quantization in MML is used to automatically cut off notes within their original
 With the coarse setting, (in PMD, an upper case `Q`) it takes the note and only plays for the given number of eighths of its length. This works like a stacatto in musical notation, except you can specify how much of the note you want played.
 
 Example:
->```
->l8 Q8 cdefg Q4 cdefg
->```
->Result: will only play half (4/8) of its length. After the `Q4` command, it would be the same as if `l16 crdrerfrgr` was typed instead.
+```
+l8 Q8 cdefg Q4 cdefg
+```
+
+<audio
+        controls
+        src="/audio/quant1.mp3">
+            <a href="/audio/quant1.mp3">
+                Sample Audio
+            </a>
+</audio>
+
+Result: will only play half (4/8) of its length. After the `Q4` command, it would be the same as if `l16 crdrerfrgr` was typed instead.
 
 With the fine setting, (in PMD, a lower case `q`) it'll subtract the given number of ticks from the length of the note.
 
 Example:
->```
->l8 q0 cdefg q1 cdefg
->```
->Result: the quantization makes the instrument release 1 tick before the next note, allowing for a very, very short rest.
+```
+l8 q0 cdefg q1 cdefg
+```
+<audio
+        controls
+        src="/audio/quant2.mp3">
+            <a href="/audio/quant2.mp3">
+                Sample Audio
+            </a>
+</audio>
+
+Result: the quantization makes the instrument release 1 tick before the next note, allowing for a very, very short rest.
 
 As the example shows, the fine quantization is particularly useful in FM drivers, as it'll allow the envelope to reset in situations it wouldn't. The **envelope** describes **an instrument's volume over time when it is played and stopped**, so tiny changes in when a note is stopped can notably change how the instrument sounds between notes. It also can help emphasize any instrument's attack (the rise in volume when a note is first played) with the momentary silence right before the note, notably used in Megaman's NES soundtracks.
 
@@ -264,18 +366,13 @@ Will sound the same as
 l4 Q8 c&d8r8e
 ```
 
-### Detune ( `D<value>` )
-
-Detune changes the tunning of the following sequence by the specified negative or positive value.
-```
-l4 o4 cdefg D-8 cdefg
-```
-
-There are many uses for it, such as making music using quarter tones, making complex layered instruments, and avoiding frequency clashes.
-
-Most drivers will do it by shifting the position in the chip's tuning table by the specified value, wich results with it not being equal among the whole frequency range. For example, a -1 detune will make a much noticeable difference at high frequencies than on lower ones.
-
-Some drivers try to make up for that with a driver-based fixed detune that will ajust and try to make it equal across the whole spectrum.
+<audio
+        controls
+        src="/audio/quant3.mp3">
+            <a href="/audio/quant3.mp3">
+                Sample Audio
+            </a>
+</audio>
 
 ### Channel Loop ( `L` )
 
@@ -284,6 +381,14 @@ Channel loop sets the loop point of the current channel, meaning everything afte
 ```
 L cdefg         ;cdefg plays on repeat forever
 ```
+
+<audio
+        controls
+        src="/audio/loop.mp3">
+            <a href="/audio/loop.mp3">
+                Sample Audio
+            </a>
+</audio>
 
 This is done by channel, meaning if you want to have the whole song use that loop point you need to point it accordingly.
 
@@ -297,34 +402,44 @@ Sequence macros are useful for saving time and typing, making the driver play th
 Setting many commands with a single one. This is really handy for making drums, which usually will take many commands at once.
 
 Example:
->```
->!b	@1 MP-80 v10 o1 _+9 Q4 \vh12 \b\h 
->!s	@2 MP-40 v13 o4 _+7 Q8 \vh12\vs15\s\h
->!H	@4 *0    v12 o7 _0  Q8 \c
->!h	@5 *0    v10 o7 _0  Q4 \vh6\h
->
->A	l8 !b c !h c !s c !h c !b c c !s c !H c
->```
->The above example is a typical FM drum setting in PMD. Each macro (represented by `![character]`) contains respectively:
-> 1. Change instrument (`@`)
-> 2. Set pitch fall (`MP`), or turn it off (`*0`)
-> 3. Volume (`v`)
-> 4. Set octave (`o`)
-> 5. Transpose (`_`)
-> 6. Quantization (`Q`)
-> 7. Play the corresponding rhythm channel (various commands starting with `\`)
->
->This allows these huge sequence of commands that would have to be set in every drum part to be summarized into their own singular commands, which will be applied to the note that comes after the macro in the sequence, making this kind of sequencing become much more simple.
+```
+!b	@1 MP-80 v10 o1 _+9 Q4 \vh12 \b\h 
+!s	@2 MP-40 v13 o4 _+7 Q8 \vh12\vs15\s\h
+!H	@4 *0    v12 o7 _0  Q8 \c
+!h	@5 *0    v10 o7 _0  Q4 \vh6\h
+
+A	l8 !b c !h c !s c !h c !b c c !s c !H c
+```
+The above example is a typical FM drum setting in PMD. Each macro (represented by `![character]`) contains respectively:
+
+ 1. Change instrument (`@`)
+ 2. Set pitch fall (`MP`), or turn it off (`*0`)
+ 3. Volume (`v`)
+ 4. Set octave (`o`)
+ 5. Transpose (`_`)
+ 6. Quantization (`Q`)
+ 7. Play the corresponding rhythm channel (various commands starting with `\`)
+
+This allows these huge sequence of commands that would have to be set in every drum part to be summarized into their own singular commands, which will be applied to the note that comes after the macro in the sequence, making this kind of sequencing become much more simple.
 
 They're also useful for playing repeated patterns which can be transposed with a command.
 
 Example:
->```
->!a rgb>d [f+gf+d]3<
->
->A l8 o3 !a !a _-7 !a !a
->```
->Result: the macro plays twice and then it plays twice again, but transposed down.
+```
+!a rgb>d [f+gf+d]3<
+
+G l8 v15 @5 o4 !a !a _-5 !a !a
+```
+
+<audio
+        controls
+        src="/audio/smurf.mp3">
+            <a href="/audio/smurf.mp3">
+                Sample Audio
+            </a>
+</audio>
+
+Result: the macro plays twice and then it plays twice again, but transposed down.
 
 Among many other uses.
 
