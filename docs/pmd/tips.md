@@ -109,7 +109,7 @@ Let's break down the commands in each:
 
  4. Set octave (`o`)
 
-    Changes the octave to the appropriate one for each drum. Since they will sound completely different in other than the intended.
+    Changes the octave to the appropriate one for each drum. Since they might sound completely different in octaves other than the intended.
 
  5. Transpose (`_`)
 
@@ -123,7 +123,7 @@ Let's break down the commands in each:
 
     To play the rhythm channels at the same time as the FM ones, adding an extra punch to them.
 
-All of these commands and values are not universal, making it so you have to change them depending on the drums instruments you're using or what kind of song you're sequencing.
+All of these commands and values are not universal, making it so you have to find the setup needed for drum instruments you're using or what kind of song you're sequencing.
 
 There's no limit of macros so you can also make nuanced ajustments for more variety.
 
@@ -190,7 +190,7 @@ Both the hihats operate in the same way:
 4. Plays the note for 1 frame (`c%`) (9 frames on the open hihat)
 5. Cuts for the rest of the note (`r%`)
 
-Unlike FM where you'll only see variety in the values used in those macros, there's a huge variety in how to make SSG drums. For example I could add the rhythm trigger commands in there for them to play in sync with teh SSG. So try things out for yourself to get interesting results!
+There's a huge variety in how to make SSG drums. For example I could add the rhythm trigger commands in there for them to play in sync with the SSG. So try things out for yourself to get interesting results!
 
 
 ## Making PCM Drum Macros

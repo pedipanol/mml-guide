@@ -6,10 +6,10 @@ PMD has extensive PCM capabilities beyond just the ADPCM of the OPNA. It has a d
 
 The PCM types PMD has are:
 
-- ADPCM: using OPNA's internal ADPCM channel
-- P86DRV (86PCM): uses the PC-98's 86 soundboard's PCM as an alternative to the ADPCM
-- PPZ8: uses the PC-98's 86 soundboard's PCM to generate up to 8 PCM channels.
-- PPSDRV (SSGPCM): uses SSG channel 3 to generate up to 2 PCM channels.
+- [ADPCM](#adpcm-ppc): using OPNA's internal ADPCM channel
+- [P86DRV (86PCM)](#p86drv-p86): uses the PC-98's 86 soundboard's PCM as an alternative to the ADPCM
+- [PPSDRV SSGPCM](#ppsdrv-pps): uses SSG channel 3 to generate up to 2 PCM channels.
+- [PPZ8](#ppz8-pvipzi): uses the PC-98's 86 soundboard's PCM to generate up to 8 PCM channels.
 
 All of them have different capabilities, and whether it's possibile to use them on real machines will depend on the soundboard setup. This is the reason many PMD soundtracks that use ADPCM will have an 86PCM version.
 
@@ -51,7 +51,7 @@ Once the DOS folder is set up, get the following files:
 
     Extract all files into the folder.
 
-The optional .DOCs are good to have in case you want to troubleshoot something that might not be properly explained in here. Unfortunately, it's in japanese, so you'll need to use a translation tool if you don't understand.
+The optional .DOCs are good to have in case you want to troubleshoot something that might not be properly explained in here. Unfortunately, it's in japanese, so you'll need to use a translation tool if you don't understand the language.
 
 You'll also need an audio editor that can change sample rates and export unsigned 16-bit RAW audio, depending on the PCM type. For this tutorial, I'll use Audacity.
 
@@ -85,7 +85,7 @@ First, you need to get your samples ready. Open your samples in an audio editor,
 
 - Export them as 16-bit unsigned RAW.
     
-    In Audacity, this is done by going to "Export Audio...", choosing "Other uncompressed files" at the time of export, and then choosing "16-bit unsigned" and RAW (headerless).
+    In Audacity, this is done by going to "Export Audio...", choosing "Other uncompressed files" at the time of export, and then choosing "16-bit unsigned" and "RAW (headerless).
 
 
 I also recommend putting a brief moment of silence after the sample finishes to avoid potential clicks in the converted audio.
@@ -114,30 +114,32 @@ pcmconv /v guitar.raw 16000 /a guitar.spb 16000
 
 Now to wrap up the package.
 
-1. Run the DOS driver to start PMD with ADPCM support:
+**1 -** Run the DOS driver to start PMD with ADPCM support:
 
-    ```
-    pmdb2
-    ```
+```
+pmdb2
+```
 
+**2 -** Run the following command to clear the ADPCM RAM:
 
-2. Run the following command to clear the ADPCM RAM:
-    ```
-    pmdpcm /c
-    ```
+```
+pmdpcm /c
+```
 
-3. For every .spb sample you want to include in the file, run:
-    ```
-    pmdpcm <id> <filename>.spb
-    ```
-    In which `<id>` corresponds to the instrument number to be called with the `@` command. Range is 0–255.
+**3 -** For every .spb sample you want to include in the file, run:
 
-    This will load the sample into RAM and associate its addresses to its ID.
+```
+pmdpcm <id> <filename>.spb
+```
+In which `<id>` corresponds to the instrument number to be called with the `@` command. Range is 0–255.
 
-4. Once you're finished with all samples, wrap it up with:
-    ```
-    pmdpcm /s <filename>.ppc
-    ```
+This will load the sample into RAM and associate its addresses to its ID.
+
+**4 -** Once you're finished with all samples, wrap it up with:
+
+```
+pmdpcm /s <filename>.ppc
+```
 
 You can rebuild the file by running from step 2 onwards. If you want to add a new sample to the bank, simply load the PPC file:
 ```
@@ -198,7 +200,7 @@ First you need to get your samples ready. Open your samples in an audio editor, 
 
 - Resample them
 
-    As PMD tries to make 86PCM compatible with ADPCM, it'll have many similarities with it, including its recommended sample rates and whatnot.
+    As PMD tries to make 86PCM compatible with ADPCM, it'll have many similarities with it, including its base note and whatnot.
 
     The only documented sample rate is 16504Hz, which will play at `o5g`. But since some audio editors don't support it, I recommend exporting to the closest one upwards. I use 22050Hz.
 
@@ -206,7 +208,7 @@ First you need to get your samples ready. Open your samples in an audio editor, 
 
 - If it's a stereo sample, convert it to mono
 
-    The converter doesn't support stereo samples.
+    The converter doesn't support stereo samples. It will still accept them, but the sample channels will be stacked or interlaced.
 
 - Export them as 16-bit unsigned RAW.
     
@@ -238,31 +240,35 @@ pcmconv /v <input>.raw 22050 /b <input>.pc8 16504
 
 Now to wrap up the package.
 
-1. Run the following 2 DOS drivers to start PMD with 86PCM support and enable use of 86PCM:
+**1 -** Run the following 2 DOS drivers to start PMD with 86PCM support and enable use of 86PCM:
 
-    ```
-    pmd86
-    p86drv
-    ```
+```
+pmd86
+p86drv
+```
 
+**2 -** Run the following command to clear the sample memory in RAM:
 
-2. Run the following command to clear the sample memory in RAM:
-    ```
-    pmdpcm86 /c
-    ```
+```
+pmdpcm86 /c
+```
 
-3. For every .pc8 sample you want to include in the file, run:
-    ```
-    pmdpcm <id> <filename>.pc8
-    ```
-    In which `<id>` corresponds to the instrument number to be called with the `@` command. Range is 0–255.
+**3 -** For every .pc8 sample you want to include in the file, run:
 
-    This will load the sample into RAM and associate its addresses to its ID.
+```
+pmdpcm <id> <filename>.pc8
+```
+In which `<id>` corresponds to the instrument number to be called with the `@` command. Range is 0–255.
 
-4. Once you're finished with all samples, wrap it up with:
-    ```
-    pmdpcm /s <filename>.p86
-    ```
+This will load the sample into RAM and associate its addresses to its ID.
+
+**4 -** Once you're finished with all samples, wrap it up with:
+
+```
+pmdpcm /s <filename>.p86
+```
+
+---
 
 You can rebuild the file by running from step 2 onwards. If you want to add a new sample to the bank, simply load the P86 file:
 ```
@@ -524,7 +530,9 @@ First you need to get your samples ready. Open your samples in an audio editor, 
 
 - Resample them if they're above 65533Hz
 
-    The 86 Sounboard's playback rate is 44100, and PPZ will always play the file with the specified sample rate at o5c so it shouldn't be something to worry about.
+    The 86 Sounboard's playback rate is 44100, and PPZ will always play the sample with the specified sample rate at `o5c` so it shouldn't be something to worry about.
+
+    However the PZI format doesn't allow for sample rates to be specified as above 65533Hz, so it needs to be lower than that.
 
 - If it's a stereo sample, convert it to mono
 
@@ -571,13 +579,13 @@ The components of the file are as following:
 
 Spacing is not allowed and commas are needed between each value.
 
-`<PZI filename>` is the name of the output file. You can include the extension or leave it without and it'll be added automatically.
+**`<PZI filename>`** is the name of the output file. You can include the extension or leave it without and it'll be added automatically.
 
-`<sample name>` is the name of the sample file. Its position/instrument number is associated by the order it was inputted, from 1-127.
+**`<sample name>`** is the name of the sample file. Its position/instrument number is associated by the order it was inputted, from 1-127.
 
-`<rate>` is the sample rate of the sample. Accepted range is 0-65533. It can be ommited, but PZIUTY will assume its base rate at 16504hz for .PC8 samples.
+**`<rate>`** is the sample rate of the sample. Accepted range is 0-65533. It can be ommited, but PZIUTY will assume its base rate at 16504hz for .PC8 samples.
 
-`<loop start>` and `<loop end>` are the loop positions of the sample, same as displayed on audacity when displaying audio position by samples. It can be omitted.
+**`<loop start>`** and **`<loop end>`** are the loop positions of the sample, same as displayed on audacity when displaying audio position by samples. It can be omitted.
 
 Save the file and change its extension to .TFI then run the following command:
 
@@ -633,7 +641,7 @@ Making a macro is advised if using multiple samples with different base pitches 
 
 #### Panning
 
-While the ADPCM on the OPNA has hardpanning, the 86 Soundboard's PCM has full stereo control so like with PMD86, PPZ has an additional panning command allowing for the extended range, with `px<value>`
+While the ADPCM on the OPNA has hardpanning, the 86 Soundboard's PCM has full stereo control so like with PMD86, PPZ has an additional panning command allowing for the extended range, with **`px<value>`**
 
 The value range is -4 to +4, in which the negative values pan torwards the left and the positive values pan to the right.
 

@@ -2,26 +2,26 @@
 
 SSG-EG is a feature of the OPN soundchip that uses the ADSR envelope to create a wave shape as the final envelope. It works similarly to an amplitude LFO, except it can get to frequencies high enough to be perceived as a note pitch and modify the base sine wave. This allows for creating more complex sounds with the FM channels.
 
-However it's a pretty complex feature that not even many musicians used before the 2000's. Because of this, only a couple players/emulators support it. It wasn't even implemented into PMD properly until KAJA updated it in 2020.
+However it's a pretty complex feature that not even many musicians used before the 2000's. It wasn't even implemented into PMD properly until KAJA updated it in 2020. 
 
-## Players
-
-First, you must ensure the player you're using supports it.
+Because of this, currently there are only 1 player and 1 emulator that support it:
 
 | Player | SSG-EG | Comment |
 | ------ | ------ | ------- |
-| FMPMD2000 | Yes | Versions released after 2020 |
+| pmdwin.dll | Yes | Versions released after 2020 |
 | NekoProject II fmgen | Yes | use genpfm.dll |
 | 98fmplayer | No | |
 | DOSBox-X | No | |
-| PMDDotNET | No | Dev prefers keeping to 4.8o specs |
-| MML2VGM IDE | No | Dev prefers keeping to 4.8o specs |
+| PMDDotNET | No | Dev prefers keeping to the original version |
+| MML2VGM IDE | No | Dev prefers keeping to the original version |
+
+pmdwin.dll refers to the library used by [FMPMD2000](setup.md#fmpmd2000-windows), [inFMPMD](setup.md#winamp) and [foo_input_fmpmd](setup.md#foobar2000).
 
 ## Usage
 
-SSG-EG is a complicated feature that you have to build your instrument speficically to use, or else it won't work. Using an instrument editor such as YM2608 tone editor on Windows or VEDSE on DOS will allow you to test the values properly.
+SSG-EG is a complicated feature that you have to build your instrument speficically to use, or else it won't work. Using an instrument editor such as [YM2608 tone editor](setup.md#ym2608-tone-editor-windows) on Windows or VEDSE on DOS will allow you to test the values properly.
 
-After creating a instrument and putting it in the script, call the instrument with `@` and then use the command `SE<operator>,<value>`:
+After creating a instrument and putting it in the script, call the instrument with `@` and then use the command **`SE<operator>,<value>`**:
 
 ```
 @0 0 0 31 19 31 15 2 29 0 7 7 0 31 11 31 15 1 28 0 0 3 0 24 11  0 15 2 29 0 2 0 0 27 13 12 15 2  2 0 2 0 0
@@ -30,9 +30,9 @@ A	@0 l8 o3 [c4gc2.<g16g16>[c<g]3]4  ;Instrument without SSG-EG
 A	SE3,8    [c4gc2.<g16g16>[c<g]3]4  ;Activating SSG-EG changes the sound to a timpani-like sound
 ```
 
-`<operator>` indicates which FM slots the SSG-EG applies to. The expected value is [similar to other individual-slot commands](./chipcom.md#operator-flag-soperator). 0 is not a valid value. Note that any slots not specified are not changed.
+**`<operator>`** indicates which FM slots the SSG-EG applies to. The expected value is [similar to other individual-slot commands](./chipcom.md#operator-flag-soperator). 0 is not a valid value. Note that any slots not specified are not changed.
 
-`<value>` indicates the mode of the SGG-EG. Its range is 0–15. The following table is a summary of all modes.
+**`<value>`** indicates the mode of the SGG-EG. Its range is 0–15. The following table is a summary of all modes.
 
 | Mode | Result |
 | ---- | ------ |

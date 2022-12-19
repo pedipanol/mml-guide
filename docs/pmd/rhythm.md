@@ -4,16 +4,18 @@ This page explains the 2 Rhythm methods PMD supports: the OPNA's Rhythm Sound So
 
 ## Rhythm Sound Source Commands
 
-In PMD, the RSS can be controlled from any PMD channel by using the trigger command `\<perc>`:
+In PMD, the RSS can be controlled from **any PMD channel** by using the trigger command `\<perc>`:
 
 `<perc>` corresponds to which rhythm channel will be used, as follows:
 
-- `b` - Bass Drum
-- `s` - Snare
-- `t` - Tom
-- `h` - Hi-hat
-- `c` - Cymbal
-- `i` - Rim Shot 
+perc | Drum channel |
+--- | --- 
+b | Bass Drum
+s | Snare
+t | Tom
+h | Hi-hat
+c | Cymbal
+i | Rim Shot 
 
 Those commands are set to be triggered upon the next note or rest:
 
@@ -35,7 +37,7 @@ I   t50 [\b\h r12 \h r24 \c r8 \h\b\s r12 \h r24 \c r12 \cp\h r24]4
 ;       The first cymbal doesn't get halted, the second does
 ```
 
-Before moving on, keep in mind that "triggered upon the next note" also refers to loops; if you put a rhythm command at the end of a loop, it'll play on the first note of the loop and the next after the loop.
+Before moving on, keep in mind that "triggered upon the next note" **also refers to loops**; if you put a rhythm command at the end of a loop, it'll play on the first note of the loop and the next after the loop.
 
 ```
 I   t50 [\b r \s r \h]2 \t r
@@ -53,14 +55,12 @@ I   t75 l8 \vb20 \vs20 [\vh20 \b\h r \vh5\h r \vh20\s\h r \vh5\h r]4
 ;       Sets the volume for bass and snare drum, lowers the hi-hat's volume on off-beats
 ```
 
-You can also change it relatively by using +/- before the value.
+You can also change it relatively by adding `+` or `-` before the value.
 ```
 I   t75 l8 \vb20 \vs20 \vh20 [\vh+1 \b\h r \vh+1\h r \vh+1\s\h r \vh+1\h r]4
 ;          ^^    ^^    ^^     ^^           ^^        ^^          ^^
 ;       Hi-hat's volume keeps rising
 ```
-
-
 
 ### RSS Global Volume (`\V<value>`)
 
@@ -72,7 +72,7 @@ I   t75 \V63 l4 [\b r \s r \b r8 \b r8 \s r \V50 ]2
 ;       Sets the global volume, then changes it in the second loop
 ```
 
-You can also change it relatively by using +/- before the value.
+You can also change it relatively by adding `+` or `-` before the value.
 
 ```
 I   t75 \V63 l4 [\b r \s r \b r8 \b r8 \s r \V-13 ]2
@@ -86,9 +86,11 @@ When this command isn't used, the driver defaults the value to 48.
 
 Changes the panning of each rhythm channel individually. `<pan>` represents the panning position as follows:
 
-- `r` = Right
-- `l` = Left
-- `m` = Center
+pan | Output
+--- | ---
+r | Right
+l | Left
+m | Center
 ```
 I   t50 l8 [\mc \b\c r \lc\c r \lh\h\s\cp r \h\s r \b\h r \c r \cp\h\s r \h r]4
 ;           ^^         ^^      ^^
@@ -111,7 +113,7 @@ I   [!c\b r !H r !h\s r !h\s r \b!h r !H r !h\s r \h r]4
 
 ## PMD's Rhythm Channel
 
-An alternative way to sequence drums is the PMD rhythm channel. This is a channel that uses instrument commands to sequence drums instead, which by default uses SSGPCM on SSG Channel 3 (`I`) alongside the RSS.
+An alternative way to sequence drums is the PMD rhythm channel. This is a channel that uses **instrument commands** to sequence drums instead, which by default uses **SSG Channel 3** (`I`) alongside the RSS. This channel is also used for [SSG PCM](pcm.md#ppsdrv-pps) sequencing.
 
 If making a song that uses the `I` channel, be mindful that any notes in the rhythm channel will override it, so make smart use of rests.
 
@@ -132,19 +134,19 @@ While a variety of commands are supported in the `K` channel itself, notes and r
 
 To select the instrument, we use `@<value>`. The values associated with each drum by default are as follows:
 
-```
-@1	  - Bass Drum
-@2	  - Snare Drum 1
-@4	  - Low Tom
-@8	  - Middle Tom
-@16	  - High Tom
-@32	  - Rim Shot
-@64	  - Snare Drum 2
-@128  - Closed Hi-hat
-@256  - Open Hi-hat
-@512  - Crash Cymbal
-@1024 - Ride Cymbal
-```
+Instrument | SSG Drum
+--- | ---
+@1	  | Bass Drum
+@2	  | Snare Drum 1
+@4	  | Low Tom
+@8	  | Middle Tom
+@16	  | High Tom
+@32	  | Rim Shot
+@64	  | Snare Drum 2
+@128  | Closed Hi-hat
+@256  | Open Hi-hat
+@512  | Crash Cymbal
+@1024 | Ride Cymbal
 
 To sequence a note, we insert any note after it. Whatever note you choose won't change the resulting sound.
 
@@ -183,7 +185,7 @@ R1  \vb31\vs31 @128 \bc \sc \bc \sc ;Hi-hat plays on the SSG
 
 ### Commands Supported by the K/R channels
 
-This is a list of commands that can be used on both PMD rhythm sequence types for drum sequencing.
+This is a list of commands that can be used on both rhythm channels.
 
  - `[ : ]` - Loop
  - `l` - Default Length
@@ -193,5 +195,3 @@ This is a list of commands that can be used on both PMD rhythm sequence types fo
  - `T` - Timer
 
 Almost everything else will be ignored or will result in a compile error. There are some additional commands that are only supported by direct use of SSGPCM, which are properly explained in [its own section](./pcm.md#ppsdrv-pps).
-
-_Reminder to hyperlink on final revision_

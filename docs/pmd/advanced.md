@@ -1,6 +1,6 @@
 # Advanced info
 
-If you've read the guide up to this point, congrats! This page is for the more advanced stuff which you don't need to know for most use-cases of the driver, but might be a good piece of knowledge to have.
+If you've read the guide up to this point, congrats and thank you! This page is for the more advanced stuff which you don't need to know for most use-cases of the driver, but might be a good piece of knowledge to have.
 
 ## Tempo, TimerB and Whole Note Length
 
@@ -38,7 +38,7 @@ However we can change that default length value using the following header, rang
 #Zenlen     <value>
 ```
 
->Trivia: The "Zen" in Zenlen stands for 全音符(zen onbu), literally meaning whole note.
+>_Trivia: The "Zen" in Zenlen stands for 全音符(zen onbu), literally meaning whole note._
 
 Or the `C<value` command, allowing it to be changed mid-song.
 

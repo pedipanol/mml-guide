@@ -105,7 +105,11 @@ _Graphics by Altiami_
 
 > _**An important warning from Altiami**: This graphic is partially incorrect! The height of the wave is `<depthA> * <depthB>`, not `<depthB>`! This graphic will be corrected hopefully sooner than later._
 
-After `<delay>` ticks, the LFO will change by `<depthA>` every `<speed>` ticks, a total of `<depthB>` times. Then, it inverts the `<depthA>` value to reach the base again, and then does this again, now in the opposite direction because `depthA` is still inverted.
+1. Wait for `<delay>` ticks
+2. Then change by `<depthA>` every `<speed>` ticks, a total of `<depthB>` times.
+3. Inverts the `<depthA>` value to reach the base again
+4. Does steps 2 and 3 again, now in the opposite direction because `depthA` is still inverted.
+5. Repeats the process until the next reset.
 
 This can be a bit hard to wrap your head around, but what you need to understand is that in this case, `<speed>` and `<depthB>` are what you'll use to set the frequency of the LFO, and `<depthA>` is what you'll use to set the amount to change for each time step.
 
@@ -116,7 +120,7 @@ G	o5 M24,1,3,2 *1 d1
 
 ---
 
-### Operator Flag (`MM<operator>`)
+### LFO Operator Flag (`MM<operator>`)
 
 This sets which operators will be affected by the LFO. This allows for amplitude modulation on the modulators, as well as pitch modulation on specific operators of FM channel 3.
 
@@ -205,7 +209,7 @@ C   p2 g            ;left pan
 ```
 Being a limitation of the soundchip, only hard panning is supported by this command. That is, either the left or right output is completely on, or completely off.
 
-Additionally, only for the PC-98-86 soundboard, the PCM channels support a fourth option. Due to its limited usage, it will be discussed in the Handling PCM page.
+Additionally, only for the PC-98-86 soundboard, the PCM channels support a fourth option. Due to its limited usage, it will be discussed in the [Handling PCM](pcm.md) page.
 
 ---
 
@@ -217,7 +221,7 @@ The value sets the attenuation level, meaning the volume will decrease as the va
 ```
 G  v15 q2 DS00 d4 DS20 d4 DS40 d4 ;Volume decreases with higher values
 ```
-Use this in conjuction with the volume effects for mixing the song.
+Use this in conjunction with the volume effects for mixing the song.
 
 This works the same as the `#Volumedown` header.
 
@@ -227,24 +231,34 @@ This works the same as the `#Volumedown` header.
 
 ### Operator Flag (`s<operator>`)
 
-This changes which FM operators the current channel will use. This command is mainly used for the FM3Extend mode, but can also find its use in other situations, such as 2-op chords.
+This changes which FM operators the current channel will use. The values for each operator are:
 
-The values for each operator are:
+| Slot | Flag |
+|------------|---|
+| Operator 1 | 1 |
+| Operator 2 | 2 |
+| Operator 3 | 4 |
+| Operator 4 | 8 |
+
+To control 2 or more with the same command, you add the corresponding numbers, so for example, to control Operators 2 and 4, it's 8 + 2 = 10. This is because this flag is done using binary values, allowing them to be stored in a single hex number. **This applies to every command using the `<operator>` flag.**
+
+This command is mainly used for the FM3Extend mode, but can also find its use in other situations.
+
 ```
-Operator 1 = 1, Operator 2 = 2, Operator 3 = 4, and Operator 4 = 8.
+@1 4 7 31 1 1 1 5 18 0 1 2 1 31 4 3 8 10 0 0 1 3 0 31 1 1 1 5 10 0 1 6 1 31 4 3 8 10  4 0 1 5 0 
+
+A   @1 s15 cdefg s12 gdefg   ;Channel plays the full instrument, then only operators 3+4
 ```
 
-To control 2 or more with the same command, you add the corresponding numbers, so for example, to control Operators 2 and 4, it's 8 + 2 = 10.
+When using this command it's important to **be mindful of the instrument's algorithm** in the instrument being used, as it might lead to the instrument being muted if you carrier operators aren't included.
 
-_This is because the flag is done using binary values, allowing them to be stored in a single hex number._
-
-This applies to every command using the `<operator>` flag.
+To disable this command you need to use `s15`. Using `s0` will disable all the operators.
 
 ---
 
 ### Change Operator Level (`O<operator>,<value>`)
 
-Changes the attenuation level (TL) on the selected operator(s) to the value specified. This is specially useful for making cool effects with the modulators, [like this song's bass](https://youtu.be/GxDur7step8?t=50), but it can also be used to change the instrument's base volume level when used in the carriers.
+Changes the **total level** (TL) or attenuation level on the selected operator(s) to the value specified. This is specially useful for making cool effects with the modulators, [like this song's bass](https://youtu.be/GxDur7step8?t=50), but it can also be used to change the instrument's base volume level when used in the carriers.
 
 ```
 ;TL on Operator 1 is 18
@@ -263,18 +277,22 @@ A	@1 Q3 o2 l16
 A	[e O5,-1]12 eeee [e O5,+1]12 eeee ;TL on Operators 1 and 3 decreases then increases
 ```
 
+Changing the instrument with `@` will overwrite this change, and loading the same instrument again it's how you reset the effect without having to type the precise TL value again.
+
 ---
 
 ### Set Feedback Level (`FB<value>`)
 
-This changes the feedback parameter (FBL) on the currently playing instrument.
+This changes the feedback parameter (FB) on the currently playing instrument.
+
 ```
 ;Feedback in the instrument is 7 (third value)
 @1 4 7 31 1 1 1 5 18 0 1 2 1 31 4 3 8 10 0 0 1 3 0 31 1 1 1 5 10 0 1 6 1 31 4 3 8 10 4 0 1 5 0 
 
 A   @1 cdefg FB3 cdefg      ;Changes it to 3
 ```
-Changing the instrument (`@`) will overwrite this change.
+
+Changing the instrument with `@` will overwrite this change, and loading the same instrument again it's how you reset the effect without having to type the precise TL value again.
 
 ### Delay Operator Input (`sk<operator>,<value>`)
 
@@ -287,6 +305,8 @@ A	@0 l4 o6 cdefg sk12,3 cdefg  ;Higher pitched layer gets delayed a bit
 ```
 
 This can be used to create subtle effects in combination with instrument definitions, from simple echos, to complex subtone depth (think low-layer reverb, or resonance of bar instruments).
+
+You can turn it off with `sk0`
 
 ---
 
@@ -308,6 +328,7 @@ RR = Release Rate   (0–15)
 SL = Sustain Level  (0–15)
 AL = Attack Level   (0–15)
 ```
+
 Attack level is the volume where the attack starts. It can be ommitted, in which case it starts from zero.
 
 ```
@@ -331,6 +352,7 @@ RR = Release Rate   (0–255)
 By default, AL, SR, and RR are measured in ticks. See below about using TimerA for exceptions.
 
 The envelope works following these steps:
+
 1. At note start, set the instrument's volume to the volume set by volume commands (such as `v` or `V`).
 2. Wait the amount of time specified by AL.
 3. Change the volume by the amount specified by DD.
@@ -345,7 +367,7 @@ If SR is 0, then steps 4 and 5 are skipped, and step 6 only waits to continue up
 
 If RR is 0, then steps 8 and 9 are skipped, and the volume is instantly set to 0.
 ```
-G   o5 v13 E1,-2,2,1 e%6    ;recall that the % means the note length is in ticks
+G   o5 v13 E1,-2,2,1 e%6 r4    ;recall that the % means the note length is in ticks
 ```
 In the example above, assuming TimerA is not used, the volume over time would be:
 ```
@@ -363,13 +385,11 @@ This allows for the envelope to be more easily consistent with the timing of the
 
 Because of this you can choose to use TimerA, which is a fixed clock running at around 54.25 Hz. This is not exact and can vary slightly.
 
-To do so, you either add the following header:
+To do so in all channels, you either add the following header:
 ```
 #EnvelopeSpeed   Extend
 ```
-Or use the command `EX1`. It can also be disabled with `EX0`.
-
-The header affects all channels, while the command is per channel.
+Alternatively you can use the command `EX1` to anable and `EX0` to disable. Using the command instead of the header will only affect the current channel.
 
 ## SSG Commands
 
@@ -393,7 +413,7 @@ PMD has 10 preset envelopes for the SSG, they are selected with the `@` command 
 @9	E1,2,24,1	; Brass type 2
 ```
 
-These presets can't be called on the PCM channels, but you can use the `E` commands above if desired. However, this is not recommended due to the volume range differences between SSG and PCM channels.
+These presets can't be called on the PCM channels, but you can use the `E` commands above if desired. However, **this is not recommended** due to the volume range differences between SSG and PCM channels.
 
 ---
 
@@ -418,6 +438,7 @@ Note: PMD doesn't support the Envelope Generator natively. Brute-forcing it is p
 ### Noise Frequency (`w<value>`)
 
 Changes the noise frequency, ranging from 0–31, where the lower the value, the higher the frequency. This affects all SSG Channels.
+
 ```
 G   @6 v15
 G   P2 w0 c w10 c w20 c w30 c   ;Different frequencies in noise mode
@@ -428,6 +449,6 @@ G   P3 w0 c w10 c w20 c w30 c   ;And tone+noise mode
 
 ## PCM Commands
 
-As using PCM requires a specific setup, it's not worth addressing its commands in this page. Check out the Handling PCM page for more details.
+As using PCM requires specific setup where each will have its specific additional commands, it's not worth addressing its commands in this page. Check out the [Handling PCM](pcm.md) page for more details.
 
 ---
