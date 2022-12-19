@@ -53,7 +53,7 @@ Once the DOS folder is set up, get the following files:
 
 The optional .DOCs are good to have in case you want to troubleshoot something that might not be properly explained in here. Unfortunately, it's in japanese, so you'll need to use a translation tool if you don't understand the language.
 
-You'll also need an audio editor that can change sample rates and export unsigned 16-bit RAW audio, depending on the PCM type. For this tutorial, I'll use Audacity.
+You'll also need an audio editor that can change sample rates and export signed 16-bit RAW audio. For this tutorial, I'll use Audacity.
 
 ## ADPCM (PPC)
 
@@ -83,9 +83,9 @@ First, you need to get your samples ready. Open your samples in an audio editor,
 
     The converter doesn't support stereo samples. It will still accept them, but the sample channels will be stacked or interlaced.
 
-- Export them as 16-bit unsigned RAW.
+- Export them as 16-bit signed RAW.
     
-    In Audacity, this is done by going to "Export Audio...", choosing "Other uncompressed files" at the time of export, and then choosing "16-bit unsigned" and "RAW (headerless).
+    In Audacity, this is done by going to "Export Audio...", choosing "Other uncompressed files" at the time of export, and then choosing "Signed 16-bit PCM" and "RAW (headerless).
 
 
 I also recommend putting a brief moment of silence after the sample finishes to avoid potential clicks in the converted audio.
@@ -188,7 +188,7 @@ Making a macro is advised if using multiple samples with different base pitches 
 
 ## P86DRV (P86)
 
-PMD's internal 86PCM driver replaces the ADPCM channel with a higher quality 8-bit sample playback. Its stereo capabilities also adds a new functionality to panning.
+PMD's internal 86PCM driver replaces the ADPCM channel with 8-bit sample playback. Its stereo capabilities also adds a new functionality to panning.
 
 There's no size limit.
 
@@ -202,7 +202,7 @@ First you need to get your samples ready. Open your samples in an audio editor, 
 
     As PMD tries to make 86PCM compatible with ADPCM, it'll have many similarities with it, including its base note and whatnot.
 
-    The only documented sample rate is 16504Hz, which will play at `o5g`. But since some audio editors don't support it, I recommend exporting to the closest one upwards. I use 22050Hz.
+    The only documented sample rate is 16540Hz, which will play at `o5g`. But since some audio editors don't support it, I recommend exporting to the closest one upwards. I use 22050Hz.
 
     The highest supported sample rate is not documented, and it can go above the ADPCM's.
 
@@ -210,9 +210,9 @@ First you need to get your samples ready. Open your samples in an audio editor, 
 
     The converter doesn't support stereo samples. It will still accept them, but the sample channels will be stacked or interlaced.
 
-- Export them as 16-bit unsigned RAW.
+- Export them as 16-bit signed RAW.
     
-    In Audacity, this is done by going to "Export Audio...", choosing "Other uncompressed files" at the time of export, and then choosing "16-bit unsigned" and RAW (headerless).
+    In Audacity, this is done by going to "Export Audio...", choosing "Other uncompressed files" at the time of export, and then choosing "Signed 16-bit PCM" and RAW (headerless).
 
 I also recommend putting a brief moment of silence after the sample finishes to avoid potential clicks in the converted audio.
 
@@ -233,7 +233,7 @@ pcmconv /w <input>.raw /b <output>.pc8
 Since PMD uses a really specific frequency for o5g. If you're using a pitched sample and the input file is tuned, add the frequency to the conversion, as follows:
 
 ```
-pcmconv /v <input>.raw 22050 /b <input>.pc8 16504
+pcmconv /v <input>.raw 22050 /b <input>.pc8 16540
 ```
 
 #### Packing it up in a P86 Bank
@@ -308,7 +308,7 @@ You can set a volume envelope with the `E` command and it works as [specified be
 
 #### Notes
 
-As mentioned before, if the sample is encoded as 16504Hz, `o5g` will play the same as the source file.
+As mentioned before, if the sample is encoded as 16540Hz, `o5g` will play the same as the source file.
 
 If you're using a pitched sample and its pitch is any note other than a G, it's recommended to use a global transposition `_M<value>` and/or global detune command `DD<value>` to pitch it accordingly.
 
@@ -346,7 +346,7 @@ This is the most complex PCM mode to work with and the most limited in many ways
 While FMPMD and MML2VGM provide some form of emulation, it's not at all accurate. The only way to get accurate playback outside a the real PC98 machine is with [NekoProject II fmgen](./setup.md#nekoproject-ii-fmgen-windows) using fmgen.dll .
 
 
-PPSDRV is a PCM driver for the SSG, which allows 4-bit 16000khz PCM playback on the SSG Channel 3. It can also play 2 samples simultanelously, but at a lower quality.
+PPSDRV is a PCM driver for the SSG, which allows 4-bit 16000Hz PCM playback on the SSG Channel 3. It can also play 2 samples simultanelously, but at a lower quality.
 
 This is the only PCM mode that will work on a PC98 with a 26 soundboard (which has a YM2203 instead of a YM2608), so using it can be good for compatibility.
 
@@ -360,15 +360,15 @@ First you need to get your samples ready. Open your samples in an audio editor, 
 
 - Resample them
 
-    The recommended sample rate is 16000hz. It allows for some fluctuation as we'll see, but to avoid trouble is best to stick the the default sequence by the driver.
+    The recommended sample rate is 16000Hz. It allows for some fluctuation as we'll see, but to avoid trouble is best to stick the the default sequence by the driver.
 
 - If it's a stereo sample, convert it to mono
 
     The converter doesn't support stereo samples.
 
-- Export them as 16-bit unsigned RAW.
+- Export them as 16-bit signed RAW.
     
-    In Audacity, this is done by going to "Export Audio...", choosing "Other uncompressed files" at the time of export, and then choosing "16-bit unsigned" and RAW (headerless).
+    In Audacity, this is done by going to "Export Audio...", choosing "Other uncompressed files" at the time of export, and then choosing "Signed 16-bit PCM" and RAW (headerless).
 
 I also recommend putting a brief moment of silence after the sample finishes to avoid potential clicks in the converted audio.
 
@@ -538,9 +538,9 @@ First you need to get your samples ready. Open your samples in an audio editor, 
 
     The converter doesn't support stereo samples.
 
-- Export them as 16-bit unsigned RAW.
+- Export them as 16-bit signed RAW.
     
-    In Audacity, this is done by going to "Export Audio...", choosing "Other uncompressed files" at the time of export, and then choosing "16-bit unsigned" and RAW (headerless).
+    In Audacity, this is done by going to "Export Audio...", choosing "Other uncompressed files" at the time of export, and then choosing "Signed 16-bit PCM" and RAW (headerless).
 
 I also recommend putting a brief moment of silence after the sample finishes to avoid potential clicks in the converted audio.
 
@@ -583,7 +583,7 @@ Spacing is not allowed and commas are needed between each value.
 
 **`<sample name>`** is the name of the sample file. Its position/instrument number is associated by the order it was inputted, from 1-127.
 
-**`<rate>`** is the sample rate of the sample. Accepted range is 0-65533. It can be ommited, but PZIUTY will assume its base rate at 16504hz for .PC8 samples.
+**`<rate>`** is the sample rate of the sample. Accepted range is 0-65533. It can be ommited, but PZIUTY will assume its base rate at 16540Hz for .PC8 samples.
 
 **`<loop start>`** and **`<loop end>`** are the loop positions of the sample, same as displayed on audacity when displaying audio position by samples. It can be omitted.
 

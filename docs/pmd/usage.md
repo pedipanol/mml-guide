@@ -36,8 +36,8 @@ The original driver needs more specific instructions.
 PMD Needs a different driver loadout depending on what the song requires/what the person's setup is. All of these files are contained within the [original driver](setup.md#original-driver-native-emulator) setup.
 
 - PMD.COM - For songs targetting the PC-9801-26 wich has a YM2203 soundchip.
-- PMDB2.COM - For songs targetting the PC-9801-76 which has a YM2608 with ADPCM functionality enabled.
-- PMD86.COM - For songs targetting the PC-9801-86 which has a YM2608 plus a PCM output which will be used instead of the ADPCM.
+- PMDB2.COM - For songs targetting the Speakboard or compatible sound board which has a YM2608 with ADPCM functionality enabled.
+- PMD86.COM - - For songs targetting the PC-9801-73 or PC-9801-86 which has a YM2608 plus a PCM output which will be used instead of the ADPCM.
 - PMDPPZ.COM - For songs targetting the PC-9801-86 which has a YM2608 plus a PCM output, using the 8-channel PCM mode.
 
 Once the appropriate driver is loaded, just use the following command:

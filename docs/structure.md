@@ -1,5 +1,7 @@
 # The Basic Structure
 
+MML files are simply plain text that can be created, opened and edited with any text editor like Notepad. Sometimes they might come with a different file extension, which `.mml` is the most common of, but in practice they're no different from a plain `.txt` file.
+
 There are 4 distinct elements in a MML structure which are distinguished by how are they started, which totally depends on the driver and it's not universal. For easier explanation I'll use this PMD template as an example:
 
 ```
@@ -22,11 +24,13 @@ A cdefgab>c !a
 ```
 
 ## Header
+
 In the example, the lines starting with `#`.
 
 This will contain **metadata** about the song, as well as compilation instructions. In here, you may define a song's title, insert a comment that will be displayed in the compiled file, set musical details such as the main tempo, etc.
 
 ## Instrument Definition/Instrument Macros
+
 In the example, the string of numbers starting with `@`.
 
 This will create the instruments and tables to be called with their respective commands. Oftentimes, there'll only be one type of definition, but particularly for a soundchip with PSG, it's common to have different macro types for different aspects.
@@ -34,11 +38,13 @@ This will create the instruments and tables to be called with their respective c
 Some drivers or channels won't need this setting for a simple sequence, as they support a blank instrument or might have some prebuilt ones. But more often than not, you need to have an instrument definition for every instrument you use, or else it might result in a compilation error or mute the current channel, so it's important to keep it in mind.
 
 ## Sequence Macros
+
 In the example, the line starting with `!`
 
 These are sequences you can call with their respective commands. It's useful for saving time and typing, sometimes even minimizing data. Its utilities are endless.
 
 ## Channels and Sequence
+
 In the example, the lines starting with `A`.
 
 The sequence and channel addressing can take many forms depending on the MML format.

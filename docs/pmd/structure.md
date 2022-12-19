@@ -140,10 +140,12 @@ The 86 soundboard also includes its own cpu-powered PCM output (think small WAV 
 
 PMD only has instrument definitions for the FM instruments. They're a string of FM parameters beginning with `@<instrument number>`.
 
->If you don't know how about FM synthesis in the OPN soundchips, it's better to do some research to properly understand how the instruments work and some terms I won't explain. I recommend [smspower's article on the YM2612](https://www.smspower.org/maxim/Documents/YM2612).
+Note 1: The easiest way to get instruments for PMD is converting BTI, TFI, DMP, OPM and many other instrument formats to PMD's using [YM2608 Tone Editor](setup.md#ym2608-tone-editor-windows).
 
+Note 2: If you don't know how about FM synthesis in the OPN soundchips, it's better to do some research to properly understand how the instruments work and some terms I won't explain. I recommend [smspower's article on the YM2612](https://www.smspower.org/maxim/Documents/YM2612).
 
 ### FM instruments
+
 OPN-type instruments (accepted by default) will need 42 parameter values, which are organized in the following format:
 
 ```
