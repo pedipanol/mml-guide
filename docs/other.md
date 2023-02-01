@@ -41,6 +41,12 @@ A MML tool by [emberling](https://twitter.com/jen_imago) for hacking music into 
 - Download: [https://github.com/emberling/mfvitools/releases/latest](https://github.com/emberling/mfvitools/releases/latest)
 - Manual: [https://github.com/emberling/mfvitools/wiki](https://github.com/emberling/mfvitools/wiki)
 
+### Squirrel (PC-Engine)
+A sound engine for the PC-Engine.
+
+- Download: https://www.aetherbyte.com/aetherbyte-squirrel_for_pc-engine_and_turbografx-16.html
+- Documentation and manual are in MANUAL.TXT.
+
 ### MXDRV (Sharp X68000)
 
 Also known as MDX. A very popular driver for the Sharp X68000.
