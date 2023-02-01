@@ -21,6 +21,7 @@ nav:
         - pmd/fm3extend.md
         - pmd/tips.md
         - pmd/advanced.md
+        - pmd/resources.md
         
 theme:
   name: readthedocs
