@@ -31,28 +31,30 @@ mc /p sample.mml
 If you get `Compile Completed`, it should have worked fine. If you encounter a problem with the first command, the emulator is not set up right. If on a real machine, try runing `pmd` instead.
 
 ### PMDDotNET _(Windows)_
-_Let me know if this works on Wine if anyone tries it._
+_apparently works with wine except for problems with japanese fonts_
 
 PMDDotNET is a Windows port of PMD's source code made by [kuma4649](https://github.com/kuma4649). The usage is mostly the same as the DOS version, except you can drag'n'drop both the MML and compiled files for compilation and playback, respectively.
 
 1. Download the latest release at [Github](https://github.com/kuma4649/PMDDotNET/releases) and extract it.
-2. Drag and drop the MML file onto `compile.bat`.
+2. Download [the OPNA Rhythm Sound Source (RSS) samples](http://snesmusic.org/hoot/drum_samples.zip) and extract to `(extracted folder)\player\`.
+3. On the extracted folder, drag and drop the MML file onto `compile.bat`.
 	(use the ones provided with [PMD](https://sites.google.com/site/kajapon/pmd) if you don't have one around)
-3. Drag and drop the compiled `.M` file onto `play.bat`.
+4. Drag and drop the compiled `.M` file onto `play.bat`.
 
 With this program You can automate the compilation process with [PMD File Watcher](#pmd-file-watcher-windows).
 
 If the program doesn't run (and it's not a problem with the MML), it might be a Windows problem which can be addressed by running `removeZoneIdent.bat` and running it again.
 
 ### mml2vgm IDE _(Windows)_
-_Let me know if this works on Wine if anyone tries it._
+_apparently works with wine except for problems with japanese fonts_
 
 An open source MML editor for PMD, MUCOM88, M98, moondriver, and its own mml2vgm format made by [kuma4649](https://github.com/kuma4649). It includes the compiler and player in the program itself, so playback can be done at the press of a button, including highlights on the currently playing notes.
 
 1. Download [mml2vgm](https://github.com/kuma4649/mml2vgm/releases/tag/TAG653) and extract it.
-2. In `(extracted folder)\mml2vgmIDE\` run `mml2vgmIDE.exe`.
-3. You can create a template PMD MML file by clicking File -> New -> New .mml
-4. Press F5 for playback, or Ctrl+F5 for highlighted playback. Other shortcuts are displayed at the bottom of the screen.
+2. Download [the OPNA Rhythm Sound Source (RSS) samples](http://snesmusic.org/hoot/drum_samples.zip) to `(extracted folder)\mml2vgmIDE\`.
+3. In the same folder, run `mml2vgmIDE.exe`.
+4. You can create a template PMD MML file by clicking File -> New -> New .mml
+5. Press F5 for playback, or Ctrl+F5 for highlighted playback. Other shortcuts are displayed at the bottom of the screen.
 
 If the program doesn't run properly, it might be a Windows problem which can be addressed by running `removeZoneIdent.bat` in the parent folder and running it again.
 
@@ -174,7 +176,7 @@ Operation of the program itself is explained in VEDSE.DOC. It's in Japanese, but
 Developed by Rerrahkr, YM2608 Tone Editor is an OPN instrument editor for Windows. It can read many instrument and bank formats, as well as PMD's song files, which is convenient for getting instruments.
 
 1. Download [YM2608 Tone Editor](https://github.com/rerrahkr/YM2608-Tone-Editor/releases/latest) and extract it.
-2. The keyboard will let you test the instrument.
+2. In the main window, the keyboard will let you test the instrument.
 3. Instruments can be loaded with File -> Open Tone **or** -> Open Bank.
 4. You can output the currently selected instrument to MML with File -> Convert to text, and then selecting PMD.
 5. You can also output an .FF file in File -> Save Bank As..., and then selecting PMD Bank (.ff).
