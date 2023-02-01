@@ -1,0 +1,210 @@
+<svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg">
+    <style>
+        @font-face {
+            font-family: Unifont
+            src: url("https://unifoundry.com/pub/unifont/unifont-15.0.01/font-builds/unifont-15.0.01.otf"),
+                 url("https://unifoundry.com/pub/unifont/unifont-15.0.01/font-builds/unifont-15.0.01.ttf");
+        }
+    </style>
+    <rect x="0" y="0" width="100%" height="100%" fill="#171717" />
+    <path
+        stroke="#2FDF2F"
+        stroke-width="4"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"
+        d="M 34,14 l 8,-8 V 714 l -8,-8 m 8,8 l 8,-8 M 42,6 l 8,8"
+    />
+    <path
+        stroke="#DF2F2F"
+        stroke-width="4"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"
+        d="M 40,360 H 1274 l -8,-8 m 8,8 l -8,8"
+    />
+    <rect x="42" y="358" width="4" height="4" fill="#DFDF2F" />
+    <text
+        x="36"
+        y="354"
+        font-family="Unifont"
+        font-size="24pt"
+        fill="#DFDFDF"
+        dominant-baseline="text-after-edge"
+        style="transform-origin: 36px 354px; rotate: -90deg;"
+    >
+        Modulation
+    </text>
+    <text
+        x="46"
+        y="368"
+        font-family="Unifont"
+        font-size="24pt"
+        fill="#DFDFDF"
+        dominant-baseline="text-before-edge"
+    >
+        Time
+    </text>
+    <path
+        stroke="#DFDFDF"
+        stroke-width="8"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"
+        d="
+            M 1256,200
+            l -16,-16
+            m 0,32
+            l 16,-16
+            h -60
+            v 160
+            h -60
+            v 160
+            h -60
+            v 160
+            h -60
+            v -160
+            h -60
+            v -160
+            h -60
+            v -160
+            h -60
+            v -160
+            h -60
+            v 160
+            h -60
+            v 160
+            h -60
+            v 160
+            h -60
+            v 160
+            h -60
+            v -160
+            h -60
+            v -160
+            h -60
+            v -160
+            h -60
+            v -160
+            h -60
+            v 160
+            h -60
+            v 160
+            H 42
+        "
+    />
+    <path
+        stroke="#9F2FDF"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"
+        d="M 236,192 v -20 m 0,10 H 48 m 0,-10 v 20"
+    />
+    <text
+        x="142"
+        y="177"
+        font-family="Unifont"
+        font-size="24pt"
+        fill="#DFBFFF"
+        text-anchor="middle"
+        dominant-baseline="text-after-edge"
+    >
+        delay
+    </text>
+    <path
+        stroke="#9F2FDF"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"
+        d="M 236,367 v 20 m 0,-10 h 60 m 0,-10 v 20"
+    />
+    <line
+        x1="296"
+        y1="367"
+        x2="296"
+        y2="207"
+        stroke="#9F2FDF"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-dasharray="4 6"
+        stroke-dashoffset="5"
+    />
+    <text
+        x="266"
+        y="390"
+        font-family="Unifont"
+        font-size="24pt"
+        fill="#DFBFFF"
+        text-anchor="middle"
+        dominant-baseline="text-before-edge"
+    >
+        speed
+    </text>
+    <path
+        stroke="#2F9FDF"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"
+        d="M 483,355 h 20 m -10,0 v -315 m -10,0 h 20 m 0,160 h -20"
+    />
+    <line
+        x1="483"
+        y1="200"
+        x2="423"
+        y2="200"
+        stroke="#2F9FDF"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-dasharray="4 6"
+        stroke-dashoffset="5"
+    />
+    <line
+        x1="483"
+        y1="40"
+        x2="363"
+        y2="40"
+        stroke="#2F9FDF"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-dasharray="4 6"
+        stroke-dashoffset="5"
+    />
+    <text
+        x="497"
+        y="120"
+        font-family="Unifont"
+        font-size="24pt"
+        fill="#BFFFFF"
+        text-anchor="middle"
+        dominant-baseline="text-after-edge"
+        style="transform-origin: 497px 120px; rotate: 90deg;"
+    >
+        depthA
+    </text>
+    <path
+        stroke="#2F9FDF"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"
+        d="M 531,355 c 20,0,0,-157.5,20,-157.5 -20,0,0,-157.5,-20,-157.5"
+    />
+    <text
+        x="554"
+        y="197"
+        font-family="Unifont"
+        font-size="24pt"
+        fill="#BFFFFF"
+        text-anchor="middle"
+        dominant-baseline="text-after-edge"
+        style="transform-origin: 554px 197px; rotate: 90deg;"
+    >
+        depthB
+    </text>
+</svg>
