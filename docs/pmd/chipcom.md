@@ -100,10 +100,8 @@ In the FM channels, the amplitude modulation by default will only affect the car
 `<delay>` sets how many ticks to wait before the effect starts,`<speed>` sets the tick length for each step, and `<depthA>` sets the amount to vary for each step. How `<depthB>` behaves will depend on the waveform selected.
 
 For this example I'll use the default Triangle waveform:
-![Triangle Wavefrom](./images/MW1.png)
+![Triangle Wavefrom](./images/PMD_LFO_MW0.svg)
 _Graphics by Altiami_
-
-> _**An important warning from Altiami**: This graphic is partially incorrect! The height of the wave is `<depthA> * <depthB>`, not `<depthB>`! This graphic will be corrected hopefully sooner than later._
 
 1. Wait for `<delay>` ticks
 2. Then change by `<depthA>` every `<speed>` ticks, a total of `<depthB>` times.
