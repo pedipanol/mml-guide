@@ -65,8 +65,7 @@ Includes both .FF files that can be opened with [YM2608 Tone Editor](setup.md#ym
 
 ##### brickblock369's FM instruments
 
-[MML instruments](files\BRICK.MML) </br>
-[FF File](files\BRICK.FF) </br>
+[https://github.com/pedipanol/mml-guide/tree/main/docs/pmd/files](https://github.com/pedipanol/mml-guide/tree/main/docs/pmd/files) </br>
 The mml file contains the instrument data for copy and pasting into the MML script. The FF file can be used with #FFFile and opened with [YM2608 Tone Editor](setup.md#ym2608-tone-editor-windows) for testing or modifying instruments.
 
 ##### valsound's FM sound library
