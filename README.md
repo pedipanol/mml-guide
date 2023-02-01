@@ -6,7 +6,7 @@ This is a project with the goal of documenting MML in english with the goal of n
 
 I hope this will help you in whatever your goal is, or at least that it serves as a good read into old chiptune tools.
 
-If you encounter any problems or have anything to say or ask about this guide, you can message me on [mastodon](https://mastodon.social/@pedipanol) or send me an ask on [tumblr](https://www.tumblr.com/pedipanol)
+If you encounter any problems or have anything to say or ask about this guide, you can open an issue on this repository or message me on [twitter] (https://www.twitter.com/pedipanol), [mastodon](https://mastodon.social/@pedipanol) or send me an ask on [tumblr](https://www.tumblr.com/pedipanol).
 
 ### Special Thanks
  ・ Altiami  
