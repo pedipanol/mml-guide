@@ -35,7 +35,7 @@ _apparently works with wine except for problems with japanese fonts_
 
 PMDDotNET is a Windows port of PMD's source code made by [kuma4649](https://github.com/kuma4649). The usage is mostly the same as the DOS version, except you can drag'n'drop both the MML and compiled files for compilation and playback, respectively.
 
-1. Download the latest release at [Github](https://github.com/kuma4649/PMDDotNET/releases) and extract it.
+1. Download the latest release at [Github](https://github.com/kuma4649/PMDDotNET/releases/latest) and extract it.
 2. Download [the OPNA Rhythm Sound Source (RSS) samples](http://snesmusic.org/hoot/drum_samples.zip) and extract to `(extracted folder)\player\`.
 3. On the extracted folder, drag and drop the MML file onto `compile.bat`.
 	(use the ones provided with [PMD](https://sites.google.com/site/kajapon/pmd) if you don't have one around)
@@ -50,7 +50,7 @@ _apparently works with wine except for problems with japanese fonts_
 
 An open source MML editor for PMD, MUCOM88, M98, moondriver, and its own mml2vgm format made by [kuma4649](https://github.com/kuma4649). It includes the compiler and player in the program itself, so playback can be done at the press of a button, including highlights on the currently playing notes.
 
-1. Download [mml2vgm](https://github.com/kuma4649/mml2vgm/releases/tag/TAG653) and extract it.
+1. Download [mml2vgm](https://github.com/kuma4649/mml2vgm/releases/latest) and extract it.
 2. Download [the OPNA Rhythm Sound Source (RSS) samples](http://snesmusic.org/hoot/drum_samples.zip) to `(extracted folder)\mml2vgmIDE\`.
 3. In the same folder, run `mml2vgmIDE.exe`.
 4. You can create a template PMD MML file by clicking File -> New -> New .mml
