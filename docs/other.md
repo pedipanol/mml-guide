@@ -9,8 +9,12 @@ If there's anything new or missing, do inform me.
 ### ppmck (NES, Famicom)
 An extended version of the original mck by [BouKiCHi](https://twitter.com/boukichi_numloc), allowing for bankswitching and multiple expansion chips.
 
-- Download: [https://github.com/munshkr/ppmck/releases/latest](https://github.com/munshkr/ppmck/releases/latest)
+- Download: [http://ppmck.web.fc2.com/ppmck.html](http://ppmck.web.fc2.com/ppmck.html)
 - English Manual: [https://woolyss.com/chipmusic/chipmusic-mml/ppmck_guide.php](https://woolyss.com/chipmusic/chipmusic-mml/ppmck_guide.php)
+
+> To compile: put your song in the mck/songs/ folder, and run `mknsf.bat miracle` in command prompt.
+>
+> Edit mknsf.bat and replace ppmckc with ppmckc_e for english.
 
 ### MUCOM88 (PC-88)
 
