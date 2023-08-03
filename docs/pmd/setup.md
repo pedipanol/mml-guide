@@ -21,7 +21,7 @@ For Linux and MacOS [projmd](#projmd-linux-macos) should have you covered.
 
 This is how to set up the original/native version of PMD. To use this method in modern machines, an [emulator](#pc-98-emulators) is needed. 
 
-1. Download the latest version (currently 4.8s) of PMD at [KAJA's website](https://sites.google.com/site/kajapon/pmd) and extract it. Look for the text "Ver.4.8s + Source [20/01/22]".
+1. Download the latest version (currently 4.8s) of PMD at [KAJA's website](http://www5.airnet.ne.jp/kajapon/tool.html) and extract it. Look for the text "Ver.4.8s + Source [20/01/22]".
 2. Download the [English version of the compiler](https://drive.google.com/drive/folders/1fSH39Vr97_29tvjni6H7WXJlxH_HmZx0) (by Mana, Pigu and VasteelXolotl) and replace the existing MC.EXE in the PMD folder. This step isn't mandatory, but without it, most error messages will be in Japanese, which might also be corrupted into [mojibake](https://en.wikipedia.org/wiki/Mojibake) depending on your DOS emulator and its settings.
 3. Transfer the folder to the PC-98 or your DOS emulator's folder.
 4. For a test run, run the following commands[^1]:
@@ -38,7 +38,7 @@ PMDDotNET is a Windows port of PMD's source code made by [kuma4649](https://gith
 1. Download the latest release at [Github](https://github.com/kuma4649/PMDDotNET/releases/latest) and extract it.
 2. Download [the OPNA Rhythm Sound Source (RSS) samples](http://snesmusic.org/hoot/drum_samples.zip) and extract to `(extracted folder)\player\`.
 3. On the extracted folder, drag and drop the MML file onto `compile.bat`.
-	(use the ones provided with [PMD](https://sites.google.com/site/kajapon/pmd) if you don't have one around)
+	(use the ones provided with [PMD](http://www5.airnet.ne.jp/kajapon/tool.html) if you don't have one around)
 4. Drag and drop the compiled `.M` file onto `play.bat`.
 
 With this program You can automate the compilation process with [PMD File Watcher](#pmd-file-watcher-windows).
@@ -93,7 +93,7 @@ PMD compiles the MML scripts into a binary form with the extension `.M`  by defa
 
 Same as the compiler, an [emulator](#pc-98-emulators) is needed for running this method in modern machines. Steps 1 and 2 are the same as the one you set up in PMD.
 
-1. Download the latest version (currently 4.8s) of PMD at [KAJA's website](https://sites.google.com/site/kajapon/pmd) and extract it. Look for the text "Ver.4.8s + Source [20/01/22]".
+1. Download the latest version (currently 4.8s) of PMD at [KAJA's website](http://www5.airnet.ne.jp/kajapon/tool.html) and extract it. Look for the text "Ver.4.8s + Source [20/01/22]".
 2. Transfer the folder to the PC-98 or your DOS emulator's folder.
 3. On DOS, run the desired driver (next section details them).
 4. Run `pmp <filename>` for playback¹.
@@ -163,7 +163,7 @@ Editting FM instruments in the MML itself can be rough, as compilation and playb
 ### DOS _(Native, Windows, Mac, Linux)_
 Included in the PMD 4.8s package, PMD Voice Editor is a program for editting, loading and saving PMD's instrument patches and banks. Follow these steps:
 
-1. Download "PMD98用 Preset FM" from [KAJA's Website](https://sites.google.com/site/kajapon/pmd) and put it in [PMD's folder](#original-driver-native-emulator)
+1. Download "PMD98用 Preset FM" from [KAJA's Website](http://www5.airnet.ne.jp/kajapon/tool.html) and put it in [PMD's folder](#original-driver-native-emulator)
 2. In DOS, run `VEDSE.EXE EFFEC.FF` in PMD's folder.[^1]
 3. Press any of the keys in the Z row of the keyboard, this should play a sound.[^2]
 4. Quitting with Esc will overwrite and save the loaded file.
