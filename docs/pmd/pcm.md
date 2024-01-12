@@ -21,7 +21,7 @@ To make your own PCM samplebanks, you'll need to set up a workspace folder on DO
 
 Once the DOS folder is set up, get the following files:
 
-1. Download PMD Ver.4.8o and from [KAJA's website](https://sites.google.com/site/kajapon/pmd)
+1. Download PMD Ver.4.8o and from [KAJA's website](http://www5.airnet.ne.jp/kajapon/tool.html)
     
     Extract the following files into the folder:
     - PMDPCM.EXE
@@ -34,7 +34,7 @@ Once the DOS folder is set up, get the following files:
     - PMDPCM.DOC (optional)
     - MAKEPPS.DOC (optional)
 
-2. If you haven't, download PMD Ver.4.8s from [KAJA's website](https://sites.google.com/site/kajapon/pmd)
+2. If you haven't, download PMD Ver.4.8s from [KAJA's website](http://www5.airnet.ne.jp/kajapon/tool.html)
     
     Extract or copy the following files into the folder:
     - PMDB2.COM
