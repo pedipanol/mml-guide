@@ -60,7 +60,8 @@ FM instrument files ready for use with PMD, in both MML instrument definition an
 In addition to these, you can convert most 4-op instrument formats (including other soundchip's), extract instruments from songs and make your own with [YM2608 Tone Editor](setup.md#ym2608-tone-editor-windows).
 
 ##### PMD98's preset instruments
-[https://sites.google.com/site/kajapon/cabinet/PMD98_PresetVoices.zip?attredirects=0](https://sites.google.com/site/kajapon/cabinet/PMD98_PresetVoices.zip?attredirects=0)</br>
+[http://www5.airnet.ne.jp/kajapon/tool.html](http://www5.airnet.ne.jp/kajapon/tool.html)</br> (Download "PMD98用 Preset FM音色セット" at the end of the first part of the table)
+
 Includes both .FF files that can be opened with [YM2608 Tone Editor](setup.md#ym2608-tone-editor-windows) for testing or modifying, and plain text instrument definitions for pasting directly into the MML.
 
 ##### brickblock369's FM instruments
@@ -101,7 +102,7 @@ Converts PMD's .M files into .S98 files, which is similar to .VGM. Converter is 
 
 ##### pmd2rcp
 
-[https://sites.google.com/site/kajapon/pmd](https://sites.google.com/site/kajapon/pmd)</br>
+[http://www5.airnet.ne.jp/kajapon/tool.html](http://www5.airnet.ne.jp/kajapon/tool.html)</br> ("Ver.2.2g" on the MMD98 row)
 Included with MMD, a MIDI driver for the PC98 also made by KAJA. You can use pmd2rcp to convert PMD files to a recomposer (.RCP) file, which then can be converted to .MID with a tool such as [https://www.vector.co.jp/soft/win95/art/se182775.html](RCP2MID).
 
 ##### pmd2mid
