@@ -104,7 +104,7 @@ Converts PMD's .M files into .S98 files, which is similar to .VGM. Converter is 
 
 [http://www5.airnet.ne.jp/kajapon/tool.html](http://www5.airnet.ne.jp/kajapon/tool.html)</br> ("Ver.2.2g" on the MMD98 row)
 
-Included with MMD, a MIDI driver for the PC98 also made by KAJA. You can use pmd2rcp to convert PMD files to a recomposer (.RCP) file, which then can be converted to .MID with a tool such as [https://www.vector.co.jp/soft/win95/art/se182775.html](RCP2MID).
+Included with MMD, a MIDI driver for the PC98 also made by KAJA. You can use pmd2rcp to convert PMD files to a recomposer (.RCP) file, which then can be converted to .MID with a tool such as [RCP2MID](https://www.vector.co.jp/soft/win95/art/se182775.html)
 
 ##### pmd2mid
 
