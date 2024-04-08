@@ -217,7 +217,7 @@ While not as compatible as NekoProject II, DOSBox-X can be a good choice for usi
 
 To use it:
 
-1. Download [DOSBox-X](github.com/joncampbell123/dosbox-x/releases/latest/) and extract it.
+1. Download [DOSBox-X](https://github.com/joncampbell123/dosbox-x/releases/latest/) and extract it.
 
 2. In the program's folder, open dosbox-x.conf in a text editor
 3. Search for `machine` until you find the setting that is set to `= svga_s3` (it's in line 215 as of writing this) then change it to `= pc98`
