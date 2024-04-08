@@ -38,6 +38,13 @@ A MML tool for hacking music into Super Mario World and making SPC files. Requir
 - Download: [https://www.smwcentral.net/?p=section&a=details&id=31558](https://www.smwcentral.net/?p=section&a=details&id=31558)
 - English manual included in readme.html
 
+### Terrific Audio Driver (SNES)
+
+A sound driver for the SNES by undisbeliever, has its own GUI editor that allows for instant playback. Syntax is based on PMD, so a lot of non-FM specific things from my guide should carry over. Its own documentation is well written too.
+
+- Download: [https://github.com/undisbeliever/terrific-audio-driver](https://github.com/undisbeliever/terrific-audio-driver)
+- Manual: [https://github.com/undisbeliever/terrific-audio-driver/blob/main/docs/mml-syntax.md](https://github.com/undisbeliever/terrific-audio-driver/blob/main/docs/mml-syntax.md)
+
 ### mfvitools (SNES)
 
 A MML tool by [emberling](https://twitter.com/jen_imago) for hacking music into Final Fantasy VI and making SPC files. Requires a ROM of the game.
