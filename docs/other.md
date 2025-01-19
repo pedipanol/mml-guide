@@ -1,6 +1,6 @@
 # List of MML Music Drivers
 
-While I'm keen on eventually covering a variety of specific MML formats the same way I did for PMD, it'll take time. As most list of MML formats are kind of outdated or incomplete, I think it's worth at least making a an updated one.
+While I'm keen on eventually covering a variety of specific MML formats the same way I did for PMD, it'll take time. As most of the lists of MML formats are kind of outdated or incomplete, I think it's worth at least making a an updated one.
 
 If there's anything new or missing, do inform me.
 
@@ -55,7 +55,7 @@ A MML tool by [emberling](https://twitter.com/jen_imago) for hacking music into 
 ### Squirrel (PC-Engine)
 A sound engine for the PC-Engine.
 
-- Download: https://www.aetherbyte.com/aetherbyte-squirrel_for_pc-engine_and_turbografx-16.html
+- Download: [https://www.aetherbyte.com/aetherbyte-squirrel_for_pc-engine_and_turbografx-16.html](https://www.aetherbyte.com/aetherbyte-squirrel_for_pc-engine_and_turbografx-16.html)
 - Documentation and manual are in MANUAL.TXT.
 
 ### MXDRV (Sharp X68000)
@@ -123,7 +123,7 @@ A dedicated SNES music driver, with a focus on space saving and playback optimiz
 
 ### HusiC (PC-Engine)
 
-A driver by [BouKiCHi](https://twitter.com/boukichi_numloc) for the PC-Engine based off ppmck. While it's untranslated, a lot of the commands are shared with ppmck, so using automatic translation should get you around it if you're already familiar with the format.
+A driver by [BouKiCHi](https://twitter.com/boukichi_numloc) for the PC-Engine based off ppmck. While it's untranslated, a lot of the commands are shared with ppmck, so using automatic translation should get you around it if you're already familiar with that format.
 
 
 - Download: [https://github.com/BouKiCHi/HuSIC/releases/latest](https://github.com/BouKiCHi/HuSIC/releases/latest)
