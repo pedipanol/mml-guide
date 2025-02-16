@@ -64,8 +64,8 @@ A Linux wrapper for PMD and DOS-Box by opna2608, needs [Nix](https://nixos.org/m
 
 1. Download or Clone the [projmd repository](https://github.com/OPNA2608/projmd)
 2. Download the [original PMD files](#original-driver-native-emulator) and extract them into the /PMD/ folder.
-3. Download [the OPNA Rhythm Sound Source (RSS) samples](http://snesmusic.org/hoot/drum_samples.zip) and extract it into the /pmdmini/ folder.
-4. Run shell.nix, this should add a new `pmd` command.
+3. Download [the OPNA Rhythm Sound Source (RSS) samples](http://snesmusic.org/hoot/drum_samples.zip), extract it into the /pmdmini/ folder and **change the letters to Upper Case**, otherwise they won't play.
+4. Run `nix-shell` on the projmd folder, this should add a new `pmd` command.
 5. The `pmd` command has the following functions:
 	- `pmd compile` compiles the MML file
 	- `pmd play` renders and plays the file
